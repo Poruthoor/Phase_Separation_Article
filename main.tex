@@ -194,11 +194,11 @@ Following are the definitions of another set of AVs similar to FLC that can trac
 
 \textbf{Preparing seeding configurations for WE simulation:} 
 From each 8 $\mu$s replica MD simulation of a given system, the last 10 frames spaced by 100 ns were collected.
-Using such collected frames, we created sets of mixed and separated configurations for each replica of a given system.
+Using such collected frames, for each replica of a given system, we created sets of mixed and separated configurations for each replica of a given system.
 For DPPC-DAPC-CHOL and DPPC-DIPC-CHOL systems, the set of mixed configurations for a particular replica came from the respective 423 K and 450 K simulation frames. 
 While the set of separated configurations for a replica came from  the respective 298K and 323K simulation frames.
-For the DPPC-POPC-CHOL system, sets of mixed and separated configurations for a replica came from the 450 K and 298K simulation frames, respectively.
-To enhance the convergence of WE equilibrium simulations, we decided to seed each simulation from mixed and separated states and let the enhanced sampling cover the transition between them.
+For the DPPC-POPC-CHOL system, sets of mixed and separated configurations for a replica came from the 450 K and 298K simulation frames respectively.
+To enhance the convergence of WE equilibrium simulations, we decided to seed each simulation from both mixed and separated states and let the enhanced sampling cover the transition between them.
 
 \textbf{Running WE simulations:} 
 Weighted Ensemble equilibrium simulations were run using the WESTPA 1.0 software package.
@@ -209,6 +209,7 @@ A short 1 ns MD run of all the walkers and subsequent resampling, according to t
 We conducted 500 WE iterations for each replica.
 The MD propagation was done using GROMACS 2020.3 engine with the same parameters used for standard MD simulations described earlier.
 A WE Equilibrium Dynamics (WEED) reweighting protocol, implemented in WESTPA 1.0, was used to accelerate the convergence of WE walkers into an equilibrium. 
+
 The reweighting was done every 10 WE iterations.
 
 For the DPPC-DAPC-CHOL lipid bilayer system, four WE replicas were simulated at 298 K, 323 K, 333 K, 343 K, 353 K, 373 K, and 423 K. 

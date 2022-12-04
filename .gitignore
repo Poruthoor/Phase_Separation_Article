@@ -1,3 +1,16 @@
+# vim nuggets #
+###############
+*.swp
+*.swp~
+*.un
+*.un~
+
+# jupyter-book post built junks
+_build/
+_build/.doctrees/
+_build/html
+_build/jupyter_execute/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -128,16 +141,15 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Vim bits
-*.un*
-*.sw*
+# LaTEX auxillary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
 
-# Files to be untracked
-
-# Heavy files from  WESTPA analysis
-*.pdf
-
-#Slurm bits
-*_e
-*_o
+# Ignoring supplementary files for time being
+*Supplementary.*
 
