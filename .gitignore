@@ -151,5 +151,4 @@ dmypy.json
 *.out
 
 # Ignoring supplementary files for time being
-*Supplementary.*
-
+Supplementary*
