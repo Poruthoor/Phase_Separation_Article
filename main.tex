@@ -45,8 +45,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \section*{Introduction}
 
-This is a place holder article template for our future paper. For time being, I will be using this 
-space to publish all the plots that are being generated as a part of the analysis.
+* Why phase separation is important?
+* Why phase separation in cell membrane is important?
+* Molecular dynamics
+* Challenges of simulating phase separation using MD
+* Ways to work around - CG. Enhanced sampling 
+* Choice of WE
 
 Todo list:
 
@@ -73,14 +77,14 @@ each system was used.
 Hence the subsequent dynamics propagation using MD is relatively cheaper than an All-Atom model but with the tradeoff in system resolution.
 The rationale behind this design choice is to fail faster with minimum resources if this proof-of-concept protocol is not working as expected. 
 Using CHARMM-GUI Martini Maker \cite{Qi2015}, we constructed four random replicas of each CG ternary symmetric bilayer system.
-MARTINI 2 force field parameters and particle definitions were used to construct CG systems and to run the subsequent MD simulation. 
+MARTINI 2 force field parameters and particle definitions\cite{Marrink2007,DeJong2013} were used to construct CG systems and to run the subsequent MD simulation. 
 The default input files from CHARMM-GUI Martini Maker were replaced with their respective most recent Martini 2.x versions, if they existed.
-MARTINI polarizable water model was used to solvate all systems with approximately a 1:30 lipid to real water ratio.
+MARTINI polarizable water model\cite{Yesylevskyy2010} was used to solvate all systems with approximately a 1:30 lipid to real water ratio.
 A detailed description of the systems used can be found in the Table S1 of supplementary material.
 
 \subsection*{Standard MD simulation details}
 
-Due to the historical compatibility of the the GROMACS MD engine with the MARTINI force field, we used GROMACS 2020.3 to propagate the dynamics of the systems prepared. 
+Due to the historical compatibility of the the GROMACS MD engine with the MARTINI force field, we used GROMACS 2020.3\cite{Abraham2015} to propagate the dynamics of the systems prepared. 
 Each system was minimized and equilibrated in steps using the MD input files suggested by CHARMM-GUI Martini Maker.
 
 To obtain an intact bilayer without any membrane undulations, we used an additional membrane restraining protocol: 
@@ -91,10 +95,10 @@ More details about membrane restraining protocol can be found in the supplementa
 After the minimization and equilibration, all systems were run at 400 K in the NPT ensemble for 100 ns to make sure the lipids in each system were
 randomly distributed.
 For every system, each replica was then forked into multiple temperature runs simulated at different temperatures ranging from 298K to 450K. 
-\sout{For every system, each replica was then forked into multiple temperature runs. 
-For the positive control, DPPC-DAPC-CHOL lipid bilayer system, every replica was simulated at 298 K, 323 K, 333 K, 343 K, 353 K, 373 K, 423 K and, 450 K. 
-For the main test system, DPPC-DIPC-CHOL lipid bilayer, every replica was simulated at 298 K, 323 K, 333 K, 343 K, 353 K, 423 K, and 450 K. 
-For the negative control, DPPC-POPC-CHOL lipid bilayer system, every replica was simulated at 298 K, 323 K, and 450 K.}
+%\sout{For every system, each replica was then forked into multiple temperature runs. 
+%For the positive control, DPPC-DAPC-CHOL lipid bilayer system, every replica was simulated at 298 K, 323 K, 333 K, 343 K, 353 K, 373 K, 423 K and, 450 K. 
+%For the main test system, DPPC-DIPC-CHOL lipid bilayer, every replica was simulated at 298 K, 323 K, 333 K, 343 K, 353 K, 423 K, and 450 K. 
+%For the negative control, DPPC-POPC-CHOL lipid bilayer system, every replica was simulated at 298 K, 323 K, and 450 K.}
 All standard MD simulations were run for at least 8 microseconds using the BlueHive supercomputing cluster of the Center for Integrated Research and
 Computing at the University of Rochester. Simulations were run on Intel Xeon E5-2695 and Gold 6130 processors augmented with Tesla K20Xm, K80, and V100 GPUs.   
 The trajectories were processed and analyzed using LOOS software package.
@@ -194,45 +198,51 @@ CEI is defined as the sum of individual enrichment index for all the lipid speci
 \begin{equation}
     \begin{aligned}
     \label{eq:CLT}
-    \text{CEI} {}   & = \sum_{i}^{N}\Bigg[\frac{\text{Average local density of lipids $X_i$ around a single lipid $X_i$}}{\text{Local density of lipid $X_i$ for a well mixed system}}\Bigg]_{\text{$\epsilon$}} \\
-                    & =  \sum_{i}^{N} \frac{1}{\Phi_i}\frac{1}{\text{$\pi\epsilon^2$}}\sum_{j}\text{No. of $X_i$ lipids around $X_{ij}$ lipid in $\epsilon$ radius}
+    \text{CEI} {}   & = \sum_{i}^{N}\Bigg[\frac{\text{Average local density of lipids $X_i$ around a single lipid $X_i$}}{\text{Local density of lipid $X_i$ for a well mixed system}}\Bigg]_{\text{$\epsilon_i$}} \\
+                    & =  \sum_{i}^{N} \frac{1}{\Phi_i}\frac{1}{\text{$\pi\epsilon_i^2$}}\sum_{j}\text{No. of $X_i$ lipids around $X_{ij}$ lipid in $\epsilon$ radius}
     \end{aligned}
 \end{equation}
 
-Where subscript $i$ and $j$ denotes the individual lipid species in the system and each lipid in $X_i$ species respectively.
+Where $X_{ij}$ denotes $j^{th}$ lipid of $X_i$ lipid species.
 For the normalization factor, $\Phi_i$ the global density of $X_i$ lipids is calculated by taking the ratio of total number of $X_i$ lipids in the system to the $xy$-planar area of the bilayer system.
 For a uniformly well-mixed system, this global density is same as local density for an invidiual $X_{ij}$ lipid.
 
 
 2. Segregation Index (SI)
 
-3. Weighted Mean Lipids in Clusters Vs. Weighted Standard Deviation of Lipids in Clusters
+We defined a contact based quantity to track the homogenity of lipid bilayer, similar to the ones that track mixing of beads used previously\cite{Marigo2012,Kumar2020}.
+Here, we calculated the fraction of like contacts made between $X_i$ species with respect to the total contacts made by $X_i$ as shown below:
+
+\begin{equation}
+    \begin{aligned}
+    \label{eq:CLT}
+    \text{SI} = \sum_{i}^{N}\Bigg[\frac{X_iX_i}{\sum_{j}^{N}X_iX_j}\Bigg] = \frac{X_{11}}{X_{11} + X_{12} + X_{13}} + \frac{X_{22}}{X_{21} + X_{22} + X_{23}} + \frac{X_{33}}{X_{31} + X_{32} + X_{33}}
+    \end{aligned}
+\end{equation}
+
+Where $X_iX_j$ denotes the contacts made between lipid species $X_i$ and $X_j$. 
 
 \subsection*{Weighted Ensemble Simulation}
 
 \textbf{Preparing seeding configurations for WE simulation:} 
 From each 8 $\mu$s replica MD simulation of a given system, the last 10 frames spaced by 100 ns were collected.
-Using such collected frames, for each replica of a given system, we created sets of mixed and separated configurations for each replica of a given system.
+Using such collected frames, we created sets of mixed and separated configurations for each replica of a given system.
 For DPPC-DAPC-CHOL and DPPC-DIPC-CHOL systems, the set of mixed configurations for a particular replica came from the respective 423 K and 450 K simulation frames. 
 While the set of separated configurations for a replica came from  the respective 298K and 323K simulation frames.
 For the DPPC-POPC-CHOL system, sets of mixed and separated configurations for a replica came from the 450 K and 298K simulation frames respectively.
 To enhance the convergence of WE equilibrium simulations, we decided to seed each simulation from both mixed and separated states and let the enhanced sampling cover the transition between them.
 
 \textbf{Running WE simulations:} 
-Weighted Ensemble equilibrium simulations were run using the WESTPA 1.0 software package.
-The collective variable was divided into 30 dynamic bins using the minimal adaptive binning scheme (MAB).
+Weighted Ensemble equilibrium simulations were run using the WESTPA 1.0 software package\cite{Zwier2015}.
+The collective variable was divided into 30 dynamic bins using the minimal adaptive binning scheme (MAB)\cite{Torrillo2021}.
 For each replica, a target number of 4 short simulations, or "walkers" per bin, were started in parallel from the mixed and the separated configurations prepared earlier.
 After every resampling interval of 1 ns, the collective variable was evaluated to initiate the merging and splitting of walkers to maintain the target number of walkers per bin.
 A short 1 ns MD run of all the walkers and subsequent resampling, according to the standard WE algorithm, constituted 1 WE iteration. 
 We conducted 500 WE iterations for each replica.
 The MD propagation was done using GROMACS 2020.3 engine with the same parameters used for standard MD simulations described earlier.
-A WE Equilibrium Dynamics (WEED) reweighting protocol, implemented in WESTPA 1.0, was used to accelerate the convergence of WE walkers into an equilibrium. 
-
+A WE Equilibrium Dynamics (WEED) reweighting protocol\cite{Bhatt2010}, implemented in WESTPA 1.0, was used to accelerate the convergence of WE walkers into an equilibrium. 
 The reweighting was done every 10 WE iterations.
-
-For the DPPC-DAPC-CHOL lipid bilayer system, four WE replicas were simulated at 298 K, 323 K, 333 K, 343 K, 353 K, 373 K, and 423 K. 
-For the DPPC-DIPC-CHOL lipid bilayer system, four WE replicas were simulated at 298 K, 323 K, 353 K, and 450 K. 
-For the DPPC-POPC-CHOL lipid bilayer system, four WE replicas were simulated at 298 K and 450 K.
+For the DPPC-DAPC-CHOL, DPPC-DIPC-CHOL, and DPPC-POPC-CHOL lipid bilayer systems, four WE replicas were simulated each at multiple temperatures. 
 All WE runs were carried out using the Intel Xeon E5-2695 and Tesla K20Xm GPUs in the BlueHive supercomputing cluster of the Center for Integrated Research and
 Computing at the University of Rochester.   
 
@@ -248,11 +258,16 @@ For
 
 \section*{Results}
 
-[] CV makes sense as we see CV track phase separation in vanilla sims.
-Plot CV evolution of vanilla simulation for each system - Will go in supplementary material
+[] Collective and auxiliary variables tracks phase separating bilayer
 
-[] If time permits, When plotting FES for auxillary variables, add a plot for FES as a function of border lipids as well.
-Might need to use $w_crawl$ and add an extra lines of code to print out border lipid number in FLC script.
+[] Choice of collective variable is essential for the convergence of Free Energy Landscape
+
+[] Free Energy Landscape of lipid bilayer systems
+
+
+\section*{Discussion}:
+
+
 
 
 % ------------------------- %
