@@ -86,7 +86,6 @@ A detailed description of the systems used can be found in the Table S1 of suppl
 
 Due to the historical compatibility of the the GROMACS MD engine with the MARTINI force field, we used GROMACS 2020.3\cite{Abraham2015} to propagate the dynamics of the systems prepared. 
 Each system was minimized and equilibrated in steps using the MD input files suggested by CHARMM-GUI Martini Maker.
-
 To obtain an intact bilayer without any membrane undulations, we used an additional membrane restraining protocol: 
 We took advantage of the flat bottom restrain potential available in GROMACS to allow lipids to move freely in the $xy$ plane but restrained within a slab of
 defined z thickness.
@@ -120,7 +119,7 @@ Hence we hypothesized that a variable thatthe Fraction of Lipids in Cluster (FLC
 
 
 Where subscript $i$ denotes the individual lipid species in a bilayer consisting of N total lipid species.
-As shown in Figure \ref{fig1:view}, each system has $N=3$ lipid species in our case.
+As shown in Figure \ref{fig2:view}, each system has $N=3$ lipid species in our case.
 FLC increases as the system go from a mixed state, with a random distribution of lipids, to a separated state.
 In principle, FLC is bounded between 0 and 1. FLC = 0 corresponds to a system configuration where no lipids are part of any cluster.
 While FLC = 1 corresponds to all lipids being a part of some cluster. 
@@ -129,7 +128,7 @@ While FLC = 1 corresponds to all lipids being a part of some cluster.
 \centering
 \includegraphics[width=1\linewidth]{Figures/Figure1.PNG}
 \caption{a. A phase separating system evolves from a mixed state to a separated state. b. Functional form of FLC. c. FLC evolution curve for a phase separating system}
-\label{fig1:view}
+\label{fig2:view}
 
 \end{figure}
 
@@ -145,7 +144,6 @@ All lipids that are not a part of any cluster are considered outlier lipids.
 Since lipid motion in a bilayer is mostly constrained in a plane and MARTINI beads for a lipid are of similar radii, we can make use of the two-dimensional
 version of Kepler's conjecture that the densest packing of unit disks in a plane is hexagonal close packing (Thue's Theorem).
 Hence we chose 7 (6 nearest neighbors + 1 central lipid) as $min\_samples$ for all the lipid species.
-
 However, $\varepsilon$ was chosen differently for each lipid species based on their first nearest neighbor distance from the central lipid.
 The first nearest neighbor distance of an individual lipid species was calculated using the $xy\_rdf$ tool in LOOS.
 From the first 8 $\mu$s MD standard simulation of each replica, we computed the radial distribution function (RDF) for a lipid species in the xy-plane. 
@@ -185,12 +183,14 @@ MSC is bound between and -1 and 1.
 A high positive value corresponds to well segregated dense clusters, while a low negative value implies that lipids are assigned to clusters incorrectly.  
 
 Similar to the FLC, a set of additional AVs that track phase separation are also defined as given below.
-The rationale behind such AVs is to serve as proxy coordinates that can independently assess phase separation events enhanced by FLC driven WE runs. 
+The rationale behind such AVs is to serve as proxy coordinates that can independently assess phase separation events enhanced by FLC driven WE runs.
+\\
 
-1. Cumulative Enrichment Index (CEI)
+1. Cumulative Enrichment Index (CEI): 
 
 We defined a density based quantity to estimate the degree of global lipid enrichment in the system, similar to the ones that track local lipid segregation used previously \cite{Gu2019, Gu2020}.
-Here, we calculated the average local density of $X_i$ lipids around a single lipid $X_{ij}$, within a cutoff radius, $\epsilon$, as we defined earlier for FLC estimation.
+Here, we calculated the average local density of $X_i$ lipids around a single lipid $X_{ij}$, within a cutoff radius, $\epsilon_i$, as we defined earlier for FLC estimation.
+The cutoff radius, $\epsilon_i$, is also temperature dependent.
 We also defined a normalization factor, $\Phi_i$, as the local density of $X_i$ lipids for a uniformly well mixed system of similar composition.
 The ratio of former respective to latter forms the enrichment index for a lipid species, $X_i$ .
 CEI is defined as the sum of individual enrichment index for all the lipid species in the system, as follows:  
@@ -198,15 +198,18 @@ CEI is defined as the sum of individual enrichment index for all the lipid speci
 \begin{equation}
     \begin{aligned}
     \label{eq:CLT}
-    \text{CEI} {}   & = \sum_{i}^{N}\Bigg[\frac{\text{Average local density of lipids $X_i$ around a single lipid $X_i$}}{\text{Local density of lipid $X_i$ for a well mixed system}}\Bigg]_{\text{$\epsilon_i$}} \\
-                    & =  \sum_{i}^{N} \frac{1}{\Phi_i}\frac{1}{\text{$\pi\epsilon_i^2$}}\sum_{j}\text{No. of $X_i$ lipids around $X_{ij}$ lipid in $\epsilon$ radius}
+    \text{CEI} {}   & = \sum_{i}^{N}\Bigg[\frac{\text{Average local density of lipids $X_i$ around a single lipid $X_i$}}{\text{Local density of lipid $X_i$ for a well mixed system}}\Bigg]_{\text{$\epsilon_i(T)$}} \\
+                    & =  \sum_{i}^{N} \frac{1}{\Phi_i}\frac{1}{\text{$\pi\epsilon_i^2$}}\sum_{j}\text{No. of $X_i$ lipids around $X_{ij}$ lipid in $\epsilon_i(T)$ radius}
     \end{aligned}
 \end{equation}
 
 Where $X_{ij}$ denotes $j^{th}$ lipid of $X_i$ lipid species.
+The local density around $X_{ij}$ is calculated within $\epsilon_i(T)$ distance, where T is the temperature of the system.
+We do correct the local density for central lipid contributions.
 For the normalization factor, $\Phi_i$ the global density of $X_i$ lipids is calculated by taking the ratio of total number of $X_i$ lipids in the system to the $xy$-planar area of the bilayer system.
-For a uniformly well-mixed system, this global density is same as local density for an invidiual $X_{ij}$ lipid.
-
+For a uniformly well-mixed system, this global density is same as local density of $X_{i}$ lipid.
+Thus CEI $>$ 3 implies that the ternary system, $N=3$, is deviating from well mixed state to more separated state. 
+\\
 
 2. Segregation Index (SI)
 
@@ -216,11 +219,14 @@ Here, we calculated the fraction of like contacts made between $X_i$ species wit
 \begin{equation}
     \begin{aligned}
     \label{eq:CLT}
-    \text{SI} = \sum_{i}^{N}\Bigg[\frac{X_iX_i}{\sum_{j}^{N}X_iX_j}\Bigg] = \frac{X_{11}}{X_{11} + X_{12} + X_{13}} + \frac{X_{22}}{X_{21} + X_{22} + X_{23}} + \frac{X_{33}}{X_{31} + X_{32} + X_{33}}
+    \text{SI} = \sum_{i}^{N}\Bigg[\frac{X_iX_i}{\sum_{j}^{N}X_iX_j}\Bigg]_{\text{$\epsilon_i(T)$}} = \frac{X_{11}}{X_{11} + X_{12} + X_{13}} + \frac{X_{22}}{X_{21} + X_{22} + X_{23}} + \frac{X_{33}}{X_{31} + X_{32} + X_{33}}
     \end{aligned}
 \end{equation}
 
-Where $X_iX_j$ denotes the contacts made between lipid species $X_i$ and $X_j$. 
+Where $X_iX_j$ denotes the contacts made between lipid species $X_i$ and $X_j$ within $\epsilon_i(T)$ cutoff.
+Thus for a ternary bilayer system, SI $=$ 3 implies a fully separated system and SI $<$ 3 implies mixing.
+However, for the analysis here, we ignored the contribution of Cholesterol as we found that excluding Cholesterol term did not change the functional behavior (Supplementary Info).
+Hence, $SI_{noCHOL}$ effectively will have bounds [0, 2] unless otherwise stated.    
 
 \subsection*{Weighted Ensemble Simulation}
 
@@ -252,13 +258,32 @@ Using this distribution, we monitored the evolution of each WE replica simulatio
 $w\_mult\_west$ tool in WESTPA was used to combine data from four WE replicas of a system at a given temperature.
 From the combined probability distribution of a system, the respective Free Energy Surface (FES) was created.
 To check the flux between states and population in different states, $w\_ipa$, another WESTPA tool, was used.
-For 
-
-
 
 \section*{Results}
 
-[] Collective and auxiliary variables tracks phase separating bilayer
+Consistant with previous studies from which they are adapted, the standard CG MD simulations of DPPC-(DA/DI)PC-CHOL systems phase separates into $L_o$ and $L_d$ regions.
+$L_o$ region enriched in saturated lipid, DPPC, and Cholesterol. 
+$L_d$ region is enriched with unsaturated lipids (DA/DI)PC.
+The DPPC-POPC-CHOL system showed low to no separation.
+In this section, we first compare how different variables track phase separation propensity in lipid bilayers using standard CG MD simulations.
+We then compare the convergence of WE simulation with respect to choice of collective variable.
+Finally, we present the free energy landscapes of lipid bilayer systems obtained using WE simulations and discuss about reusing the data generated to form further intutions and applications.
+
+\subsection*{Tracking phase separating lipid bilayers}
+
+To evaluate how collective variable, FLC, and other auxillary variables track phase separation in lipid bilayers,
+from standard CG MD, we traced the time evolution of each variable for different systems at different temperatures.
+The Figure 3 illustrates the temporal evolution of FLC, CEI and $SI_{noCHOL}$ for DPPC-(DA/DI/PO)PC-CHOL systems at 298K, 323K, 423K and 450K.
+For DPPC-(DA/DI)PC-CHOL systems, the variables capture a single transition between a mixed state and a separated state.
+Also, the residence time of these systems in separated state is dominant in the standard CG simulation.
+However, for DPPC-POPC-CHOL system, the variables capture a single state corresponnding to a mixed system and no transition.
+But it is worthy to note that FLC, CEI and $SI_{noCHOL}$ captures the effect of temperature in all systems, including the negative control that does not phase separate.
+Thus we have a set of low-dimensional variables that can (a) represent the global dynamics of the lipid bilayer system,
+(b) distinguish and track the transition between mixed and separated states, (c) capture the temperature effects,
+and (d) based on the compostion of the system.
+The time evolution of other auxillary variables can be found in supplementary figure SX.
+\\
+
 
 [] Choice of collective variable is essential for the convergence of Free Energy Landscape
 
