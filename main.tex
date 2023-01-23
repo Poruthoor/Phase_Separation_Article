@@ -349,30 +349,48 @@ In general, FLC based free energy landscapes captures the role of lipid species 
 Moreover, the effect of temperature in decreasing the propensity of a lipid bilayer to separate is evident in all system.
 It should be noted that, though the expectation of clustering based FLC is to track formation of domains in lipid bilayer, the fact that it also neatly captures the temperature effect even for the negative control, suggests the robustness of FLC as collective variable.
 
-\subsection*{Reusing simulation data}
+%\subsection*{Reusing simulation data}
 
+\subsection*{Reconstructing free energy landscapes}
 One of the outcome of WE simulation is the curated ensemble of diverse trajectories/walkers.
 By construction, WE resampling ensures the weights associated with these walkers are unbiased.
 Thus, we can reuse these weights to examine other variables of choice post-simulation.
 Assuming the initial configurational distribution relaxed into an equilibrium distribution during WE simulation driven by FLC (see Discussion), 
-reusing the weights, here we have reconstructed anologous free energy landscapes with other variables.
+by reusing the weights, we have reconstructed anologous free energy landscapes with collective variable candidates that under-performed.
+Fig 6 A and B show reconstructed free energy landscapes with CEI and $\text{SI}_{\text{noCHOL}}$ by combining the weights from last 10 iterations of four replica for each system.
 
-provided there's an equilibrium distribution are can be reused
+\textbf{$\bigotimes$ I need to construct free energy landscapes similar to Fig 4 A where I plot free energy curves w.r.t WE iteration for CEI and SI using FLC driven WE simulation data. And show that unlike Fig 4 A, now the curves converge. Working on that!! $\bigotimes$}
 
+By the WESTPA framework, one can resume the WE simulation using variables of choice using the weights from exisitng ensemble\cite{Zhang2010,Zwier2015}.
+Hence by reusing the unbiased weights on the trajectory ensemble we obtained from a reasonably converged WE simulation,
+we can rescue the under performance of WE simulation due to initial choice of poor collective variable.
 
-weights to indicate the relative importance of any given region at any time
+\subsection*{$\Delta\Delta$G profile of lipid system}
 
-
-%\subsubsection*{Rescuing poor performing collective variables}
-
-%\subsubsection*{$\Delta\Delta$G profile}
-
+From free energy landscapes of lipid bilayer at various temperature, in principle, we can create a $\Delta\Delta$G profile by defining a FLC cutoff between mixed and separated states.
+As seen in Fig 5 A, for a system, the concept of state basins is different at different temperature.
+In high temperature, the notion of two states - mixed and separated - breaks down as double-well behavior of free energy curves turn into single well. 
+One trivial solution would be to define a rigid FLC cutoff for a system.
+However, a caveat for this approach, as seen in Fig 5 A, is that the free energy basin for a specific state of DPPC-DIPC-CHOL system is different for respective state basin for DPPC-DAPC-CHOL system.
+So a rigourous FLC cutoff for state definition of a system may not make sense in another pahse separating system.
+Thus, to showcase the capability of the pipeline we have presented here, we define an ad hoc cutoff, FLC = 0.5, for a general lipid system.   
+i.e, we make an arbitary choice of a separated lipid bilayer, if more than 50\% of lipids in the system are part of some clusters.
+Figure 7 shows the $\Delta\Delta$G curve for DPPC-DAPC-CHOL system as a function of temperature for FLC=0.5 cutoff.
+Even though, we can see that $\Delta\Delta$G curve for mixed to separated transition is crossing $\Delta\Delta$G=0 line, indicating the corresponding melting temperature,
+we advise reader to exercise caution while interpreting this result as we have a coarse grained model, an arbitary cutoff, and lack of experimental data to compare it with for given composition.
+However, we want to highlight the capability of this proof-of-concept pipeline we created to achieve $\Delta\Delta$G profiling for a phase separating system.
+We expect a more accurate profiling on using a more accurate all-atom model for our system with a more rigorous methods for defining phase separation in FLC space that account for 
+varying propensity as a function of temperature and system composition.
+Fig SX shows the sensitivity of FLC cutoffs on $\Delta\Delta$G profile for a given system.
 
 \section*{Discussion}
 
 1. Outline the FLOPSS pipeline (Take that damn figure from student seminar slides to avoid writing a ton of stuff)
 
 2. What we achieved
+
+We demonstrate the potential reuse of a reasonably converged WE equilibrium simualtion driven by a good collective varible, to explore other variables which otherwise constitute a poor choice for driving WE simulation.
+Thus, we can increase the effectiveness of WE simulation without comprising on computational cost.
 
 3. Where we are going with this
 
