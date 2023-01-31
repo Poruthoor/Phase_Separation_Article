@@ -112,6 +112,7 @@ As shown in Fig \ref{fig1:view}, we used three different ternary lipid bilayer s
 2. As a positive control, we chose a lipid bilayer consisting of DPPC, diarachidonoyl-phosphatidylcholine (DAPC), and CHOL, known to phase separate relatively faster in silico in the order of a few hundred nanoseconds \cite{Lin2016, Lin2019, Davis2013a}.
 3. As a negative control, we chose a lipid bilayer consisting of DPPC, palmitoyl-oleoyl-phosphatidylcholine (POPC), and CHOL that was previously shown not to phase separate \cite{Veatch2003,Davis2013a}.
 The composition of DPPC-DIPC-CHOL, DPPC-DAPC-CHOL, and DPPC-POPC-CHOL systems used here are (0.42/0.28/0.3), (0.5/0.3/0.2) and (0.4/0.4/0.2) respectively and are adapted from previous studies \cite{Risselada2008, Lin2016, Davis2013a}.
+Similar to the prvious studies, we kept the total number of lipids in DPPC-DIPC-CHOL, DPPC-DAPC-CHOL, and DPPC-POPC-CHOL at 1944, 1200 and 1200 respectively.
 
 Due to the relatively larger system size and time scale required for phase separation and related dynamics in lipid bilayer simulations, we used the Coarse-Grained (CG) model for each system. Hence the subsequent dynamics propagation using MD is relatively cheaper than an All-Atom model but with a tradeoff in system resolution.
 The rationale behind this design choice is to fail faster with minimum resources if this proof-of-concept protocol is not working as expected. 
@@ -131,6 +132,18 @@ More details about membrane restraining protocol are given in the supplementary 
 
 After the minimization and equilibration, all systems were run at 400 K in the NPT ensemble for 100 ns to make sure the lipids in each system were randomly distributed.
 For every system, we forked each replica into multiple temperature runs simulated at different temperatures ranging from 298K to 450K.
+For these production runs, the temperature coupling is done using velocity rescaling with a time constant 1 ps.
+An extended-ensemble Parrinello-Rahman pressure coupling with a relatively high time constant of 12 ps was used as we are dealing with CG system. 
+A semiisotropic pressure coupling suited for membrane simulations is used here with a compressibility of $3e^{-4}$ $\text{bar}^{-1}$ and reference pressure for coupling as 1 bar.
+A reaction field electrostatics with Coloumb cutoff of 1.1 nm was used.
+Since we are using a polarizable water, a relative dielectric constant of 2.5 was used.
+For Van der Waals interaction, a similar cutoff of 1.1 nm was used.
+A potential-shift Van der Waal modifier was also used.
+For reighbor searching, a verlet cutoff scheme was used with neighbor list updated every 20 steps.
+The simulation parameters were mostly inspired by previous CG MARTINI simulations\cite{DeJong2016}. 
+To eliminate potential artefacts previously reported\cite{Javanainen2020} for LINCSolver, we used an 8 as the highest order in the expansion of constraint coupling matrix for more accuracy.
+Moreover, for better energy conservation, we also used short 20 fs timesteps which is conservative for a CG system.
+
 All standard MD simulations ran for at least 8 microseconds using the BlueHive supercomputing cluster of the Center for Integrated Research and Computing at the University of Rochester.
 Simulations ran on Intel Xeon E5-2695 and Gold 6130 processors augmented with Tesla K20Xm, K80, and V100 GPUs.   
 The trajectories were processed and analyzed using the LOOS software package.
