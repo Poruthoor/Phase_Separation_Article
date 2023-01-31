@@ -1,0 +1,30 @@
+I found the following useful comment in the ChemDraw forum: https://chemmazing.perkinelmerinformatics.com/conversations/chemdraw-prime/changing-the-drawing-settings/627a8cb7c10fd3205efd06dd
+
+1. To change the thickness of figure and text
+
+Either at the document level (File > Document Settings) or at the Object Level (select Object then Object > Object Settings) you can change the look and feel of your molecules and your drawings. 
+
+Under Drawing section: 
+
+- Fixed Length: 0.2 in (or 0.22 in if you work with crowded structures in 3D)
+
+- Spacing: 14% of the length
+
+- Line width: 0.02 in
+
+- Margin: 0.02 in
+
+- Bold width: 0.04 in
+
+- Hash: 0.03 in
+
+Under Atom Labels Section:
+
+- Atom labels: Arial, 10, Bold
+
+2. To change the light background to dark
+
+At the document level (File > Document Settings)
+
+Under Colors section: Change the foreground and background colors to white and black, respectively.
+
