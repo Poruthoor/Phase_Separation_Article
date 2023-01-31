@@ -11,7 +11,7 @@
 \usepackage[normalem]{ulem}
 
 \title{Understanding the Free Energy Landscape of Phase Separation in Lipid Bilayer using Weighted Ensemble Molecular Dynamics}
-\runningtitle{All plots with long captions} %% For page header
+\runningtitle{FLOPSS} %% For page header
 
 \author[1]{Ashlin Poruthoor}
 \author[1,*]{Alan Grossfield}
@@ -96,11 +96,10 @@ We explore three potential candidates for collective variables and assess their 
 We then construct free energy landscapes of the three systems at multiple temperatures.
 We further explore a few non-traditional use cases for the data thus generated and discuss additional room for improvements.
 
-%\ref{fig2:view}
 \begin{figure}[hbt!]
 \centering
 \includegraphics[width=1\linewidth]{Figures/Main/1/Final/placeholder.jpg}
-\caption{a. A phase separating system evolves from a mixed state to a separated state. b. Functional form of FLC. c. FLC evolution curve for a phase separating system}
+\caption{A. 2D structure and corresponding MARTINI 2 bead structure for lipids used in this study. B. Time evolution of each lipid system as a function of time. The membrane normal is pointing towards the reader}
 \label{fig1:view}
 \end{figure}
 
@@ -165,7 +164,7 @@ While FLC = 1 corresponds to all lipids being a part of some cluster.
 \begin{figure}[hbt!]
 \centering
 \includegraphics[width=1\linewidth]{Figures/Main/2/placeholder.jpg}
-\caption{a. A phase separating system evolves from a mixed state to a separated state. b. Functional form of FLC. c. FLC evolution curve for a phase separating system}
+\caption{A. Illustration of FLC :  Functional form of FLC and expected evolution curve for a phase separating system. B. Illustration of Cummulative Enrichment Index. C. Illustration of Seggregation Index}
 \label{fig2:view}
 \end{figure}
 
@@ -270,12 +269,12 @@ This section compares how different variables track phase separation propensity 
 We then compare the convergence of WE simulation to the choice of collective variable.
 Finally, we present the free energy landscapes of lipid bilayer systems obtained using WE simulations and discuss reusing the data generated to form other intuitions and applications.
 
-\subsection*{Tracking phase separating lipid bilayers}
+%\subsection*{Tracking phase separating lipid bilayers}
 
 \begin{figure}[hbt!]
 \centering
 \includegraphics[width=1\linewidth]{Figures/Main/3/placeholder.jpg}
-\caption{a. A phase separating system evolves from a mixed state to a separated state. b. Functional form of FLC. c. FLC evolution curve for a phase separating system}
+\caption{A. Time series for three collective variables tracking membrane separation. Each line represents a conventional MD simulation started from a well-mixed state. Each column contains trajectories from a single lipid composition, while each row shows a different variable; 8$\mu$s trajectories were used for all rows. The lines are colored to represent different simulation temperatures.}
 \label{fig3:view}
 \end{figure}
 
@@ -302,7 +301,7 @@ The time evolution of other auxiliary variables can be found in Fig SX.
 \begin{figure}[hbt!]
 \centering
 \includegraphics[width=0.92\linewidth]{Figures/Main/4/placeholder1.jpg}
-\caption{a. A phase separating system evolves from a mixed state to a separated state. b. Functional form of FLC. c. FLC evolution curve for a phase separating system}
+\caption{For the given DPPC-DIPC-CHOL replica: A. Free energy curves as a function of WE iteration blocks used to generate them. B. Each plot gives the evolution of configurational distribution for a given collective variable. C. Flux profile between states. The peaks represent crossing of walkers. D. Corresponding state population. Here, each column represent the collective variable that was used to drive WE simulation (FLC, CEI, and $\text{SI}_{\text{noCHOL}}$).}
 \label{figs4:view}
 \end{figure}
 
@@ -354,7 +353,7 @@ Hence we decided to go forward with FLC-based WE simulation to enhance the sampl
 \begin{figure}[hbt!]
 \centering
 \includegraphics[width=1\linewidth]{Figures/Main/5/placeholder.jpg}
-\caption{a. A phase separating system evolves from a mixed state to a separated state. b. Functional form of FLC. c. FLC evolution curve for a phase separating system}
+\caption{Free energy landscape based on FLC driven WE simulation for three systems. Each line represents a free energy curve. Each column contains free energy curves from a single lipid composition. The lines are colored to represent different simulation temperatures}
 \label{figs5:view}
 \end{figure}
 
@@ -376,7 +375,7 @@ Please note that though the expectation of clustering-based FLC is to track the 
 \begin{figure}[hbt!]
 \centering
 \includegraphics[width=0.75\linewidth]{Figures/Main/6/placeholder.jpg}
-\caption{a. A phase separating system evolves from a mixed state to a separated state. b. Functional form of FLC. c. FLC evolution curve for a phase separating system}
+\caption{A. Free energy landscapes reconstructed using the ensemble of configurations generated during last 10 iterations of FLC driven WE simulation. The Free energy landscape resconstructed is with respect to $\text{SI}_{\text{noCHOL}}$ for DPPC-DAPC-CHOL and DPPC-DIPC-CHOL system respectively. B. The Free energy landscape resconstructed is with respect to CEI for DPPC-DAPC-CHOL and DPPC-DIPC-CHOL system respectively. The lines are colored to represent different simulation temperatures}
 \label{figs6:view}
 \end{figure}
 
@@ -396,7 +395,7 @@ we can rescue the underperformance of WE simulation due to the initial choice of
 \begin{figure}[hbt!]
 \centering
 \includegraphics[width=0.5\linewidth]{Figures/Main/7/placeholder.jpg}
-\caption{a. A phase separating system evolves from a mixed state to a separated state. b. Functional form of FLC. c. FLC evolution curve for a phase separating system}
+\caption{$\Delta$$\Delta$G profile for DPPC-DAPC-CHOL and DPPC-DIPC-CHOL systems for a given cutoff. Each curve represents $\Delta$$\Delta$G for the system to tranistion from mixed to separated state. Negative values indicate phase coexistence is favored}
 \label{figs7:view}
 \end{figure}
 
@@ -422,7 +421,7 @@ Fig SX shows the sensitivity of FLC cutoffs on $\Delta\Delta$G profile for a giv
 \begin{figure}[hbt!]
 \centering
 \includegraphics[width=1\linewidth]{Figures/Main/8/placeholder.jpg}
-\caption{a. A phase separating system evolves from a mixed state to a separated state. b. Functional form of FLC. c. FLC evolution curve for a phase separating system}
+\caption{Schematic representation of the proposed FLOPSS pipeline. The pipeline is modular. Each module has layers that can be translated to any phase separating system.}
 \label{figs8:view}
 \end{figure}
 

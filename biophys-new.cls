@@ -62,8 +62,8 @@
 \renewcommand{\headrule}{}
 \fancyhead[RO]{\sffamily\footnotesize\@runningtitle}
 \fancyhead[LE]{\sffamily\footnotesize\@runningauthor}
-\fancyfoot[RO]{\sffamily\footnotesize Manuscript submitted to Biophysical Journal\hspace{1em}\textbf{\thepage}}
-\fancyfoot[LE]{\sffamily\footnotesize\textbf{\thepage}\hspace{1em}Manuscript submitted to Biophysical Journal}
+\fancyfoot[RO]{\sffamily\footnotesize Manuscript submitted for preprint\hspace{1em}\textbf{\thepage}}
+\fancyfoot[LE]{\sffamily\footnotesize\textbf{\thepage}\hspace{1em}Manuscript submitted for preprint}
 \pagestyle{fancy}
 
 \fancypagestyle{titlepage}{%
@@ -73,7 +73,7 @@
 
 \renewcommand{\@maketitle}{%
 \thispagestyle{titlepage}
-\textsf{Manuscript submitted to \textbf{Biophysical}}\kern1pt\textit{Journal}\\[-0.5em]%
+\textsf{Manuscript submitted for \textbf{Arxiv}}\kern1pt\textit{preprint}\\[-0.5em]%
 {\LARGE\sffamily\bfseries\color{gray}\@papertype\par}
 \bigskip
 {\raggedright\bfseries\sffamily\huge\@title\par}
