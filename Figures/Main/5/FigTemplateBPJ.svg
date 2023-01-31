@@ -26,8 +26,8 @@
      showgrid="true"
      showguides="true"
      inkscape:zoom="1.4142136"
-     inkscape:cx="278.95363"
-     inkscape:cy="209.30361"
+     inkscape:cx="279.66072"
+     inkscape:cy="209.3036"
      inkscape:window-width="2880"
      inkscape:window-height="1514"
      inkscape:window-x="-11"
@@ -99,7 +99,7 @@
        width="215.89999"
        height="279.39999"
        id="page120942"
-       inkscape:export-filename="placeholder.pdf"
+       inkscape:export-filename="FigTemplateBPJ.pdf"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" /><inkscape:page
        x="225.89999"
@@ -179,7 +179,10 @@
      style="font-variant:normal;font-weight:normal;font-size:2.43321px;font-family:DejaVuSans;-inkscape-font-specification:DejaVuSans;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.12166"
      id="text120832"
      x="18.055595"
-     y="51.552177"><tspan
+     y="51.552177"
+     inkscape:export-filename=".\placeholder.jpg"
+     inkscape:export-xdpi="900"
+     inkscape:export-ydpi="900"><tspan
        x="18.055595"
        y="51.552177"
        id="tspan120830"
