@@ -10,10 +10,10 @@
 \usepackage{lipsum}
 \usepackage[normalem]{ulem}
 
-\title{Understanding the Free Energy Landscape of Phase Separation in Lipid Bilayers using Weighted Ensemble Molecular Dynamics}
+\title{Understanding the Free Energy Landscape of Phase Separation in Lipid Bilayers using Molecular Dynamics}
 \runningtitle{FLOPSS} %% For page header
 
-\author[1]{Ashlin Poruthoor}
+\author[1]{Ashlin J. Poruthoor}
 \author[1,*]{Alan Grossfield}
 \runningauthor{Poruthoor and Grossfield} %% For page header
 
@@ -34,15 +34,15 @@
 Liquid-liquid phase separation (LLPS) inside the cell often results in biological condensates that can critically impact
 cell homeostasis. Such phase separation events occur all across a cell and often involve common biomolecules, including
 lipids in the cell membranes. Lipid phase separation at the cell membrane and subsequent ordered domain formation in a sea
-of disordered lipids led to the so-called "lipid-raft hypothesis." The resultant lipid domains with preferential interactions and
-collective behavior often have functional roles. However, the thermodynamics of lipid phase separation and their resulting
+of disordered lipids led to the so-called "lipid raft hypothesis." The resulting lipid domains often have functional roles.
+However, the thermodynamics of lipid phase separation and their resulting
 mechanistic effects on cell function and dysfunction are poorly understood. Understanding such bulk phenomenon on a cell
-membrane with a diverse lipidome is nontrivial. Hence simple model systems that can recapitulate similar behavior are
-widely used to study this multivariate phenomenon. Despite simplifying the problem, the relative timescale and system size
-required for simulating phase separation events pose a challenge for molecular dynamics (MD) simulations to study them.
-Thus most MD studies focus on spontaneous lipid phase separation as an adequate sampling of transition events between
+membrane with a diverse lipidome is exceptionally difficult. Hence simple model systems that can recapitulate similar behavior are
+widely used to study this phenomenon. Despite simplifying the problem, the relative timescale and system size
+required for simulating phase separation events pose a challenge for molecular dynamics (MD) simulations.
+Thus, most MD studies focus on spontaneous lipid phase separation as an adequate sampling of transition events between
 mixed and separated lipid states is hard to achieve by the current MD framework. Here, we propose a proof-of-concept pipeline that can realize such multiple-state transitions by combining coarse-grained model membranes with enhanced sampling protocols.
-Using this pipeline, we can ask not just whether a system phase is separate or not, but why it separates, with statistical rigor.
+Using this pipeline, we can ask not just whether a system phase is separated or not, but why it separates, with statistical rigor.
 
 \end{abstract}
 
@@ -53,57 +53,56 @@ Using this pipeline, we can ask not just whether a system phase is separate or n
 Interactions among biomolecules often result in phase separation and subsequent formation of biological condensates\cite{Banani2016}.
 In the past decade, there has been a new appreciation for the role of phase separation in cell physiology\cite{Banani2017}. Biological condensates involving fundamental biomolecules like DNA\cite{Larson2017}, RNA\cite{Langdon2018}, protein\cite{Li2012}, and lipids\cite{Sezgin2017} are identified, and their functional roles are characterized.
 Biological condensates have been observed to be involved in diverse processes, including DNA damage response\cite{Altmeyer2015}, translational\cite{Decker2012} and transcriptional\cite{Lallemand-Breitenbach2010} regulation, ribosome biogenesis\cite{Feric2016}, cell adhesion\cite{Case2015}, and endocytosis\cite{Degreif2019}.
-Such nano-to-micron-scale compartments have no surrounding membrane but sequester key molecules and help in cellular organization, similar to canonical organelles\cite{Mao2011},\cite{Boisvert2007}.
+Such nano-to-micron-scale compartments have no surrounding membrane but sequester key molecules and help in cellular organization, similar to canonical organelles\cite{Mao2011,Boisvert2007}.
 These transient and dynamic sequestration zones are crucial for cell stress responses\cite{Boisvert2007} and signal transductions\cite{Janosi2012}.
 As phase-separated molecules are concentrated within these condensates, they can function as reaction crucibles that enhance reaction kinetics\cite{Strulson2012}.
 However, abnormal phase behavior of biological condensates is speculated to underlie multiple disease states, including neurodegenerative diseases such as Huntington's\cite{Li2016}, ALS\cite{Jain2017}, and Parkinson's\cite{Ray2020}.
 
 
-Like the intracellular biological condensates, phase separation in the cell membrane often results in relatively ordered lipid lateral domains with collective behavior that can recruit other proteins and lipids\cite{Sezgin2017},\cite{Case2019}.
-Such domains often cluster signaling molecules\cite{Tian2007} and facilitate conformational modulations through domain-specific lipid interactions\cite{Laganowsky2014},\cite{Lingwood2011} that are relevant in immune signaling\cite{Beck-garcia2015},\cite{Wisser2017} and host-pathogen interactions\cite{Dick2012}.
+Like the intracellular biological condensates, phase separation in the cell membrane often results in relatively ordered lipid lateral domains with collective behavior that can recruit other proteins and lipids\cite{Sezgin2017, Case2019}.
+Such domains often cluster signaling molecules\cite{Tian2007} and facilitate conformational modulations through domain-specific lipid interactions\cite{Laganowsky2014,Lingwood2011} that are relevant in immune signaling\cite{Beck-garcia2015},\cite{Wisser2017} and host-pathogen interactions\cite{Dick2012}.
 As membrane properties modulate resident protein function, the coexistence of distinct phases gives the cell extra grip on regulation.
-Conformational changes in domain resident molecules and their subsequent activity shift regulates key signaling events\cite{Laganowsky2014},\cite{Lingwood2011}.
+Conformational changes in domain resident molecules and their subsequent activity shift regulates key signaling events\cite{Laganowsky2014,Lingwood2011}.
 It has also been observed that the HIV Gag protein is sensitive to domains with high cholesterol content, suggesting a potential role of membrane domains in host-pathogen interaction and viral assembly\cite{Dick2012}.
-Moreover, lipid domains have been observed to be conserved throughout the tree of life, implying its relevance in regulating cellular processes\cite{Sezgin2017}. 
+Moreover, lipid domains are conserved throughout the tree of life, implying its relevance in regulating cellular processes\cite{Sezgin2017}. 
 Thus, calculating the thermodynamics of phase separation as a function of the composition of the system is critical in understanding the molecular grammar behind lipid domains and the resultant functional modulations. 
 
 
 Lipid domains have been studied from the perspective of phase separation experimentally and computationally.
 However, teasing out the complex interactions between domain components that determine the membrane organization is challenging in vivo due to the limitations of different methodologies\cite{Klotzsch2013}.
 Such difficulties primarily arise due to (a) the complex composition of cell membrane\cite{Tieleman2019}, (b) difficulties in defining domain properties in vivo\cite{Sezgin2017}, and (c) challenges in achieving specificity when perturbing the system with probes\cite{Veatch2007}.
-Hence simple model membranes have been extensively used to mimic the phase separation of complex cell membrane phenomenon in vitro\cite{Veatch2003a}\cite{Veatch2002}\cite{Veatch2003} and in silico\cite{Risselada2008}\cite{Lin2016}\cite{Lin2019}.
+Hence simple model membranes have been extensively used to mimic the phase separation of complex cell membrane phenomenon in vitro\cite{Veatch2003a,Veatch2002,Veatch2003} and in silico\cite{Risselada2008,Lin2016,Lin2019}.
 Such studies provide powerful insights into phase-separated domains, their properties, and whether the process is favorable, but they often fail to quantify the underlying thermodynamics.
 Similarly, the resulting mechanistic effects on cell function and dysfunction due to lipid phase separation need to be better understood.
 
 As a "computational microscope\cite{Dror2012}," molecular dynamics (MD) simulations have been used to study spontaneous lipid separating without using exogenous labels or probes\cite{Pantelopulos2018}.
 However, MD simulations designed for spontaneous phase separation are inadequate to compute thermodynamic properties with statistical confidence.
 This is because the transition between mixed and separated system-states is often a single irreversible event on the microsecond timescale typically achievable by typical all-atom MD.
-Additionally, the extensive system size required to simulate this bulk phenomenon significantly increases computational costs.
-To circumvent this limitation, Coarse-Grained (CG) MD simulations have been used to study spontaneous phase separations in model membranes\cite{Risselada2008}\cite{Bennett2018}.
+Additionally, the relatively large size required to model this bulk phenomenon significantly increases computational costs.
+To circumvent this limitation, coarse-grained (CG) MD simulations have been used to study spontaneous phase separations in model membranes\cite{Risselada2008,Bennett2018}.
 CG-MD is an ideal tool to study phase separation in the membrane due to its inherent advantage of high spatial and temporal resolution while capturing nanoscale domains due to transient phase separation events.
-Previously, the Tielman\cite{Bennett2018} and the Gorfe groups\cite{Lin2019} have done some pioneering works on the thermodynamics of lipid domains.
+Previously, the Tieleman\cite{Bennett2018} and the Gorfe groups\cite{Lin2019} have done some pioneering work on the thermodynamics of lipid domains.
 While the former used thermodynamic integration\cite{Salsburg1953} to calculate the free energy and excess chemical potential for exchanging lipid species between phases, the latter used umbrella sampling\cite{TorrieG.MValleau1977} to compute the membrane partition thermodynamics of an idealized transmembrane domain by dragging it across distinct lipid phases.
 
-We hypothesize that coupling a more robust enhanced sampling method with the standard CG-MD will improve the transition events between the mixed and separated states of the lipid bilayer system under study to compute the free energy for phase separation.
+We hypothesize that coupling a more versatile enhanced sampling method with the standard CG-MD will improve the transition events between the mixed and separated states of the lipid bilayer system under study to compute the free energy for phase separation.
 Various enhanced sampling protocols have previously demonstrated their ability to enhance the sampling of rare events\cite{Henin2022}.
-In some cases, external forces are applied to the system to bias simulation to explore the desired phase space in both methods.
-Sometimes, one needs to compute the collective variable (sometimes it's derivative) on the fly as the dynamics proceeds.
-Certain popular implementations of such protocols done on single CPUs serially, leading to poor performance overall.
-To track lipid bilayer phase separation, we need collective variables that project complex global dynamics of the lipid bilayer system to lower dimensions.
+In most cases, external forces are applied to the system to bias simulation to explore the desired phase space.
+Generally, it is necessary to compute the collective variable or it's derivative at each time step as the dynamics proceeds.
+Certain popular implementations of such protocols, like COLVARS\cite{Fiorin2013} and PLUMED\cite{Barducci2015}, are done on single CPUs serially, leading to poor performance when the collective variable is computationally complex, as is the case for phase separation.
 This often involves determining the centroid of each lipid and the subsequent all-to-all distance determination within each leaflet.
 Thus complex CV calculation at every time step of the MD is not desired.
 
-However, weighted ensemble (WE) has the advantages of (a) unbiased dynamics, and (b) good sampling by enhancing the sampling of otherwise undersampled phase space and reducing the sampling of otherwise oversampled phase space; therefore, judiciously using the given computational resources\cite{Zuckerman2017}.
-Moreover, there is an added benefit that the calculation of the collective variable can be decoupled from the MD and there for utilized to improve the overall performance.
+However, weighted ensemble (WE)\cite{Zuckerman2017} has the advantages of (a) unbiased dynamics, and (b) good sampling by enhancing the sampling of otherwise undersampled phase space and reducing the sampling of otherwise oversampled phase space; therefore, judiciously using the given computational resources\cite{Zuckerman2017}.
+Moreover, there is an added benefit that the calculation of the collective variable can be decoupled from the MD, which simplifies the implementation and improve the computational performance.
 As the collective variable can take complex functional forms in our case, it reduces extra computational costs.
 It should be noted that the WE method is highly parallelizable and can take advantage of GPU acceleration\cite{Zwier2015}.
 Hence we decided to use the WE strategy to enhance the sampling of transition from mixed to separated and vice versa in CG-MD simulation.
 
-Here we present a novel proof-of-concept pipeline to realize multiple mixing and separating events in a lipid bilayer system. 
+Here we present a novel proof-of-concept pipeline to realize multiple mixing and separating events in a lipid bilayer system and state the equilibrium free energy.
 Thus a quantitative thermodynamic description of the system can be made using this tool to know how the fine-tuning of its composition results in distinct lipid domains that can coexist with functional differences but shared components.
-We then test this pipeline on three different lipid bilayer systems with varying degrees of phase separation propensity.
-We discuss one well-known pitfall of enhanced sampling techniques that we encountered - A good collective variable.
-We explore three potential candidates for collective variables and assess their sensitivity in the pipeline.
+We test this pipeline on three different lipid bilayer systems with varying degrees of phase separation propensity.
+We discuss one well-known pitfall of enhanced sampling techniques that we encountered - identifying a good collective variable.
+We explore three potential candidates for collective variables and assess their effectiveness in the pipeline.
 We then construct free energy landscapes of the three systems at multiple temperatures.
 We further explore a few non-traditional use cases for the data thus generated and discuss additional room for improvements.
 
@@ -118,20 +117,21 @@ We further explore a few non-traditional use cases for the data thus generated a
 
 \subsection*{System details}
 
-As shown in Fig \ref{fig1:view}, we used three different ternary lipid bilayer systems to test the hypothesis:
-1. As the primary test system, we chose a lipid bilayer consisting of dipalmitoyl-phosphatidylcholine (DPPC), dilinoleyl-phosphatidylcholine (DIPC), and Cholesterol (CHOL), known to phase separate in silico in a few microseconds \cite{Risselada2008, Schafer2010, Janosi2012, Doma2012, Jong2013, Liu2020, Su2020}.
-2. As a positive control, we chose a lipid bilayer consisting of DPPC, diarachidonoyl-phosphatidylcholine (DAPC), and CHOL, known to phase separate relatively faster in silico in the order of a few hundred nanoseconds \cite{Lin2016, Lin2019, Davis2013a}.
-3. As a negative control, we chose a lipid bilayer consisting of DPPC, palmitoyl-oleoyl-phosphatidylcholine (POPC), and CHOL that was previously shown not to phase separate \cite{Veatch2003,Davis2013a}.
+As shown in Fig \ref{fig1:view}, we used three different ternary lipid bilayer systems:
+1. A lipid bilayer consisting of dipalmitoyl-phosphatidylcholine (DPPC), dilinoleyl-phosphatidylcholine (DIPC), and cholesterol (CHOL), known to phase separate in silico in a few microseconds \cite{Risselada2008, Schafer2010, Janosi2012, Doma2012, Jong2013, Liu2020, Su2020}.
+2. A lipid bilayer consisting of DPPC, diarachidonoyl-phosphatidylcholine (DAPC), and CHOL, known to phase separate in silico within a few hundred nanoseconds \cite{Lin2016, Lin2019, Davis2013a}.
+3. A lipid bilayer consisting of DPPC, palmitoyl-oleoyl-phosphatidylcholine (POPC), and CHOL that was previously shown not to phase separate \cite{Veatch2003,Davis2013a}.
 The composition of DPPC-DIPC-CHOL, DPPC-DAPC-CHOL, and DPPC-POPC-CHOL systems used here are (0.42/0.28/0.3), (0.5/0.3/0.2) and (0.4/0.4/0.2) respectively and are adapted from previous studies \cite{Risselada2008, Lin2016, Davis2013a}.
 Similar to the prvious studies, we kept the total number of lipids in DPPC-DIPC-CHOL, DPPC-DAPC-CHOL, and DPPC-POPC-CHOL at 1944, 1200 and 1200 respectively.
 
-Due to the relatively larger system size and time scale required for phase separation and related dynamics in lipid bilayer simulations, we used the Coarse-Grained (CG) model for each system. Hence the subsequent dynamics propagation using MD is relatively cheaper than an All-Atom model but with a tradeoff in system resolution.
+Due to the relatively large system sizes and the time scale required for phase separation and related dynamics in lipid bilayer simulations, we used the coarse-grained (CG) model for each system. Hence the subsequent dynamics propagation using MD is relatively cheaper than an all-atom model but with a tradeoff in system resolution.
 The rationale behind this design choice is to fail faster with minimum resources if this proof-of-concept protocol is not working as expected. 
 Using CHARMM-GUI Martini Maker \cite{Qi2015}, we constructed four random replicas of each CG ternary symmetric bilayer system.
 We used MARTINI 2 force field parameters and particle definitions\cite{Marrink2007, DeJong2013} to construct CG systems and to run the subsequent MD simulation.
 We replaced the default input files from CHARMM-GUI Martini Maker with their respective most recent Martini 2.x versions if they existed.
 We used MARTINI polarizable water model\cite{Yesylevskyy2010} to solvate all systems with approximately a 1:30 lipid to real water ratio.
 A detailed description of the systems is given in Table S1 of supplementary material.
+We did not use  the more recent MARTINI 3.0 lipid parameters since there were no published MARTINI 3 parameters for cholesterol at the time of the writing.
 
 \subsection*{Standard MD simulation details}
 
@@ -143,8 +143,8 @@ More details about membrane restraining protocol are given in the supplementary 
 
 After the minimization and equilibration, all systems were run at 400 K in the NPT ensemble for 100 ns to make sure the lipids in each system were randomly distributed.
 For every system, we forked each replica into multiple temperature runs simulated at different temperatures ranging from 298K to 450K.
-For these production runs, the temperature coupling is done using velocity rescaling with a time constant 1 ps.
-An extended-ensemble Parrinello-Rahman pressure coupling with a relatively high time constant of 12 ps was used as we are dealing with CG system. 
+For these production runs, the temperature coupling is done using velocity rescaling\cite{Bussi2007} with a time constant 1 ps.
+An extended-ensemble Parrinello-Rahman pressure coupling\cite{Parrinello1981} with a relatively high time constant of 12 ps was used as we are dealing with CG system. 
 A semiisotropic pressure coupling suited for membrane simulations is used here with a compressibility of $3e^{-4}$ $\text{bar}^{-1}$ and reference pressure for coupling as 1 bar.
 A reaction field electrostatics with Coloumb cutoff of 1.1 nm was used.
 Since we are using a polarizable water, a relative dielectric constant of 2.5 was used.
@@ -152,8 +152,8 @@ For Van der Waals interaction, a similar cutoff of 1.1 nm was used.
 A potential-shift Van der Waal modifier was also used.
 For reighbor searching, a verlet cutoff scheme was used with neighbor list updated every 20 steps.
 The simulation parameters were mostly inspired by previous CG MARTINI simulations\cite{DeJong2016}. 
-To eliminate potential artefacts previously reported\cite{Javanainen2020} for LINCSolver, we used an 8 as the highest order in the expansion of constraint coupling matrix for more accuracy.
-Moreover, for better energy conservation, we also used short 20 fs timesteps which is conservative for a CG system.
+To eliminate potential artifacts previously reported\cite{Javanainen2020}, for LINCSolver\cite{Hess1997}, we used 8 as the highest order in the expansion of constraint coupling matrix for more accuracy.
+Moreover, for better energy conservation, we also used short 20 fs timesteps, which is conservative for a CG system.
 
 All standard MD simulations ran for at least 8 microseconds using the BlueHive supercomputing cluster of the Center for Integrated Research and Computing at the University of Rochester.
 Simulations ran on Intel Xeon E5-2695 and Gold 6130 processors augmented with Tesla K20Xm, K80, and V100 GPUs.   
@@ -194,7 +194,7 @@ While FLC = 1 corresponds to all lipids being a part of some cluster.
 
 
 The lipid $X_i$ cluster is defined using the Density-Based Spatial Clustering of Applications with Noise (DBSCAN) algorithm \cite{MartinEsterHans-PeterKriegelJiirgSander1996, Ester2017} as implemented in scikit-learn \cite{PedregosaF.VaroquauxG.GramfortA.MichelV.ThirionB.GriselO.BlondelM.PrettenhoferP.WeissR.andDubourgV.VanderplasJ.PassosA.CournapeauD.BrucherM.PerrotM.Duchesnay2011}.
-For lipid DBSCAN clustering, instead of the default euclidean metric to calculate the distance between lipid coordinates, we used a precomputed distance matrix adjusted for periodic boundary conditions of the simulation box using LOOS.
+For lipid DBSCAN clustering, instead of the default euclidean metric to calculate the distance between lipid coordinates, we used a precomputed distance matrix adjusted for periodic boundary conditions of the simulation box using LOOS\cite{Romo2014}.
 The algorithm requires two additional input parameters: $min\_samples$ and $\varepsilon$.
 We consider lipids with more than $min\_samples$ neighbors (including the lipid itself) within $\varepsilon$ radius as core lipids.
 Non-core lipids still within $\varepsilon$ radius of a core lipid are considered border lipids.
@@ -231,10 +231,10 @@ CEI is defined as the sum of individual enrichment index for all the lipid speci
 
 Where $X_{ij}$ denotes $j^{th}$ lipid of $X_i$ lipid species.
 The local density around $X_{ij}$ is calculated within $\epsilon_i(T)$ distance, where T is the temperature of the system.
-We do correct the local density for central lipid contributions.
+We correct the local density for central lipid contributions.
 For the normalization factor, $\Phi_i$,  we calculated the global density of $X_i$ lipids by taking the ratio of the total number of $X_i$ lipids in the system to the $xy$-planar area of the bilayer system.
 This global density is the same as the local density of $X_{i}$ lipid for a uniformly well-mixed system.
-Thus CEI $>$ 3 implies that the ternary system, $N=3$, is deviating from a well-mixed state to a separated state.
+Thus CEI significantly larger than 3 implies that the ternary system, $N=3$, deviates from a well-mixed state to a separated state.
 
 \subsubsection*{3. Segregation Index (SI)}
 
@@ -250,7 +250,7 @@ Here, we calculated the fraction of like contacts made between $X_i$ species to 
 
 $X_iX_j$ denotes the contacts between lipid species $X_i$ and $X_j$ within $\epsilon_i(T)$ cutoff.
 Thus for a ternary bilayer system, SI $=$ 3 implies a fully separated system, and SI $<$ 3 implies mixing.
-However, for the analysis, we ignored the contribution of Cholesterol as we found that excluding the Cholesterol term did not change the functional behavior (Supplementary Info).
+However, for the analysis, we ignored the contribution of cholesterol as we found that excluding the cholesterol term did not change the functional behavior (Supplementary Info).
 Hence, $\text{SI}_{\text{noCHOL}}$ effectively will have bounds [0, 2] unless otherwise stated.    
 
 \subsection*{Weighted Ensemble Simulation}
@@ -264,30 +264,30 @@ For the DPPC-POPC-CHOL system, sets of mixed and separated configurations for a 
 To enhance the convergence of WE equilibrium simulations, we decided to seed each simulation from mixed and separated states and let the enhanced sampling cover the transition between them.
 
 \subsubsection*{Running WE simulations} 
-We ran weighted Ensemble equilibrium simulations using the WESTPA 1.0 software package\cite{Zwier2015} closely following the previously established protocol\cite{Bogetti2019}.
+We ran weighted ensemble equilibrium simulations using the WESTPA 1.0 software package\cite{Zwier2015} closely following the previously established protocol\cite{Bogetti2019}.
 The collective variable was divided into 30 dynamic bins using the minimal adaptive binning scheme (MAB)\cite{Torrillo2021}.
 For each replica, a target number of 4 short simulations, or "walkers" per bin, were started in parallel from the mixed and the separated configurations prepared earlier.
 After every resampling interval of 1 ns, the collective variable was evaluated to initiate the merging and splitting of walkers to maintain the target number of walkers per bin.
 A short one ns MD run of all the walkers and subsequent resampling, according to the standard WE algorithm, constituted 1 WE iteration. 
 We conducted 500 WE iterations for each replica.
 We used GROMACS 2020.3 engine to propagate with the same parameters used for standard MD simulations described earlier.
-A WE Equilibrium Dynamics (WEED) reweighting protocol\cite{Bhatt2010, Suarez2014}, implemented in WESTPA 1.0, was used to accelerate the convergence of WE walkers into an equilibrium.
+The WE Equilibrium Dynamics (WEED) reweighting protocol\cite{Bhatt2010, Suarez2014}, implemented in WESTPA 1.0, was used to accelerate the convergence of WE walkers toward equilibrium.
 The reweighting is done every 10 WE iterations.
-Four WE replicas were simulated at multiple temperatures for the DPPC-DAPC-CHOL, DPPC-DIPC-CHOL, and DPPC-POPC-CHOL lipid bilayer systems. 
+Four independent WE replicas were simulated each temperature for each lipid composition. 
 All WE simulations ran using the Intel Xeon E5-2695 and Tesla K20Xm GPUs in the BlueHive supercomputing cluster of the Center for Integrated Research and Computing at the University of Rochester.   
 
 \subsubsection*{Analysis of WE simulations}
-The probability distribution of CV and AVs for each replica, as a function of WE iterations, was constructed using $w\_pdist$ and $plothist$ tools in WESTPA.
+The probability distributions for the CVs for each replica, as a function of WE iterations, was constructed using $w\_pdist$ and $plothist$ tools in WESTPA.
 Using this distribution, we monitored the evolution of each WE replica simulation and the convergence.
-We used the $w\_mult\_west$ tool in WESTPA to combine data from four WE replicas of a system at a given temperature.
-We then constructed the respective Free Energy Surface (FES) from the combined probability distribution of a system.
-To check populations in different states and the flux between states  $w\_ipa$ tool was used.
+We used the $w\_multi\_west$ tool in WESTPA to combine data from four WE replicas of a system at a given temperature.
+We then constructed the respective free energy surface from the combined probability distribution of a system.
+To check populations in different states and the flux between states the $w\_ipa$ tool was used.
 
 \section*{Results}
 
 Consistent with previous studies from which they are adapted, the standard CG MD simulations of DPPC-(DA/DI)PC-CHOL systems phase separates into $\text{L}_{\text{o}}$ and $\text{L}_{\text{d}}$ regions.
-$\text{L}_{\text{o}}$ region enriched in saturated lipid, DPPC, and Cholesterol. 
-$\text{L}_{\text{d}}$ region is enriched with unsaturated lipids (DA/DI)PC.
+The $\text{L}_{\text{o}}$ region is enriched in saturated lipid, DPPC, and cholesterol. 
+The $\text{L}_{\text{d}}$ region is enriched with unsaturated lipids (DA/DI)PC.
 The DPPC-POPC-CHOL system showed low to no separation.
 This section compares how different variables track phase separation propensity in lipid bilayers using standard CG MD simulations.
 We then compare the convergence of WE simulation to the choice of collective variable.
@@ -486,6 +486,12 @@ We want to highlight that by generalizing the collective variable FLC to track c
 However, this assumes that a reasonable model, forcefield, and computational resources are available to tackle such complex phase-separating systems via MD simulations.
 
 
+\section*{Acknowledgements}
+
+The authors thank the Center for Integrated Research Computing (CIRC) at the University of Rochester for providing
+computational resources and technical support. The authors also thank Prof. Lillian Chong and Prof. Daniel Zuckerman and
+WESTPA Data and Dev club for insights. The authors thank Anthony Bogetti, Jeremy Leung, John Russo, Dr.Sreyoshi Sur, and Dr.Tod D. Romo for their support.
+This work was supported by grant R21GM138970 (to A.G.) from the National Institutes of Health.
 
 
 % ------------------------- %
