@@ -41,7 +41,7 @@ membrane with a diverse lipidome is exceptionally difficult. Hence simple model 
 widely used to study this phenomenon. Despite simplifying the problem, the relative timescale and system size
 required for simulating phase separation events pose a challenge for molecular dynamics (MD) simulations.
 Thus, most MD studies focus on spontaneous lipid phase separation as an adequate sampling of transition events between
-mixed and separated lipid states is hard to achieve by the current MD framework. Here, we propose a proof-of-concept pipeline that can realize such multiple-state transitions by combining coarse-grained model membranes with enhanced sampling protocols.
+mixed and separated lipid states is hard to achieve in conventional MD simulations. Here, we propose a proof-of-concept pipeline that can realize such multiple-state transitions by combining coarse-grained model membranes with enhanced sampling protocols.
 Using this pipeline, we can ask not just whether a system phase is separated or not, but why it separates, with statistical rigor.
 
 \end{abstract}
@@ -64,7 +64,7 @@ Such domains often cluster signaling molecules\cite{Tian2007} and facilitate con
 As membrane properties modulate resident protein function, the coexistence of distinct phases gives the cell extra grip on regulation.
 Conformational changes in domain resident molecules and their subsequent activity shift regulates key signaling events\cite{Laganowsky2014,Lingwood2011}.
 It has also been observed that the HIV Gag protein is sensitive to domains with high cholesterol content, suggesting a potential role of membrane domains in host-pathogen interaction and viral assembly\cite{Dick2012}.
-Moreover, lipid domains are conserved throughout the tree of life, implying its relevance in regulating cellular processes\cite{Sezgin2017}. 
+Moreover, lipid domains are conserved throughout the tree of life, implying their relevance in regulating cellular processes\cite{Sezgin2017}. 
 Thus, calculating the thermodynamics of phase separation as a function of the composition of the system is critical in understanding the molecular grammar behind lipid domains and the resultant functional modulations. 
 
 
@@ -98,8 +98,7 @@ As the collective variable can take complex functional forms in our case, it red
 It should be noted that the WE method is highly parallelizable and can take advantage of GPU acceleration\cite{Zwier2015}.
 Hence we decided to use the WE strategy to enhance the sampling of transition from mixed to separated and vice versa in CG-MD simulation.
 
-Here we present a novel proof-of-concept pipeline to realize multiple mixing and separating events in a lipid bilayer system and state the equilibrium free energy.
-Thus a quantitative thermodynamic description of the system can be made using this tool to know how the fine-tuning of its composition results in distinct lipid domains that can coexist with functional differences but shared components.
+Here we present a novel proof-of-concept pipeline to realize multiple mixing and separating events in a lipid bilayer system and estimate the equilibrium free energy.
 We test this pipeline on three different lipid bilayer systems with varying degrees of phase separation propensity.
 We discuss one well-known pitfall of enhanced sampling techniques that we encountered - identifying a good collective variable.
 We explore three potential candidates for collective variables and assess their effectiveness in the pipeline.
@@ -302,22 +301,20 @@ Finally, we present the free energy landscapes of lipid bilayer systems obtained
 \label{fig3:view}
 \end{figure}
 
-To evaluate how collective variables, FLC, and other auxiliary variables track phase separation in lipid bilayers,
-from standard CG MD, we traced the time evolution of each variable for different systems at different temperatures.
-Figure \ref{fig3:view} illustrates the temporal evolution of FLC, CEI, and $\text{SI}_{\text{noCHOL}}$ for DPPC-(DA/DI/PO)PC-CHOL systems at 298K, 323K, 423K, and 450K.
-For DPPC-(DA/DI)PC-CHOL systems, the variables capture a single transition between a mixed state and a separated state.
-Also, the systems reside dominantly in a separate state after the transition in the standard CG simulation.
-Interestingly, for relatively slow separating DPPC-DIPC-CHOL, CEI and $\text{SI}_{\text{noCHOL}}$ tracks a relatively slower state transition than FLC.
+To evaluate how the collective variables track phase separation, we traced the time evolution of each variable for each system using standard MD starting from well-mixed bilayers.
+Figure \ref{fig3:view} illustrates the temporal evolution of FLC, CEI, and $\text{SI}_{\text{noCHOL}}$ for all systems at 298K, 323K, 423K, and 450K.
+For the two phase separating systems, the variables capture a single transition between a mixed state and a separated state.
+Interestingly, for relatively slow separating DPPC-DIPC-CHOL, CEI and $\text{SI}_{\text{noCHOL}}$ appear to indicate a slower transition than FLC, indicating that while these variables are correlated, they do not measure precisely the same phenomenon.
 However, for the DPPC-POPC-CHOL system, the variables capture a single state corresponding to a mixed system and no transition.
-Nevertheless, it is worth noting that FLC, CEI, and $\text{SI}_{\text{noCHOL}}$ capture the effect of temperature in all systems, including the negative control that does not phase separate.
+Nevertheless, it is worth noting that FLC, CEI, and $\text{SI}_{\text{noCHOL}}$ capture the effect of temperature in all systems, including for POPC, the negative control, that does not phase separate.
 These variables even capture the subtle differences in phase-separating propensity between systems.
 For example, at 298K, the plateaued region of the FLC, CEI, and $\text{SI}_{\text{noCHOL}}$ curves are higher for the DPPC-DAPC-CHOL system than the DPPC-DIPC-CHOL system.
-This is expected as (a) the lipid chain mismatch between saturated and unsaturated lipid species and (b) the number of double bonds in unsaturated lipid species is more in the DPPC-DAPC-CHOL than DPPC-DIPC-CHOL system.
+This is expected as (a) the lipid chain mismatch between saturated and unsaturated lipid species and (b) the number of double bonds in unsaturated lipid species is high in the DPPC-DAPC-CHOL compared to DPPC-DIPC-CHOL system.
 Both these factors have previously been shown to influence lipid phase separation kinetics and domain stability\cite {Fowler2016, Lin2016}.
 Thus we have a set of low-dimensional variables that can (a) represent the global dynamics of the lipid bilayer system,
 (b) distinguish and track the transition between mixed and separated states, (c) capture the temperature effects,
 and (d) based on the composition of the system.
-The time evolution of other auxiliary variables can be found in Fig SX.
+%The time evolution of other auxiliary variables can be found in Fig SX.
 \\
 
 \subsection*{Choice of collective variables for WE simulations}
@@ -332,47 +329,52 @@ The time evolution of other auxiliary variables can be found in Fig SX.
 Since the density based, CEI, contact-based $\text{SI}_{\text{noCHOL}}$ and clustering based FLC tracks bilayer lipid separation similarly,
 we decided to use them as progress coordinates to drive the WE simulation.
 However, the free energy landscapes generated using these variables, after running 500 WE iterations, give conflicting results for the same system.
-As shown in Fig \ref{figs4:view}A, for the test system DPPC-DIPC-CHOL replica at 323K, the free energy landscape do not agree with each other despite the number of WE iterations used to construct them being identical.
-From CEI free energy landscape, we see both states are equally likely.
-$\text{SI}_{\text{noCHOL}}$ landscape suggests a mixed state is more likely than a separated state.
-However, both these results deviate from what we observe with standard CG MD simulation,
-where the DPPC-DIPC-CHOL system slowly separates into $\text{L}_{\text{d}}$ and $\text{L}_{\text{o}}$ regions and stay separated for the most of simulation.
-Moreover, disagreement of free energy curves as a function of WE iteration blocks used to generate them suggests that the underlying sampling needs to converge more.
-On the other hand, FLC free energy landscape shows that the separated state is favorable, but the free energy barrier between the two states is small.
+As shown in Fig \ref{figs4:view}A, for the test system DPPC-DIPC-CHOL replica at 323K, the free energy curves do not agree with each other despite the number of WE iterations used to construct them being identical.
+From CEI free energy curves, we see both states (mixed and separated) are equally likely which is inconsistant with the spontaneous separation seen in the standard MD.
+The $\text{SI}_{\text{noCHOL}}$ curves suggesting a mixed state is more likely than a separated state has an even worse problem.
+%However, both these results deviate from what we observe with standard CG MD simulation,
+%where the DPPC-DIPC-CHOL system slowly separates into $\text{L}_{\text{d}}$ and $\text{L}_{\text{o}}$ regions and stay separated for the most of simulation.
+The disagreement of free energy curves as a function of WE iteration blocks used to generate them suggests that the underlying sampling has not converged.
+On the other hand, the FLC free energy curve shows that the separated state is favorable, but the free energy barrier between the two states is small.
 Additionally, there is a convergence between FLC free energy curves as we proceed with WE iterations.
 Thus, all three free energy landscapes show a double well, identifying two states but disagreeing on the state the system is most likely to be in and the relative free energy difference between states.
-Interestingly, if we monitor the evolution of configurational distributions of each variable as a function of WE iterations, all three show a converged behavior, as shown in Fig 4B.
+Interestingly, if we monitor the evolution of configurational distributions of each variable as a function of WE iterations, Fig 4B appears to have converged or at least equilibrated.
 
-These conflicting results raise the following questions: Why do variables that make perfect sense while tracking the system in standard CG MD simulation gives a different free energy landscape after WE simulation?
+These conflicting results raise the following questions: Why do variables that make sense while tracking the system in standard CG MD simulation gives a different free energy landscape after WE simulation?
 Why do CEI and $\text{SI}_{\text{noCHOL}}$ that show converged configurational distributions as a function of WE iterations, does not give converged free energy curves with each other as WE proceed?
 
-The configurational distribution of collective variables staying mostly undisturbed in two states (Fig \ref{figs4:view}B) and
+One clue to diagnose the problem lies in our starting states. In contrast to most WE calculations, which begin the simulation with all walkers in the “first” bin, we started with diverse states from across the whole range of the collective variable. 
+
+Yet the configurational distribution of collective variables staying mostly undisturbed in two states (Fig \ref{figs4:view}B) and
 the free energy curves struggling to converge on the state basins and free energy barrier for CEI and $\text{SI}_{\text{noCHOL}}$ landscapes (Fig \ref{figs4:view}C) 
 suggest that there might not be adequate state crossing of walkers populating each state.
 Hence we decided to check the flow rate of probability across the states.
 To calculate the flux between states, we need to define the states for each collective variable.
 We define mixed and separated states as CEI = [0.0, 3.9] and [4.4, 6.0], $\text{SI}_{\text{noCHOL}}$ = [0.0, 1.3] and [1.4, 2.0], and FLC = [0.0, 0.575] and [0.65, 1.0] respectively.
-Please note that the state bounds are chosen based on visual inspection of the corresponding free energy landscapes in Fig \ref{figs4:view}A.
-The choice is arbitrary but ad hoc enough to give us a picture of what is happening. 
-Fig \ref{figs4:view}C shows the mean flux from mixed to separated state and vice versa in WE simulation driven using each collective variable.
-Here, mean flux is calculated for a window of 10 WE iterations as the WEED reweighting protocol is done every ten iterations to accelerate the convergence.
+The state bounds are chosen based on visual inspection of the corresponding free energy landscapes in Fig \ref{figs4:view}A.
+The choice is arbitrary but reasonable enough to give us a picture of what is happening. 
+Fig \ref{figs4:view}C shows the mean flux from mixed to separated state and vice versa in WE simulations driven using each collective variable.
+Here, mean flux is calculated for a window of 10 WE iterations to avoid complicating the interpretation due to the WEED reweighting.
 The peaks in these plots imply probability crossing states.
-For CEI, no state crossing occurs between mixed to separated, and vice versa during WE simulation.
+For CEI, no state crossing occurs in either direction during WE simulation.
 For $\text{SI}_{\text{noCHOL}}$, the state crossing back and forth is practically zero during the first few hundreds of WE iterations.
-Meanwhile, for FLC, flux into and out of the states is relatively higher and more immediate than the other two variables.
+As a result the free energy curves compiled with these methods simply reflect local relaxation of their state distribution.
+Meanwhile, for FLC, flux into and out of the states is relatively high and more immediate than the other two variables.
 These results are supported by the corresponding state population evolution as a function of WE iterations, as shown in Fig \ref{figs4:view}D.
 Here, the normalized walker population occupying a specific state is calculated for 10 WE iterations, similar to Fig \ref{figs4:view}C.
+It is interesting to note that, For CEI, we see a significant drop in the population of mixed state during iterations 290-300, without a concomitant rise in the other state.
+Since our state definition we chose does not span the entire collective variable space leaving a room for the barrier that separates two states, this indicates that some walkers transitioned out of mixed state , but remained trapped in the middle of the collective variable and never transitioned to separated state.
 
-The walkers crossing bins and thereby constituting a flow of probability between states is crucial for the success of a WE equilibrium simulation\cite{Zuckerman2017}.
-Thus these results suggest that for CEI and $\text{SI}_{\text{noCHOL}}$ variables, the initial distribution of walkers is not disturbed throughout the WE simulation.
+The walkers crossing basins and thereby constituting a flow of probability between states is crucial for the success of a WE equilibrium simulation\cite{Zuckerman2017}.
+Thus these results suggest that for CEI and $\text{SI}_{\text{noCHOL}}$, the initial distribution of walkers is not relaxed throughout the WE simulation.
 Without sufficient state crossing, the initial configurational distribution is not relaxing into a well-sampled equilibrium distribution for WE simulations driven by CEI and $\text{SI}_{\text{noCHOL}}$ even after 500 iterations. 
-This explains why in free energy landscapes associated with CEI and $\text{SI}_{\text{noCHOL}}$, we do not see converged free energy curves as WE proceed.
-However, as WE proceed, we see good state crossing and relatively well-converged free energy curves for FLC. 
-The combined results from standard CG MD and WE simulations suggest that CEI and $\text{SI}_{\text{noCHOL}}$ are suitable proxy labels for phase separation. However, a poor choice for a collective variable to drive WE simulations.
-We also found that free energy curves generated by FLC-driven WE simulation are consistent across replicates (Fig SX).
+This explains why in free energy landscapes associated with CEI and $\text{SI}_{\text{noCHOL}}$, we do not see converged free energy curves.
+However, with FLC, we see good state crossing and relatively well-converged free energy curves. 
+The combined results from standard CG MD and WE simulations suggest that CEI and $\text{SI}_{\text{noCHOL}}$ are suitable proxy labels for phase separation but perform poorly as collective variables for sampling.
+%We also found that free energy curves generated by FLC-driven WE simulation are consistent across replicates (Fig SX).
 Hence we decided to go forward with FLC-based WE simulation to enhance the sampling of phase separation events in lipid bilayer systems to understand the underlying thermodynamics.
 \\ 
-\subsection*{Free energy landscapes of lipid bilayer systems}
+%\subsection*{Free energy landscapes of lipid bilayer systems}
 
 \begin{figure}[hbt!]
 \centering
@@ -382,16 +384,16 @@ Hence we decided to go forward with FLC-based WE simulation to enhance the sampl
 \end{figure}
 
 Figure \ref{figs5:view} shows the free energy profiles of DPPC-DAPC-CHOL, DPPC-DIPC-CHOL, and DPPC-POPC-CHOL lipid bilayer systems.
-Each curve is generated by averaging four WE replica simulations, as mentioned in the Methods section.
-Individual replica contribution is obtained by averaging the last ten iterations of the respective replica WE simulation (491-500). 
-The positive control, DPPC-DAPC-CHOL system that readily phase-separates, has a double well behavior at 323K and 353K.
-However, both basins correspond to relatively high FLC.
-In addition to the free energy curve at 423 K, we see that regardless of high temperature, this system prefers to be in configurations where more than 60\% of lipids are in some clusters.
-For the negative control, DPPC-POPC-CHOL system, the free energy curves at 298K and 423K have single basin nature and correspond to a low fraction of lipids preferring to be in any clusters.
-For the test system, DPPC-DIPC-CHOL system, as the temperature increases, the characteristic double-well transition to single-well curves, and the width of free energy curves decreases.
+Each curve is generated by averaging four WE replica simulations, as described in the Methods section.
+The individual replica contribution is obtained by averaging the last ten iterations of the respective replica WE simulation (491-500). 
+The DPPC-DAPC-CHOL system that readily phase-separates has a double well behavior at 323K and 353K.
+However, both basins correspond to relatively high FLC and appear to be phase separated based on visual inspection.
+Even at 423 K, we see that this system prefers to be in configurations where more than 60\% of lipids are in clusters.
+For the DPPC-POPC-CHOL system, the free energy curves at 298K and 423K have a single basin and correspond to a low fraction of lipids preferring to be in any clusters.
+For the DPPC-DIPC-CHOL system, as the temperature increases the double-well transitions to single-well curves, and the width of free energy curves decreases.
 In general, FLC-based free energy landscapes capture the role of lipid species constituting the bilayer system in its phase separation.
 Moreover, the effect of temperature in decreasing the propensity of a lipid bilayer to separate is evident in all systems.
-Please note that though the expectation of clustering-based FLC is to track the formation of domains in a lipid bilayer, the fact that it also neatly captures the temperature effect, even for the negative control, suggests the robustness of FLC as the collective variable.
+Although the expectation of clustering-based FLC is to track the formation of domains in a lipid bilayer, the fact that it also neatly captures the temperature effect, even for the negative control, suggests the robustness of FLC as the collective variable.
 %\subsection*{Reusing simulation data}
 
 \subsection*{Reconstructing free energy landscapes}
@@ -405,12 +407,12 @@ Please note that though the expectation of clustering-based FLC is to track the 
 
 One outcome of WE simulation is the curated ensemble of diverse trajectories/walkers.
 By construction, WE resampling ensures that the weights associated with these walkers are unbiased.
-Thus, we can reuse these weights to examine other variables of choice post-simulation.
+Thus, we can reuse these weights to examine other variables of choice post-simulation without any need to reweight.
 Assuming the initial configurational distribution relaxed into an equilibrium distribution during WE simulation driven by FLC (see Discussion), 
-by reusing the weights, we have reconstructed analogous free energy landscapes with collective variable candidates that underperformed.
+we can reconstruct analogous free energy landscapes with collective variable candidates that underperformed for sampling the free energy change associated with phase separation.
 Fig \ref{figs6:view} A and B show reconstructed free energy landscapes with $\text{SI}_{\text{noCHOL}}$ and CEI by combining the weights from the last ten iterations of four replicas for each system.
 
-The WESTPA framework allows one can resume the WE simulation using variables of choice using the weights from existing ensemble\cite{Zhang2010, Zwier2015}.
+The WESTPA framework allows one to resume the WE simulation using variables of choice using the weights from existing ensemble\cite{Zhang2010, Zwier2015}.
 Hence by reusing the unbiased weights on the trajectory ensemble we obtained from a reasonably converged WE simulation,
 we can rescue the underperformance of WE simulation due to the initial choice of poor collective variable.
 
@@ -423,13 +425,13 @@ we can rescue the underperformance of WE simulation due to the initial choice of
 \label{figs7:view}
 \end{figure}
 
-From free energy landscapes of lipid bilayer at various temperatures, we can create a $\Delta\Delta$G profile by defining an FLC cutoff between mixed and separated states.
+From free energy landscapes of lipid bilayer at various temperatures, we can define an FLC cutoff between mixed and separated states.
 As seen in Fig \ref{figs5:view} A, the concept of state basins is different for a system at different temperatures.
-In high temperatures, the notion of two states - mixed and separated - breaks down as the double-well behavior of free energy curves turns into a single well. 
+At higher temperatures, the notion of two states - mixed and separated - breaks down as the double-well behavior of free energy curves turns into a single well. 
 One trivial solution would be to define a rigid FLC cutoff for a system.
 However, a caveat for this approach, as seen in Fig \ref{figs5:view} A, is that the free energy basin for a specific state of the DPPC-DIPC-CHOL system is different for the respective state basin for the DPPC-DAPC-CHOL system.
 So a rigorous FLC cutoff for the state definition of a system may need to be clarified in another phase-separating system.
-But to showcase the capability of the pipeline we have presented here, we define an ad hoc cutoff, FLC = 0.525 and 0.625, for DPPC-DIPC-CHOL and DPPC-DAPC-CHOL  lipid systems respectively.   
+But to showcase the capability of the pipeline we have presented here, we define an ad hoc cutoff, FLC = 0.525 and 0.625, for DPPC-DIPC-CHOL and DPPC-DAPC-CHOL  lipid systems respectively based on visual inspection.   
 The former means, we make an arbitrary choice of a separated lipid bilayer if more than 52.5\% of lipids in the DPPC-DIPC-CHOL system is part of some clusters.
 Similarly, the latter implies a higher cutoff for DPPC-DAPC-CHOL system, where more than 62.5\% of lipids are in some clusters. 
 Figure \ref{figs7:view} shows the $\Delta\Delta$G curve for the DPPC-DAPC-CHOL and DPPC-DIPC-CHOL systems as a function of temperature for respective FLC cutoff.
@@ -438,7 +440,7 @@ we advise the reader to exercise caution while interpreting this result as we ha
 However, we want to highlight the capability of this proof-of-concept pipeline we created to achieve $\Delta\Delta$G profiling for a phase-separating system.
 We expect more accurate profiling by using a more accurate all-atom model for our system with more rigorous methods for defining phase separation in FLC space that account for 
 varying propensity as a function of temperature and system composition.
-Fig SX shows the sensitivity of FLC cutoffs on $\Delta\Delta$G profile for a given system.
+%Fig SX shows the sensitivity of FLC cutoffs on $\Delta\Delta$G profile for a given system.
 
 \section*{Discussion}
 
@@ -450,7 +452,7 @@ Fig SX shows the sensitivity of FLC cutoffs on $\Delta\Delta$G profile for a giv
 \end{figure}
 
 Here we propose a proof-of-concept pipeline to construct \textbf{F}re eenergy \textbf{L}andscape \textbf{O}f \textbf{P}hase \textbf{S}eparating \textbf{S}ystems (\textbf{FLOPSS}) by realizing multiple transition events using WE strategy.
-Even though our systems of interest are lipid bilayers, using appropriate model resolution and collective variables can generalize this pipeline to any system that phase separates.
+Even though our systems of interest are lipid bilayers, using appropriate model resolution and collective variables can potentially generalize this pipeline to any system that phase separates.
 The modular pipeline is outlined in Figure \ref{figs8:view}, with different sublayers that constitute each module.
 Given the limitation of the coarse-grained model, free energy landscapes generated by FLOPSS in our positive, test, and negative lipid bilayer system qualitatively agrees with previous literature.
 For a more quantitative comparison, the next logical step is to use all-atom lipid models.
@@ -459,7 +461,7 @@ Interestingly, many more tools are available from the WE community as the WE str
 
 In this work, we have proposed a simple yet efficient collective variable that simultaneously tracks phase separation and drives WE simulation, ensuring sufficient state crossing with reasonable convergence of configurational distribution. 
 We give yet another example of why collective variable choice is crucial for the success of enhanced sampling protocols. 
-The flux analysis presented here only answers how much some proxy labels drive WE simulation better than others.
+The flux analysis presented here quantifies how much some collective variables drive WE simulation better than others.
 However, our work still needs to explain why that is the case.
 Thus, a more thorough and systematic analysis of the sensitivity of WE simulation on the choice of collective variable is needed and is unfortunately beyond the scope of this work.
 
