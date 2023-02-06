@@ -1,6 +1,22 @@
-\section*{Supplementary Material}
+\documentclass[10pt]{article}
+\usepackage[paper=letterpaper,margin=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{newtxtext, newtxmath}
+\usepackage{enumitem}
+\usepackage[colorlinks=true]{hyperref}
 
-\subsection*{Auxiliary Variables}
+
+\title{Understanding the Free Energy Landscape of Phase Separation in Lipid Bilayers using Molecular Dynamics}
+\author{Ashlin J. Poruthoor, Alan Grossfield}
+
+\begin{document}
+\maketitle
+
+\section*{Simulation details}
+
+\section*{Auxiliary Variables}
 
 For each lipid species, $X$ in the system, we calculated the following, 
 
@@ -27,3 +43,5 @@ The Mean Silhouette Coefficient of $X_i$ Clusters is given by the mean $s$ over 
 Here, we have omitted the MSC calculations for cases when there are no clusters or just one cluster detected by DBSCAN. 
 MSC is bound between and -1 and 1.
 A high positive value corresponds to well segregated dense clusters, while a low negative value implies that lipids are assigned to clusters incorrectly.  
+
+\end{document}
