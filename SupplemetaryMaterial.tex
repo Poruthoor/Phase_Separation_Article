@@ -5,8 +5,7 @@
 \usepackage{amsfonts}
 \usepackage{newtxtext, newtxmath}
 \usepackage{enumitem}
-\usepackage[colorlinks=true]{hyperref}
-
+\usepackage[colorlinks,allcolors=cyan]{hyperref}
 
 \title{Understanding the Free Energy Landscape of Phase Separation in Lipid Bilayers using Molecular Dynamics}
 \author{Ashlin J. Poruthoor, Alan Grossfield}
@@ -14,7 +13,95 @@
 \begin{document}
 \maketitle
 
-\section*{Simulation details}
+\section*{Simulation details$^\dagger$}
+
+\begin{center}
+    \begin{tabular}{|c c c c|}
+    \hline
+        & & & \\ 
+        & {DPPC-DAPC-CHOL} & DPPC-DLiPC-CHOL & DPPC-POPC-CHOL  \\
+        & & & \\ 
+            \begin{tabular}{@{}c@{}}Bilayer composition\end{tabular} & 
+            \begin{tabular}{@{}c@{}}600:360:240 \\ (0.5:0.3:0.2)\end{tabular} &
+            \begin{tabular}{@{}c@{}}828:540:576 \\ (0.42:0.28:0.3)\end{tabular} &
+            \begin{tabular}{@{}c@{}}480:480:240 \\ (0.4:0.4:0.2)\end{tabular} \\
+        & & & \\ 
+        $\text{Water}^{\parallel}$ & 9000 PW Beads & 14580 PW Beads & 9000 PW Beads  \\ 
+        & & & \\ 
+            \begin{tabular}{@{}c@{}}Temperatures for \\ std. MD \\ production runs \end{tabular} & 
+            \begin{tabular}{@{}c@{}}298K, 323K, 333K, \\ 333K, 343K, 353K, \\ 373K, 423K, 450K \end{tabular} &
+            \begin{tabular}{@{}c@{}}298K, 323K \\ 353K, 423K \\ 450K \end{tabular} &
+            \begin{tabular}{@{}c@{}}298K, 323K, \\ 450K \end{tabular} \\
+        & & & \\ 
+            \begin{tabular}{@{}c@{}}Temperatures for \\ WE MD \\ production runs \end{tabular} & 
+            \begin{tabular}{@{}c@{}}298K, 323K, 333K, \\ 333K, 343K, 353K, \\ 373K, 423K \end{tabular} &
+            \begin{tabular}{@{}c@{}}298K, 323K \\ 353K, 423K \end{tabular} &
+            \begin{tabular}{@{}c@{}}298K, 450K \\ \end{tabular} \\
+        & & & \\ \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|c c|}
+    \hline
+        & \\ 
+        Temperature &
+            \begin{tabular}{@{}c@{}}Initial NPT equilibration @ 400 K, with Berendsen for 100 ns. \\
+                 Production run at with v-rescale, $\tau$ = 1.0 ps\end{tabular} \\
+        & \\ 
+        Time step & 20 fs \\
+        & \\ 
+        vdW & Potential-shift-verlet. Cutoff = 1.1 nm. \\
+        & \\ 
+        \ \ \ Electrostatics \ \ \  & 
+            \begin{tabular}{@{}c@{}} Reaction field. Cutoff = 1.1 nm\\
+                Rel.dielectric constant = 2.5 (Since we are using polarizable water) \end{tabular} \\
+        & \\ 
+        Pressure & 
+            \begin{tabular}{@{}c@{}} Parrinello-Rahman @ 1 bar. Semi isotropic.\\
+                $\tau$ = 12 ps. Compressibility = 3 $\times 10^{-4}$ \end{tabular} \\
+        & \\ 
+    \hline
+    \end{tabular}
+\end{center}
+
+$^\dagger$ The system parameters were obtained from the .mdp file for production stage which is given by CHARMM GUI\cite{Qi2015}
+after building the system. These parameters agree with the MARTINI recommended parameters\cite{DeJong2016} for a CG lipid system that uses polarizable water\cite{Yesylevskyy2010}.
+$^{\parallel}$ PW : Polarizable Water.
+
+\section*{Membrane restrain protocol}
+
+Membrane undulation is a known behavior in large lipids bilayer system with large box vectors and membrane restrain protocols have been used to prevent them\cite{Ingolfsson2014,Lin2019,Su2020}.
+There are two common protocols that have been used previously: (a) position restraining a certain bead of specific lipid or
+(b) applying a flat bottom restraining on the membrane.
+For detailed explanation of how this is implemented, refer to the GROMACS manual\cite{GromacsManual}.
+Since the objective of the FLOPSS pipeline is to estimate free energy landscape of phase separating lipid bilayers,
+we went for a less invasive restraining protocol.
+We chose flat bottom restraints where the lipid bilayer can move in the xy slab of predefined z thickness.
+Thus starting from the last 100 ns of NPT equilibration of lipid bilayer to the whole production run,
+we introduced a flatbottom restraint to the bilayer.
+
+There are two parameters to choose : (a) How thick should be the planar slab where bilayer is free to move, and
+(b) What should be the force constant to be used for the flat bottom potential
+In order to decide on the former, we found the mass density distribution of NC3, PO4 and GL1 beads along z direction using all four replicas.
+We checked the mass density distribution at different steps of CHARMM-GUI suggested protocol.
+The rationale was to check the bead to bead sitance of each lipid species and use this distance to set the radius od flatbottom well.
+Based on the distributions at equilibration step, for the DPPC-DIPC-CHOL, we chose 2.3125 nm as the flat bottom well radius, with respect to PO4 bead of DPPC and DIPC.
+For the DPPC-DAPC-CHOL, we chose 2.5625 nm as the flat bottom well radius, with respect to PO4 bead of DPPC and DAPC.
+We chose PO4 bead since the head group choline (NC3) seemed more flexible (as instead of a sharp peaks at each leaflets it has a more broader peaks at each sides of the plots), therefore for the NC3 bead average value has more uncertainity to it.
+Also, PO4 bead to bead distance for DPPC and D(A/I)PC was different but we went with the idea of one height for both, at the outer edge of the farther one.
+Also we only applied the flatbottom restraints for the longer DPPC and D(A/I)PC lipids and not for cholesterol.
+We also tested flat bottom restrain radius = 21 A, 22 A, 23 A, 24 A, 25 A, 26 A, 27 A for DIPC system and checked whether the criteria we chose prevented bilayer undulation just right while not making bilayer extra stiff.
+By eyeballing through these systems, it seems our choice of criteria is just right.
+We tried flat bottom restrain with force constant, k = 0.2, 2, 10, 20, 100, 200, 500, 1000, 2000, 3000 KJ mol-1nm-2 for DIPC system.
+We ran 100 ns NPT runs and observed that the system seems to be undulating below 1000 mol-1 nm-2. 
+Subsequent literature review of membrane restraining strategies among recent works, we found that in Su J. et al. (2020), where they used similar system, they have done a reference simulation and used as an alternative flat-bottomed potential restraint of 1000 KJ mol-1 nm-2, confining glycerol moieties to a xy slab of defined (4 nm) vertical thickness.
+There is a close agreement in our choice of k and bead to bead distance that we observed for GL1 beads, with that of Su J. et al.
+Thus we chose k = 1000 KJ mol-1 nm-2.
+
+
+
+
 
 \section*{Auxiliary Variables}
 
@@ -43,5 +130,9 @@ The Mean Silhouette Coefficient of $X_i$ Clusters is given by the mean $s$ over 
 Here, we have omitted the MSC calculations for cases when there are no clusters or just one cluster detected by DBSCAN. 
 MSC is bound between and -1 and 1.
 A high positive value corresponds to well segregated dense clusters, while a low negative value implies that lipids are assigned to clusters incorrectly.  
+
+\bibliographystyle{unsrt}
+\bibliography{PhaseSeparationArticle}
+
 
 \end{document}
