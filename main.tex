@@ -32,17 +32,17 @@
 \begin{abstract}
 
 Liquid-liquid phase separation (LLPS) inside the cell often results in biological condensates that can critically impact
-cell homeostasis. Such phase separation events occur all across a cell and often involve common biomolecules, including
-lipids in the cell membranes. Lipid phase separation at the cell membrane and subsequent ordered domain formation in a sea
-of disordered lipids led to the so-called "lipid raft hypothesis." The resulting lipid domains often have functional roles.
+cell homeostasis. Such phase separation events occur in multiple parts of cells, including
+the cell membranes, where the so-called ``lipid raft'' hypothesis posits the formation of ordered domains floating in a sea
+of disordered lipids. The resulting lipid domains often have functional roles.
 However, the thermodynamics of lipid phase separation and their resulting
-mechanistic effects on cell function and dysfunction are poorly understood. Understanding such bulk phenomenon on a cell
-membrane with a diverse lipidome is exceptionally difficult. Hence simple model systems that can recapitulate similar behavior are
-widely used to study this phenomenon. Despite simplifying the problem, the relative timescale and system size
-required for simulating phase separation events pose a challenge for molecular dynamics (MD) simulations.
-Thus, most MD studies focus on spontaneous lipid phase separation as an adequate sampling of transition events between
-mixed and separated lipid states is hard to achieve in conventional MD simulations. Here, we propose a proof-of-concept pipeline that can realize such multiple-state transitions by combining coarse-grained model membranes with enhanced sampling protocols.
-Using this pipeline, we can ask not just whether a system phase is separated or not, but why it separates, with statistical rigor.
+mechanistic effects on cell function and dysfunction are poorly understood. Understanding such complex phenomenon in cell
+membranes, with their diverse lipid compositions, is exceptionally difficult. For this reasons, simple model systems that can recapitulate similar behavior are
+widely used to study this phenomenon. Despite these simplifications, the timescale and and length scales of domain formation
+pose a challenge for molecular dynamics (MD) simulations.
+Thus, most MD studies focus on spontaneous lipid phase separation --- essentially measuring the sign (but not the amplitude) of the free energy change upon separation --- rather than directly interrogating the thermodynamics.  Here, we propose a proof-of-concept pipeline that can 
+directly measure this free energy by combining coarse-grained MD with enhanced sampling protocols using a novel collective variable. This approach will be a useful tool to help connect the thermodynamics of phase separation with the mechanistic insights already available from molecular dynamics simulations.
+
 
 \end{abstract}
 
@@ -51,64 +51,58 @@ Using this pipeline, we can ask not just whether a system phase is separated or 
 \section*{Introduction}
 
 Interactions among biomolecules often result in phase separation and subsequent formation of biological condensates\cite{Banani2016}.
-In the past decade, there has been a new appreciation for the role of phase separation in cell physiology\cite{Banani2017}. Biological condensates involving fundamental biomolecules like DNA\cite{Larson2017}, RNA\cite{Langdon2018}, protein\cite{Li2012}, and lipids\cite{Sezgin2017} are identified, and their functional roles are characterized.
-Biological condensates have been observed to be involved in diverse processes, including DNA damage response\cite{Altmeyer2015}, translational\cite{Decker2012} and transcriptional\cite{Lallemand-Breitenbach2010} regulation, ribosome biogenesis\cite{Feric2016}, cell adhesion\cite{Case2015}, and endocytosis\cite{Degreif2019}.
+In the past decade, there has been a new appreciation for the role of phase separation in cell physiology\cite{Banani2017}. Biological condensates involving fundamental biomolecules like DNA\cite{Larson2017}, RNA\cite{Langdon2018}, protein\cite{Li2012}, and lipids\cite{Sezgin2017} have been identified and their functional roles at least somewhat understood.
+Biological condensates are involved in diverse processes, including DNA damage response\cite{Altmeyer2015}, translational\cite{Decker2012} and transcriptional\cite{Lallemand-Breitenbach2010} regulation, ribosome biogenesis\cite{Feric2016}, cell adhesion\cite{Case2015}, and endocytosis\cite{Degreif2019}.
 Such nano-to-micron-scale compartments have no surrounding membrane but sequester key molecules and help in cellular organization, similar to canonical organelles\cite{Mao2011,Boisvert2007}.
 These transient and dynamic sequestration zones are crucial for cell stress responses\cite{Boisvert2007} and signal transductions\cite{Janosi2012}.
 As phase-separated molecules are concentrated within these condensates, they can function as reaction crucibles that enhance reaction kinetics\cite{Strulson2012}.
 However, abnormal phase behavior of biological condensates is speculated to underlie multiple disease states, including neurodegenerative diseases such as Huntington's\cite{Li2016}, ALS\cite{Jain2017}, and Parkinson's\cite{Ray2020}.
 
 
-Like the intracellular biological condensates, phase separation in the cell membrane often results in relatively ordered lipid lateral domains with collective behavior that can recruit other proteins and lipids\cite{Sezgin2017, Case2019}.
-Such domains often cluster signaling molecules\cite{Tian2007} and facilitate conformational modulations through domain-specific lipid interactions\cite{Laganowsky2014,Lingwood2011} that are relevant in immune signaling\cite{Beck-garcia2015},\cite{Wisser2017} and host-pathogen interactions\cite{Dick2012}.
-As membrane properties modulate resident protein function, the coexistence of distinct phases gives the cell extra grip on regulation.
-Conformational changes in domain resident molecules and their subsequent activity shift regulates key signaling events\cite{Laganowsky2014,Lingwood2011}.
+Like these intracellular biological condensates, phase separation in the cell membrane often results in relatively ordered lipid lateral domains with collective behavior that can recruit other proteins and lipids\cite{Sezgin2017, Case2019}.
+Such domains often cluster signaling molecules\cite{Tian2007} and facilitate conformational modulations through domain-specific lipid interactions\cite{Laganowsky2014,Lingwood2011} that are relevant in immune signaling\cite{Beck-garcia2015,Wisser2017} and host-pathogen interactions\cite{Dick2012}.
+As membrane properties modulate resident protein function, the coexistence of distinct phases gives the cell an extra tool for regulation.
+Conformational changes in domain-resident molecules and their subsequent activity shifts regulate key signaling events\cite{Laganowsky2014,Lingwood2011}.
 It has also been observed that the HIV Gag protein is sensitive to domains with high cholesterol content, suggesting a potential role of membrane domains in host-pathogen interaction and viral assembly\cite{Dick2012}.
 Moreover, lipid domains are conserved throughout the tree of life, implying their relevance in regulating cellular processes\cite{Sezgin2017}. 
-Thus, calculating the thermodynamics of phase separation as a function of the composition of the system is critical in understanding the molecular grammar behind lipid domains and the resultant functional modulations. 
+For these reasons, understanding the thermodynamics of lipid phase separation as a function of the composition of the system is a critical step toward understanding the molecular grammar behind lipid domains and the resultant functional modulations. 
 
 
-Lipid domains have been studied from the perspective of phase separation experimentally and computationally.
+Lipid domains have been studied extensively both experimentally and computationally.
 However, teasing out the complex interactions between domain components that determine the membrane organization is challenging in vivo due to the limitations of different methodologies\cite{Klotzsch2013}.
 Such difficulties primarily arise due to (a) the complex composition of cell membrane\cite{Tieleman2019}, (b) difficulties in defining domain properties in vivo\cite{Sezgin2017}, and (c) challenges in achieving specificity when perturbing the system with probes\cite{Veatch2007}.
-Hence simple model membranes have been extensively used to mimic the phase separation of complex cell membrane phenomenon in vitro\cite{Veatch2003a,Veatch2002,Veatch2003} and in silico\cite{Risselada2008,Lin2016,Lin2019}.
-Such studies provide powerful insights into phase-separated domains, their properties, and whether the process is favorable, but they often fail to quantify the underlying thermodynamics.
-Similarly, the resulting mechanistic effects on cell function and dysfunction due to lipid phase separation need to be better understood.
+Hence, simple model membranes have been extensively used to mimic the phase separation of complex cell membrane phenomenon in vitro\cite{Veatch2003a,Veatch2002,Veatch2003} and in silico\cite{Risselada2008,Lin2016,Lin2019}.
+Such studies provide powerful insights into phase-separated domains, their properties, and whether the process is favorable, but as a rule they cannot quantify the underlying thermodynamics. This limits our ability to assess the contributions of different mechanistic effects to the process.
 
-As a "computational microscope\cite{Dror2012}," molecular dynamics (MD) simulations have been used to study spontaneous lipid separating without using exogenous labels or probes\cite{Pantelopulos2018}.
+As a ``computational microscope\cite{Dror2012}'', molecular dynamics (MD) simulations have been used to study spontaneous lipid separation without using exogenous labels or probes\cite{Pantelopulos2018}.
 However, MD simulations designed for spontaneous phase separation are inadequate to compute thermodynamic properties with statistical confidence.
-This is because the transition between mixed and separated system-states is often a single irreversible event on the microsecond timescale typically achievable by typical all-atom MD.
-Additionally, the relatively large size required to model this bulk phenomenon significantly increases computational costs.
-To circumvent this limitation, coarse-grained (CG) MD simulations have been used to study spontaneous phase separations in model membranes\cite{Risselada2008,Bennett2018}.
-CG-MD is an ideal tool to study phase separation in the membrane due to its inherent advantage of high spatial and temporal resolution while capturing nanoscale domains due to transient phase separation events.
+This is because the transition between mixed and separated states is often a single irreversible event on the microsecond timescale typically achievable by typical all-atom or even coarse-grained MD\cite{Risselada2008,Bennett2018}, especially given the
+the relatively large size required to model the phenomenon. 
+That said, CG-MD is an excellent tool to study phase separation in the membrane, because it retains molecular-level resolution while capturing nanoscale domains due to transient phase separation events.
+
 Previously, the Tieleman\cite{Bennett2018} and the Gorfe groups\cite{Lin2019} have done some pioneering work on the thermodynamics of lipid domains.
-While the former used thermodynamic integration\cite{Salsburg1953} to calculate the free energy and excess chemical potential for exchanging lipid species between phases, the latter used umbrella sampling\cite{TorrieG.MValleau1977} to compute the membrane partition thermodynamics of an idealized transmembrane domain by dragging it across distinct lipid phases.
+While the former used thermodynamic integration\cite{Salsburg1953} to calculate the free energy and excess chemical potential for exchanging lipid species between phases, the latter used umbrella sampling\cite{TorrieG.MValleau1977} to compute the membrane partition thermodynamics of an idealized transmembrane domain by dragging it across the boundary between distinct lipid phases.
 
 We hypothesize that coupling a more versatile enhanced sampling method with the standard CG-MD will improve the transition events between the mixed and separated states of the lipid bilayer system under study to compute the free energy for phase separation.
 Various enhanced sampling protocols have previously demonstrated their ability to enhance the sampling of rare events\cite{Henin2022}.
 In most cases, external forces are applied to the system to bias simulation to explore the desired phase space.
-Generally, it is necessary to compute the collective variable or it's derivative at each time step as the dynamics proceeds.
-Certain popular implementations of such protocols, like COLVARS\cite{Fiorin2013} and PLUMED\cite{Barducci2015}, are done on single CPUs serially, leading to poor performance when the collective variable is computationally complex, as is the case for phase separation.
-This often involves determining the centroid of each lipid and the subsequent all-to-all distance determination within each leaflet.
-Thus complex CV calculation at every time step of the MD is not desired.
+As a result, it is necessary to compute the derivative of the collective variable at each time step.
+Certain popular implementations of such protocols, like COLVARS\cite{Fiorin2013} and PLUMED\cite{Barducci2015}, are done on single CPUs serially, leading to poor performance when the collective variable is computationally complex, as is the case for the complicated collective variables proposed to study phase separation.
 
-However, weighted ensemble (WE)\cite{Zuckerman2017} has the advantages of (a) unbiased dynamics, and (b) good sampling by enhancing the sampling of otherwise undersampled phase space and reducing the sampling of otherwise oversampled phase space; therefore, judiciously using the given computational resources\cite{Zuckerman2017}.
-Moreover, there is an added benefit that the calculation of the collective variable can be decoupled from the MD, which simplifies the implementation and improve the computational performance.
-As the collective variable can take complex functional forms in our case, it reduces extra computational costs.
+By contrast, the weighted ensemble (WE)\cite{Zuckerman2017} method has the advantages of (a) unbiased dynamics, and (b) good sampling, achieved by enhancing the sampling of otherwise undersampled phase space and reducing the sampling of otherwise oversampled phase space.
+Moreover, there is an added benefit, in that the calculation of the collective variable can be decoupled from the MD, which simplifies its implementation and can improve the computational performance.
 It should be noted that the WE method is highly parallelizable and can take advantage of GPU acceleration\cite{Zwier2015}.
-Hence we decided to use the WE strategy to enhance the sampling of transition from mixed to separated and vice versa in CG-MD simulation.
 
-Here we present a novel proof-of-concept pipeline to realize multiple mixing and separating events in a lipid bilayer system and estimate the equilibrium free energy.
+Here we present a novel proof-of-concept pipeline to estimate the equilibrium free energy change upon separating a lipid bilayer into distinct coexisting phases.
 We test this pipeline on three different lipid bilayer systems with varying degrees of phase separation propensity.
-We discuss one well-known pitfall of enhanced sampling techniques that we encountered - identifying a good collective variable.
-We explore three potential candidates for collective variables and assess their effectiveness in the pipeline.
+We explore three potential candidate collective variables and assess their effectiveness in the pipeline.
 We then construct free energy landscapes of the three systems at multiple temperatures.
 We further explore a few non-traditional use cases for the data thus generated and discuss additional room for improvements.
 
 \begin{figure}[hbt!]
 \centering
 \includegraphics[width=1\linewidth]{Figures/Main/1/Final/placeholder.jpg}
-\caption{A. 2D structure and corresponding MARTINI 2 bead structure for lipids used in this study. B. Time evolution of each lipid system as a function of time. The membrane normal is pointing towards the reader}
+\caption{A. 2D structure and corresponding MARTINI 2 bead structure for lipids used in this study. B. Time evolution of each lipid system as a function of time. The membrane normal is pointing towards the reader.}
 \label{fig1:view}
 \end{figure}
 
