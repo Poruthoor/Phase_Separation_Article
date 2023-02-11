@@ -269,15 +269,17 @@ All WE simulations were runu sing the Intel Xeon E5-2695 and Tesla K20Xm GPUs in
 The probability distributions for the CVs for each replica, as a function of WE iterations, were constructed using $w\_pdist$ and $plothist$ tools in WESTPA.
 Using this distribution, we monitored the evolution of each WE replica simulation and the convergence.
 We used the $w\_multi\_west$ tool in WESTPA to combine data from four the WE replicas of a system at a given temperature.
-We then constructed the respective free energy surface from the combined probability distribution of a system.
-To check populations in different states and the flux between states the $w\_ipa$ tool was used.
+We then constructed the respective free energy surface from the combined probability distribution of a system. Unless otherwise noted, equilibrium curves were always calculated using the last 10 iterations of each WE run, because combining results pre- and post-reweighting is not statistically correct.
+To check the populations in different states and the determine flux between states the $w\_ipa$ tool was used.
+
+Input files, initial structures, and scripts required to run and analyze all simulations are available on GitHub at XXXXXXXXX
 
 \section*{Results}
 
 Consistent with previous studies from which they are adapted, the standard CG MD simulations of DPPC-(DA/DI)PC-CHOL systems phase separates into $\text{L}_{\text{o}}$ and $\text{L}_{\text{d}}$ regions.
-The $\text{L}_{\text{o}}$ region is enriched in saturated lipid, DPPC, and cholesterol. 
-The $\text{L}_{\text{d}}$ region is enriched with unsaturated lipids (DA/DI)PC.
-The DPPC-POPC-CHOL system showed low to no separation.
+The $\text{L}_{\text{o}}$ region is enriched in the saturated lipid, DPPC, and cholesterol, while the  
+$\text{L}_{\text{d}}$ region contained mostly the unsaturated lipids, DAPC or DIPC, depending on the system.
+As expected, the DPPC-POPC-CHOL system did not form distinct phases based on visual inspection.
 This section compares how different variables track phase separation propensity in lipid bilayers using standard CG MD simulations.
 We then compare the convergence of WE simulation to the choice of collective variable.
 Finally, we present the free energy landscapes of lipid bilayer systems obtained using WE simulations and discuss reusing the data generated to form other intuitions and applications.
@@ -294,17 +296,18 @@ Finally, we present the free energy landscapes of lipid bilayer systems obtained
 To evaluate how the collective variables track phase separation, we traced the time evolution of each variable for each system using standard MD starting from well-mixed bilayers.
 Figure \ref{fig3:view} illustrates the temporal evolution of FLC, CEI, and $\text{SI}_{\text{noCHOL}}$ for all systems at 298K, 323K, 423K, and 450K.
 For the two phase separating systems, the variables capture a single transition between a mixed state and a separated state.
-Interestingly, for relatively slow separating DPPC-DIPC-CHOL, CEI and $\text{SI}_{\text{noCHOL}}$ appear to indicate a slower transition than FLC, indicating that while these variables are correlated, they do not measure precisely the same phenomenon.
-However, for the DPPC-POPC-CHOL system, the variables capture a single state corresponding to a mixed system and no transition.
+Interestingly, for the relatively slow-separating DPPC-DIPC-CHOL system, CEI and $\text{SI}_{\text{noCHOL}}$ appear to indicate a slower transition than FLC, indicating that while these variables are correlated, they do not measure precisely the same phenomenon.
+For the DPPC-POPC-CHOL system, the variables capture a single state corresponding to a mixed system and no transition.
 Nevertheless, it is worth noting that FLC, CEI, and $\text{SI}_{\text{noCHOL}}$ capture the effect of temperature in all systems, including for POPC, the negative control, that does not phase separate.
+
 These variables even capture the subtle differences in phase-separating propensity between systems.
 For example, at 298K, the plateaued region of the FLC, CEI, and $\text{SI}_{\text{noCHOL}}$ curves are higher for the DPPC-DAPC-CHOL system than the DPPC-DIPC-CHOL system.
 This is expected as (a) the lipid chain mismatch between saturated and unsaturated lipid species and (b) the number of double bonds in unsaturated lipid species is high in the DPPC-DAPC-CHOL compared to DPPC-DIPC-CHOL system.
 Both these factors have previously been shown to influence lipid phase separation kinetics and domain stability\cite {Fowler2016, Lin2016}.
 Thus we have a set of low-dimensional variables that can (a) represent the global dynamics of the lipid bilayer system,
-(b) distinguish and track the transition between mixed and separated states, (c) capture the temperature effects,
-and (d) based on the composition of the system.
-%The time evolution of other auxiliary variables can be found in Fig SX.
+(b) distinguish and track the transition between mixed and separated states, and n(c) capture temperature effects,
+based on the composition of the system.
+The time evolution of other auxiliary variables can be found in Fig SX.
 \\
 
 \subsection*{Choice of collective variables for WE simulations}
