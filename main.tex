@@ -185,8 +185,8 @@ while an FLC of 1 implies that all lipids are in a cluster (though not necessari
 
 
 The lipid $X_i$ cluster is defined using the Density-Based Spatial Clustering of Applications with Noise (DBSCAN) algorithm \cite{MartinEsterHans-PeterKriegelJiirgSander1996, Ester2017} as implemented in scikit-learn \cite{PedregosaF.VaroquauxG.GramfortA.MichelV.ThirionB.GriselO.BlondelM.PrettenhoferP.WeissR.andDubourgV.VanderplasJ.PassosA.CournapeauD.BrucherM.PerrotM.Duchesnay2011}.
-For lipid DBSCAN clustering, instead of the default euclidean metric to calculate the distance between lipid coordinates, we used a precomputed distance matrix adjusted for periodic boundary conditions of the simulation box using LOOS\cite{Romo2014}.
-The algorithm requires two additional input parameters: $min\_samples$ and $\varepsilon$.
+For lipid DBSCAN clustering, instead of the default euclidean metric to calculate the distance between lipid centroids, we precomputed the 2-dimensional distance matrix adjusted for periodic boundary conditions; the distance calculation was performed using LOOS, with the two leaflets treated independently \cite{Romo2014}.
+The DBSCAN algorithm requires two additional input parameters: $min\_samples$ and $\varepsilon$.
 We consider lipids with more than $min\_samples$ neighbors (including the lipid itself) within $\varepsilon$ radius as core lipids.
 Non-core lipids still within $\varepsilon$ radius of a core lipid are considered border lipids.
 A set of core lipids within $\varepsilon$ radius of each other and their border lipids forms a cluster.
@@ -200,15 +200,14 @@ From the first 8 $\mu$s MD standard simulation of each replica, we computed the 
 From the RDF plot, we found the first maxima (provided it is above 1), and the distance to the minima right after this first maximum was determined to be the first nearest neighbor distance for that lipid species.
 This distance was averaged over all four replicas for a given system at a given temperature and then assigned as the respective $\varepsilon$ input.
 Since nearest neighbor distance is a function of temperature, for the same lipid species in the same system, $\varepsilon$ may be different for different temperatures.
-Computed $\varepsilon$, i.e., average first nearest neighbor distance for different conditions, are plotted in Supplementary Figure S1.
+The computed $\varepsilon$, i.e., average first nearest neighbor distance for different conditions, are plotted in Supplementary Figure S1.
 Additionally, we tracked auxiliary variables (AVs) that evaluate the quality of DBSCAN clustering since it is critical for defining the FLC that drives the WE equilibrium dynamics.
 
 \subsubsection*{2. Cumulative Enrichment Index (CEI)}
 
-We defined a density-based quantity to estimate the degree of global lipid enrichment in the system, similar to the ones that track local lipid segregation used previously \cite{Gu2019, Gu2020}.
-Here, we calculated the average local density of $X_i$ lipids around a single lipid $X_{ij}$, within a cutoff radius, $\epsilon_i$, as we defined earlier for FLC estimation.
-The cutoff radius, $\epsilon_i$, is also temperature dependent.
-We also defined a normalization factor, $\Phi_i$, as the local density of $X_i$ lipids for a uniformly well-mixed system of similar composition.
+When lipids segregate into phases, one result is that the local concentration of a given lipid type in the vicinity of other lipids of the same type is increased. We attempted to exploit this phenomenon by tracking the degree of local lipid enrichment, similar to other methods previously used \cite{Gu2019, Gu2020}.
+Here, we calculated the average local density of $X_i$ lipids around a single lipid $X_{ij}$, within a cutoff radius, $\epsilon_i$, defined as above for FLC estimation.
+We defined a normalization factor, $\Phi_i$, as the local density of $X_i$ lipids for a uniformly well-mixed system of similar composition.
 The ratio of former respective to latter forms the enrichment index for a lipid species, $X_i$.
 CEI is defined as the sum of individual enrichment index for all the lipid species in the system, as follows:
 
@@ -221,8 +220,8 @@ CEI is defined as the sum of individual enrichment index for all the lipid speci
 \end{equation}
 
 Where $X_{ij}$ denotes $j^{th}$ lipid of $X_i$ lipid species.
-The local density around $X_{ij}$ is calculated within $\epsilon_i(T)$ distance, where T is the temperature of the system.
-We correct the local density for central lipid contributions.
+The local density around $X_{ij}$ is calculated within $\epsilon_i(T)$ distance, where T is the temperature of the system, corrected
+for the contribution of the central lipid.
 For the normalization factor, $\Phi_i$,  we calculated the global density of $X_i$ lipids by taking the ratio of the total number of $X_i$ lipids in the system to the $xy$-planar area of the bilayer system.
 This global density is the same as the local density of $X_{i}$ lipid for a uniformly well-mixed system.
 Thus CEI significantly larger than 3 implies that the ternary system, $N=3$, deviates from a well-mixed state to a separated state.
@@ -230,7 +229,7 @@ Thus CEI significantly larger than 3 implies that the ternary system, $N=3$, dev
 \subsubsection*{3. Segregation Index (SI)}
 
 We defined a contact-based quantity to track the homogeneity of the lipid bilayer, similar to the ones that track the mixing of beads used previously\cite{Marigo2012, Kumar2020}.
-Here, we calculated the fraction of like contacts made between $X_i$ species to the total contacts made by $X_i$ as shown below:
+Here, we computed the total contacts between a given lipid and its environment and computed the fraction of the those contacts to like-species lipids:
 
 \begin{equation}
     \begin{aligned}
@@ -247,30 +246,29 @@ Hence, $\text{SI}_{\text{noCHOL}}$ effectively will have bounds [0, 2] unless ot
 \subsection*{Weighted Ensemble Simulation}
 
 \subsubsection*{Preparing seeding configurations for WE simulation} 
-From each 8 $\mu$s replica MD simulation of a given system, the last ten frames spaced by 100 ns were collected.
-Using such collected frames, we created sets of mixed and separated configurations for each system replica.
-For DPPC-DAPC-CHOL and DPPC-DIPC-CHOL systems, the set of mixed configurations for a particular replica came from the respective 423 K and 450 K simulation frames. 
-The set of separated configurations for a replica comes from the respective 298K and 323K simulation frames.
-For the DPPC-POPC-CHOL system, sets of mixed and separated configurations for a replica came from the 450 K and 298K simulation frames, respectively.
-To enhance the convergence of WE equilibrium simulations, we decided to seed each simulation from mixed and separated states and let the enhanced sampling cover the transition between them.
+From each 8 $\mu$s MD simulation of a given composition, the last ten frames spaced by 100 ns were collected.
+These structures contained mixed and unmixed states, which we used as starting structures to begin the weighted ensemble simulations; starting the WE with structures scattered across the collective variable range reduces the time needed to generate well-equilibrated free energy curves.
+
+For the DPPC-DAPC-CHOL and DPPC-DIPC-CHOL systems, the set of mixed configurations for a particular replica came from the respective 423 K and 450 K simulation frames, since both systems are only well-mixed at high temperatures.
+The set of separated configurations for a replica comes respectively from the 298K and 323K simulations.
+For the DPPC-POPC-CHOL system, starting structures were taken from the 298K and 450K trajectories; although the system never phase separates, using these two temperatures gives structures that span the whole range of the collective variables.
 
 \subsubsection*{Running WE simulations} 
-We ran weighted ensemble equilibrium simulations using the WESTPA 1.0 software package\cite{Zwier2015} closely following the previously established protocol\cite{Bogetti2019}.
+We ran weighted ensemble equilibrium simulations using version 1.0 of the WESTPA package\cite{Zwier2015}, closely following the previously established protocol\cite{Bogetti2019}.
 The collective variable was divided into 30 dynamic bins using the minimal adaptive binning scheme (MAB)\cite{Torrillo2021}.
 For each replica, a target number of 4 short simulations, or "walkers" per bin, were started in parallel from the mixed and the separated configurations prepared earlier.
-After every resampling interval of 1 ns, the collective variable was evaluated to initiate the merging and splitting of walkers to maintain the target number of walkers per bin.
-A short one ns MD run of all the walkers and subsequent resampling, according to the standard WE algorithm, constituted 1 WE iteration. 
+After every resampling interval of 1 ns, the collective variable was evaluated to initiate the merging and splitting of walkers to maintain the target number of walkers per bin. One cycle of MD and resampling is referred to as a single WE iteration. 
 We conducted 500 WE iterations for each replica.
-We used GROMACS 2020.3 engine to propagate with the same parameters used for standard MD simulations described earlier.
+We used GROMACS 2020.3 to propagate the dynamics, using the same parameters described earlier for the standard MD simulations.
 The WE Equilibrium Dynamics (WEED) reweighting protocol\cite{Bhatt2010, Suarez2014}, implemented in WESTPA 1.0, was used to accelerate the convergence of WE walkers toward equilibrium.
 The reweighting is done every 10 WE iterations.
-Four independent WE replicas were simulated each temperature for each lipid composition. 
-All WE simulations ran using the Intel Xeon E5-2695 and Tesla K20Xm GPUs in the BlueHive supercomputing cluster of the Center for Integrated Research and Computing at the University of Rochester.   
+Four independent WE replicas, started with a different subset of initial structures, were simulated for each temperature and lipid composition. 
+All WE simulations were runu sing the Intel Xeon E5-2695 and Tesla K20Xm GPUs in the BlueHive supercomputing cluster of the Center for Integrated Research and Computing at the University of Rochester.   
 
 \subsubsection*{Analysis of WE simulations}
-The probability distributions for the CVs for each replica, as a function of WE iterations, was constructed using $w\_pdist$ and $plothist$ tools in WESTPA.
+The probability distributions for the CVs for each replica, as a function of WE iterations, were constructed using $w\_pdist$ and $plothist$ tools in WESTPA.
 Using this distribution, we monitored the evolution of each WE replica simulation and the convergence.
-We used the $w\_multi\_west$ tool in WESTPA to combine data from four WE replicas of a system at a given temperature.
+We used the $w\_multi\_west$ tool in WESTPA to combine data from four the WE replicas of a system at a given temperature.
 We then constructed the respective free energy surface from the combined probability distribution of a system.
 To check populations in different states and the flux between states the $w\_ipa$ tool was used.
 
