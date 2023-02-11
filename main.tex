@@ -114,38 +114,36 @@ As shown in Fig \ref{fig1:view}, we used three different ternary lipid bilayer s
 1. A lipid bilayer consisting of dipalmitoyl-phosphatidylcholine (DPPC), dilinoleyl-phosphatidylcholine (DIPC), and cholesterol (CHOL), known to phase separate in silico in a few microseconds \cite{Risselada2008, Schafer2010, Janosi2012, Doma2012, Jong2013, Liu2020, Su2020}.
 2. A lipid bilayer consisting of DPPC, diarachidonoyl-phosphatidylcholine (DAPC), and CHOL, known to phase separate in silico within a few hundred nanoseconds \cite{Lin2016, Lin2019, Davis2013a}.
 3. A lipid bilayer consisting of DPPC, palmitoyl-oleoyl-phosphatidylcholine (POPC), and CHOL that was previously shown not to phase separate \cite{Veatch2003,Davis2013a}.
-The composition of DPPC-DIPC-CHOL, DPPC-DAPC-CHOL, and DPPC-POPC-CHOL systems used here are (0.42/0.28/0.3), (0.5/0.3/0.2) and (0.4/0.4/0.2) respectively and are adapted from previous studies \cite{Risselada2008, Lin2016, Davis2013a}.
-Similar to the prvious studies, we kept the total number of lipids in DPPC-DIPC-CHOL, DPPC-DAPC-CHOL, and DPPC-POPC-CHOL at 1944, 1200 and 1200 respectively.
+The composition of the DPPC-DIPC-CHOL, DPPC-DAPC-CHOL, and DPPC-POPC-CHOL systems used here are (0.42/0.28/0.3), (0.5/0.3/0.2) and (0.4/0.4/0.2) respectively and are adapted from previous studies \cite{Risselada2008, Lin2016, Davis2013a}.
+We kept the total number of lipids the same as in previous calculations as well, with the  DPPC-DIPC-CHOL, DPPC-DAPC-CHOL, and DPPC-POPC-CHOL systems containing 1944, 1200 and 1200 respectively. 
 
-Due to the relatively large system sizes and the time scale required for phase separation and related dynamics in lipid bilayer simulations, we used the coarse-grained (CG) model for each system. Hence the subsequent dynamics propagation using MD is relatively cheaper than an all-atom model but with a tradeoff in system resolution.
-The rationale behind this design choice is to fail faster with minimum resources if this proof-of-concept protocol is not working as expected. 
-Using CHARMM-GUI Martini Maker \cite{Qi2015}, we constructed four random replicas of each CG ternary symmetric bilayer system.
+Due to the relatively large system sizes and the time scale required for phase separation and related dynamics in lipid bilayer simulations, we used a coarse-grained (CG) model for each system. Although nothing in the subsequent sampling or analysis is specific to the coarse-grained models, it makes sense to use a less expensive model while working out the method.
+ 
+Using CHARMM-GUI Martini Maker \cite{Qi2015}, we constructed four replicas of each CG ternary symmetric bilayer system, with the lipids randomly mixed in the bilayer.
 We used MARTINI 2 force field parameters and particle definitions\cite{Marrink2007, DeJong2013} to construct CG systems and to run the subsequent MD simulation.
 We replaced the default input files from CHARMM-GUI Martini Maker with their respective most recent Martini 2.x versions if they existed.
-We used MARTINI polarizable water model\cite{Yesylevskyy2010} to solvate all systems with approximately a 1:30 lipid to real water ratio.
+We used the MARTINI polarizable water model\cite{Yesylevskyy2010} to solvate all systems with approximately a 1:30 lipid to real water ratio.
 A detailed description of the systems is given in Table S1 of supplementary material.
-We did not use  the more recent MARTINI 3.0 lipid parameters since there were no published MARTINI 3 parameters for cholesterol at the time of the writing.
+We did not use the more recent MARTINI 3.0 lipid parameters, since there are no published MARTINI 3 parameters for cholesterol at this time.
 
 \subsection*{Standard MD simulation details}
 
-Due to the historical compatibility of the GROMACS MD engine with the MARTINI force field, we used GROMACS 2020.3\cite{Abraham2015} to propagate the dynamics of the systems prepared. 
-Each system was minimized and equilibrated in steps using the MD input files suggested by CHARMM-GUI Martini Maker.
-To obtain an intact bilayer without any membrane undulations, we used an additional membrane restraining protocol: 
-We took advantage of the flat bottom restrain potential available in GROMACS to allow lipids to move freely in the $xy$ plane but restrained within a slab of defined z thickness.
-More details about membrane restraining protocol are given in the supplementary material.
+We used GROMACS 2020.3\cite{Abraham2015} to propagate the dynamics of the systems prepared. 
+Each system was minimized and equilibrated following the protocol suggested by CHARMM-GUI Martini Maker.
+To obtain an intact bilayer without any membrane undulations, we used  
+the flat bottomed restraint potential available in GROMACS; this allowed the lipids to move freely in the plane of the membrane but restrained within a slab of defined $z$ thickness along the membrane normal.  More details about membrane restraining protocol are given in the supplementary material.
 
 After the minimization and equilibration, all systems were run at 400 K in the NPT ensemble for 100 ns to make sure the lipids in each system were randomly distributed.
 For every system, we forked each replica into multiple temperature runs simulated at different temperatures ranging from 298K to 450K.
 For these production runs, the temperature coupling is done using velocity rescaling\cite{Bussi2007} with a time constant 1 ps.
-An extended-ensemble Parrinello-Rahman pressure coupling\cite{Parrinello1981} with a relatively high time constant of 12 ps was used as we are dealing with CG system. 
-A semiisotropic pressure coupling suited for membrane simulations is used here with a compressibility of $3e^{-4}$ $\text{bar}^{-1}$ and reference pressure for coupling as 1 bar.
-A reaction field electrostatics with Coloumb cutoff of 1.1 nm was used.
-Since we are using a polarizable water, a relative dielectric constant of 2.5 was used.
+An extended-ensemble Parrinello-Rahman pressure coupling\cite{Parrinello1981} with a relatively high time constant of 12 ps was used, as recommended for MARTINI.  A semiisotropic pressure coupling suited for membrane simulations is used here with a compressibility of $3e^{-4}$ $\text{bar}^{-1}$ and reference pressure for coupling as 1 bar.
+A reaction field electrostatics with Coloumb cutoff of 1.1 nm was used, and 
+a dielectric constant of 2.5 was used, as required with the MARTINI polarizable water model.
 For Van der Waals interaction, a similar cutoff of 1.1 nm was used.
 A potential-shift Van der Waal modifier was also used.
-For reighbor searching, a verlet cutoff scheme was used with neighbor list updated every 20 steps.
+For neighbor searching, a verlet cutoff scheme was used with neighbor list updated every 20 steps.
 The simulation parameters were mostly inspired by previous CG MARTINI simulations\cite{DeJong2016}. 
-To eliminate potential artifacts previously reported\cite{Javanainen2020}, for LINCSolver\cite{Hess1997}, we used 8 as the highest order in the expansion of constraint coupling matrix for more accuracy.
+To eliminate potential artifacts previously reported due to inaccurate constraints\cite{Javanainen2020}, we used an 8th order expansion for the LINCSolver constraint coupling matrix\cite{Hess1997} for more accuracy.
 Moreover, for better energy conservation, we also used short 20 fs timesteps, which is conservative for a CG system.
 
 All standard MD simulations ran for at least 8 microseconds using the BlueHive supercomputing cluster of the Center for Integrated Research and Computing at the University of Rochester.
@@ -153,35 +151,35 @@ Simulations ran on Intel Xeon E5-2695 and Gold 6130 processors augmented with Te
 The trajectories were processed and analyzed using the LOOS software package.
 A detailed description of the simulation parameters is given in Table S1 of supplementary material. 
 
-\subsection*{Collective Variable}
+\subsection*{Collective Variables}
 
-A collective variable (or a set of variables) is a reduced coordinate that captures the progress of a system along the transition of interest.
+A collective variable is a reduced coordinate that captures the progress of a system along the transition of interest.
 Ideally, such a reduced variable(s) should fully capture the key modes of the system to reflect the complex event under study.
-The success of any enhanced sampling protocol depends on the chosen collective variable over which the sampling is enhanced\cite{Valsson2016, Yang2019b, Henin2022}. 
-Thus to drive the WE simulation, we used three candidates for the collective variable.
+The success and efficiency of any enhanced sampling protocol depends on the chosen collective variable over which the sampling is enhanced\cite{Valsson2016, Yang2019b, Henin2022}. 
+We explored 3 candidate collective variables for the WE simulations.
 
-\subsubsection*{1. Fraction of Lipids in Cluster (FLC)}
+\subsubsection*{1. Fraction of Lipids in Clusters (FLC)}
 Since the formation of lipid domains with distinct properties from the rest of the bilayer is a characteristic feature of a phase-separating lipid bilayer,
 we hypothesized that we could use a variable that quantifies the recruitment of lipids into such domains to track the phase separation events in our systems.
-Here, we define the Fraction of Lipids in Cluster (FLC) as follows:
+Here, we define the Fraction of Lipids in Clusters (FLC) as follows:
 
 \begin{equation}
 \label{eq:CLT}
 \text{FLC} = \sum_{i}^{N} \frac{\text{No. of $X_i$ lipids in lipid $X_i$ Clusters}}{\text{No. of Lipid $X_i$}} =  \frac{\sum_{i}^{N} \text{No. of Lipid X$_i$ in Lipid X$_i$ Clusters}}{\text{Total No. of Lipids}}
 \end{equation}
 
-Where subscript $i$ denotes the individual lipid species in a bilayer consisting of N total lipid species.
+\noindent Where subscript $i$ denotes the individual lipid species in a bilayer consisting of N total lipid species.
 As shown in Figure \ref{fig2:view}, each system under study has $N=3$ lipid species.
 FLC increases as the system goes from a mixed state, with a random distribution of lipids, to a separated state.
-In principle, the bounds of FLC are between 0 and 1.
-FLC = 0 corresponds to a system configuration where no lipids are part of any cluster.
-While FLC = 1 corresponds to all lipids being a part of some cluster. 
+An FLC of 0
+0 corresponds to a system configuration where no lipids are part of any cluster,
+while an FLC of 1 implies that all lipids are in a cluster (though not necessarily a single cluster).
 
 
 \begin{figure}[hbt!]
 \centering
 \includegraphics[width=1\linewidth]{Figures/Main/2/placeholder.jpg}
-\caption{A. Illustration of FLC :  Functional form of FLC and expected evolution curve for a phase separating system. B. Illustration of Cummulative Enrichment Index. C. Illustration of Seggregation Index}
+\caption{A. Illustration of FLC :  Functional form of FLC and expected evolution curve for a phase separating system. B. Illustration of Cumulative Enrichment Index. C. Illustration of Segregation Index}
 \label{fig2:view}
 \end{figure}
 
