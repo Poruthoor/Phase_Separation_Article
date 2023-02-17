@@ -136,7 +136,7 @@ the flat bottomed restraint potential available in GROMACS; this allowed the lip
 After the minimization and equilibration, all systems were run at 400 K in the NPT ensemble for 100 ns to make sure the lipids in each system were randomly distributed.
 For every system, we forked each replica into multiple temperature runs simulated at different temperatures ranging from 298K to 450K.
 For these production runs, the temperature coupling is done using velocity rescaling\cite{Bussi2007} with a time constant 1 ps.
-An extended-ensemble Parrinello-Rahman pressure coupling\cite{Parrinello1981} with a relatively high time constant of 12 ps was used, as recommended for MARTINI.  A semiisotropic pressure coupling suited for membrane simulations is used here with a compressibility of $3e^{-4}$ $\text{bar}^{-1}$ and reference pressure for coupling as 1 bar.
+An extended-ensemble Parrinello-Rahman pressure coupling\cite{Parrinello1981} with a relatively high time constant of 12 ps was used, as recommended for MARTINI.  A semiisotropic pressure coupling suited for membrane simulations is used here with a compressibility of 3$\times 10^{-4}$ $\text{bar}^{-1}$ and reference pressure for coupling as 1 bar.
 A reaction field electrostatics with Coloumb cutoff of 1.1 nm was used, and 
 a dielectric constant of 2.5 was used, as required with the MARTINI polarizable water model.
 For Van der Waals interaction, a similar cutoff of 1.1 nm was used.
@@ -148,7 +148,7 @@ Moreover, for better energy conservation, we also used short 20 fs timesteps, wh
 
 All standard MD simulations ran for at least 8 microseconds using the BlueHive supercomputing cluster of the Center for Integrated Research and Computing at the University of Rochester.
 Simulations ran on Intel Xeon E5-2695 and Gold 6130 processors augmented with Tesla K20Xm, K80, and V100 GPUs.   
-The trajectories were processed and analyzed using the LOOS software package.
+The trajectories were processed and analyzed using the LOOS software package\cite{Romo2014}.
 A detailed description of the simulation parameters is given in Table S1 of supplementary material. 
 
 \subsection*{Collective Variables}
@@ -171,8 +171,7 @@ Here, we define the Fraction of Lipids in Clusters (FLC) as follows:
 \noindent Where subscript $i$ denotes the individual lipid species in a bilayer consisting of N total lipid species.
 As shown in Figure \ref{fig2:view}, each system under study has $N=3$ lipid species.
 FLC increases as the system goes from a mixed state, with a random distribution of lipids, to a separated state.
-An FLC of 0
-0 corresponds to a system configuration where no lipids are part of any cluster,
+An FLC of 0 corresponds to a system configuration where no lipids are part of any cluster,
 while an FLC of 1 implies that all lipids are in a cluster (though not necessarily a single cluster).
 
 
@@ -185,7 +184,7 @@ while an FLC of 1 implies that all lipids are in a cluster (though not necessari
 
 
 The lipid $X_i$ cluster is defined using the Density-Based Spatial Clustering of Applications with Noise (DBSCAN) algorithm \cite{MartinEsterHans-PeterKriegelJiirgSander1996, Ester2017} as implemented in scikit-learn \cite{PedregosaF.VaroquauxG.GramfortA.MichelV.ThirionB.GriselO.BlondelM.PrettenhoferP.WeissR.andDubourgV.VanderplasJ.PassosA.CournapeauD.BrucherM.PerrotM.Duchesnay2011}.
-For lipid DBSCAN clustering, instead of the default euclidean metric to calculate the distance between lipid centroids, we precomputed the 2-dimensional distance matrix adjusted for periodic boundary conditions; the distance calculation was performed using LOOS, with the two leaflets treated independently \cite{Romo2014}.
+For lipid DBSCAN clustering, instead of the default euclidean metric to calculate the distance between lipid centroids, we precomputed the 2-dimensional distance matrix adjusted for periodic boundary conditions; the distance calculation was performed using LOOS, with the two leaflets treated independently.
 The DBSCAN algorithm requires two additional input parameters: $min\_samples$ and $\varepsilon$.
 We consider lipids with more than $min\_samples$ neighbors (including the lipid itself) within $\varepsilon$ radius as core lipids.
 Non-core lipids still within $\varepsilon$ radius of a core lipid are considered border lipids.
@@ -274,7 +273,7 @@ To check the populations in different states and the determine flux between stat
 When performing this calculation for the DPPC-DIPC-CHOL system at 323K, we defined the states based on visual inspection of the corresponding free energy curves. We defined the mixed and separated states as CEI = [0.0, 3.9] and [4.4, 6.0], $\text{SI}_{\text{noCHOL}}$ = [0.0, 1.3] and [1.4, 2.0], and FLC = [0.0, 0.575] and [0.65, 1.0] respectively.
 The choice is arbitrary but reasonable enough to give us a picture of what is happening. 
 
-Input files, initial structures, and scripts required to run and analyze all simulations are available on GitHub at XXXXXXXXX
+Input files, initial structures, and scripts required to run and analyze all simulations are available on \href{https://github.com/Poruthoor/CVs4PhaseSeparation}{Github}
 
 \section*{Results}
 
@@ -307,7 +306,7 @@ For example, at 298K, the plateaued region of the FLC, CEI, and $\text{SI}_{\tex
 This is expected as (a) the lipid chain mismatch between saturated and unsaturated lipid species and (b) the number of double bonds in unsaturated lipid species is high in the DPPC-DAPC-CHOL compared to DPPC-DIPC-CHOL system.
 Both these factors have previously been shown to influence lipid phase separation kinetics and domain stability\cite{Fowler2016, Lin2016}.
 Thus we have a set of low-dimensional variables that can (a) represent the global dynamics of the lipid bilayer system,
-(b) distinguish and track the transition between mixed and separated states, and n(c) capture temperature effects,
+(b) distinguish and track the transition between mixed and separated states, and (c) capture temperature effects,
 based on the composition of the system.
 The time evolution of other auxiliary variables can be found in Fig SX.
 
