@@ -89,7 +89,7 @@ In most cases, external forces are applied to the system to bias simulation to e
 As a result, it is necessary to compute the derivative of the collective variable at each time step.
 Certain popular implementations of such protocols, like COLVARS\cite{Fiorin2013} and PLUMED\cite{Barducci2015}, are done on single CPUs serially, leading to poor performance when the collective variable is computationally complex, as is the case for the complicated collective variables proposed to study phase separation.
 
-By contrast, the weighted ensemble (WE)\cite{Zuckerman2017} method has the advantages of (a) unbiased dynamics, and (b) good sampling, achieved by enhancing the sampling of otherwise undersampled phase space and reducing the sampling of otherwise oversampled phase space.
+By contrast, the weighted ensemble (WE)\cite{Huber1996, Zuckerman2017} method has the advantages of (a) unbiased dynamics, and (b) good sampling, achieved by enhancing the sampling of otherwise undersampled phase space and reducing the sampling of otherwise oversampled phase space.
 Moreover, there is an added benefit, in that the calculation of the collective variable can be decoupled from the MD, which simplifies its implementation and can improve the computational performance.
 It should be noted that the WE method is highly parallelizable and can take advantage of GPU acceleration\cite{Zwier2015}.
 
