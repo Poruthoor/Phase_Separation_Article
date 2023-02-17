@@ -22,59 +22,58 @@
 
 \section{Simulation details$^\dagger$}
 
-\begin{center}
-    \begin{tabular}{|c c c c|}
-    \hline
-        & & & \\ 
-        & {DPPC-DAPC-CHOL} & DPPC-DLiPC-CHOL & DPPC-POPC-CHOL  \\
-        & & & \\ 
-            \begin{tabular}{@{}c@{}}Bilayer composition\end{tabular} & 
-            \begin{tabular}{@{}c@{}}600:360:240 \\ (0.5:0.3:0.2)\end{tabular} &
-            \begin{tabular}{@{}c@{}}828:540:576 \\ (0.42:0.28:0.3)\end{tabular} &
-            \begin{tabular}{@{}c@{}}480:480:240 \\ (0.4:0.4:0.2)\end{tabular} \\
-        & & & \\ 
-        $\text{Water}^{\parallel}$ & 9000 PW Beads & 14580 PW Beads & 9000 PW Beads  \\ 
-        & & & \\ 
-            \begin{tabular}{@{}c@{}}Temperatures for \\ std. MD \\ production runs \end{tabular} & 
-            \begin{tabular}{@{}c@{}}298K, 323K, 333K, \\ 333K, 343K, 353K, \\ 373K, 423K, 450K \end{tabular} &
-            \begin{tabular}{@{}c@{}}298K, 323K \\ 353K, 423K \\ 450K \end{tabular} &
-            \begin{tabular}{@{}c@{}}298K, 323K, \\ 450K \end{tabular} \\
-        & & & \\ 
-            \begin{tabular}{@{}c@{}}Temperatures for \\ WE MD \\ production runs \end{tabular} & 
-            \begin{tabular}{@{}c@{}}298K, 323K, 333K, \\ 333K, 343K, 353K, \\ 373K, 423K \end{tabular} &
-            \begin{tabular}{@{}c@{}}298K, 323K \\ 353K, 423K \end{tabular} &
-            \begin{tabular}{@{}c@{}}298K, 450K \\ \end{tabular} \\
-        & & & \\ \hline
-    \end{tabular}
-\end{center}
+\begin{table}[H]
+    \begin{center}
+        \begin{tabular}{|c c c c|}
+        \hline
+            & & & \\ 
+            & {DPPC-DAPC-CHOL} & DPPC-DLiPC-CHOL & DPPC-POPC-CHOL  \\
+            & & & \\ 
+                \begin{tabular}{@{}c@{}}Bilayer composition\end{tabular} & 
+                \begin{tabular}{@{}c@{}}600:360:240 \\ (0.5:0.3:0.2)\end{tabular} &
+                \begin{tabular}{@{}c@{}}828:540:576 \\ (0.42:0.28:0.3)\end{tabular} &
+                \begin{tabular}{@{}c@{}}480:480:240 \\ (0.4:0.4:0.2)\end{tabular} \\
+            & & & \\ 
+            $\text{Water}^{\parallel}$ & 9000 PW Beads & 14580 PW Beads & 9000 PW Beads  \\ 
+            & & & \\ 
+                \begin{tabular}{@{}c@{}}Temperatures for \\ std. MD \\ production runs \end{tabular} & 
+                \begin{tabular}{@{}c@{}}298K, 323K, 333K, \\ 333K, 343K, 353K, \\ 373K, 423K, 450K \end{tabular} &
+                \begin{tabular}{@{}c@{}}298K, 323K \\ 353K, 423K \\ 450K \end{tabular} &
+                \begin{tabular}{@{}c@{}}298K, 323K, \\ 450K \end{tabular} \\
+            & & & \\ 
+                \begin{tabular}{@{}c@{}}Temperatures for \\ WE MD \\ production runs \end{tabular} & 
+                \begin{tabular}{@{}c@{}}298K, 323K, 333K, \\ 333K, 343K, 353K, \\ 373K, 423K \end{tabular} &
+                \begin{tabular}{@{}c@{}}298K, 323K \\ 353K, 423K \end{tabular} &
+                \begin{tabular}{@{}c@{}}298K, 450K \\ \end{tabular} \\
+            & & & \\ \hline
+        \end{tabular}
+    \end{center}
 
-\begin{center}
-    \begin{tabular}{|c c|}
-    \hline
-        & \\ 
-        Temperature &
-            \begin{tabular}{@{}c@{}}Initial NPT equilibration @ 400 K, with Berendsen for 100 ns. \\
-                 Production run at with v-rescale, $\tau$ = 1.0 ps\end{tabular} \\
-        & \\ 
-        Time step & 20 fs \\
-        & \\ 
-        vdW & Potential-shift-verlet. Cutoff = 1.1 nm. \\
-        & \\ 
-        \ \ \ Electrostatics \ \ \  & 
-            \begin{tabular}{@{}c@{}} Reaction field. Cutoff = 1.1 nm\\
-                Rel.dielectric constant = 2.5 (Since we are using polarizable water) \end{tabular} \\
-        & \\ 
-        Pressure & 
-            \begin{tabular}{@{}c@{}} Parrinello-Rahman @ 1 bar. Semi isotropic.\\
-                $\tau$ = 12 ps. Compressibility = 3 $\times 10^{-4}$ \end{tabular} \\
-        & \\ 
-    \hline
-    \end{tabular}
-\end{center}
-
-$^\dagger$ The system parameters were obtained from the .mdp file for production stage which is given by CHARMM GUI\cite{Qi2015}
-after building the system. These parameters agree with the MARTINI recommended parameters\cite{DeJong2016} for a CG lipid system that uses polarizable water\cite{Yesylevskyy2010}.
-$^{\parallel}$ PW : Polarizable Water.
+    \begin{center}
+        \begin{tabular}{|c c|}
+        \hline
+            & \\ 
+            Temperature &
+                \begin{tabular}{@{}c@{}}Initial NPT equilibration @ 400 K, with Berendsen for 100 ns. \\
+                    Production run at with v-rescale, $\tau$ = 1.0 ps\end{tabular} \\
+            & \\ 
+            Time step & 20 fs \\
+            & \\ 
+            vdW & Potential-shift-verlet. Cutoff = 1.1 nm. \\
+            & \\ 
+            \ \ \ Electrostatics \ \ \  & 
+                \begin{tabular}{@{}c@{}} Reaction field. Cutoff = 1.1 nm\\
+                    Rel.dielectric constant = 2.5 (Since we are using polarizable water) \end{tabular} \\
+            & \\ 
+            Pressure & 
+                \begin{tabular}{@{}c@{}} Parrinello-Rahman @ 1 bar. Semi isotropic.\\
+                    $\tau$ = 12 ps. Compressibility = 3 $\times 10^{-4}$ \end{tabular} \\
+            & \\ 
+        \hline
+        \end{tabular}
+        \caption{Simulation details. $^\dagger$ The system parameters were obtained from the .mdp file for production stage which is given by CHARMM GUI\cite{Qi2015} after building the system. These parameters agree with the MARTINI recommended parameters\cite{DeJong2016} for a CG lipid system that uses polarizable water\cite{Yesylevskyy2010}. $^{\parallel}$ PW : Polarizable Water.}
+    \end{center}
+\end{table}
 
 \section{Membrane restrain protocol}
 
@@ -103,7 +102,7 @@ We ran 100 ns NPT runs and observed that force constants below 1000 mol-1 nm-2 s
 \cite{Su2020}, we chose $k = 1000$ KJ mol-1 nm-2 for DIPC system.
 
 
-\section*{Radius cutoff calculations for $\epsilon$}
+\section{Radius cutoff calculations for $\epsilon$}
 
 \begin{figure}[hbt!]
     \centering
@@ -112,7 +111,7 @@ We ran 100 ns NPT runs and observed that force constants below 1000 mol-1 nm-2 s
     \label{figs1:view}
 \end{figure}
 
-\section*{Auxiliary variables}
+\section{Auxiliary variables}
 
 To assess the quality of DBSCAN clustering, for each lipid species $X_i$ in the system, we calculated the following, 
 
@@ -170,7 +169,7 @@ Following are the system specific profiles of each AVs:
     \label{figs5:view}
 \end{figure}
 
-\section*{Role of cholesterol}
+\section{Role of cholesterol}
 
 \begin{figure}[H]
     \centering
@@ -179,7 +178,7 @@ Following are the system specific profiles of each AVs:
     \label{figss6:view}
 \end{figure}
 
-\section*{Convergence of free energy curves across replicas}
+\section{Convergence of free energy curves across replicas}
 
 \begin{figure}[H]
     \centering
@@ -188,7 +187,7 @@ Following are the system specific profiles of each AVs:
     \label{figs7:view}
 \end{figure}
 
-\section*{$\Delta\Delta G_\text{sep}$ estimation}
+\section{$\Delta\Delta G_\text{sep}$ estimation}
 
 \begin{figure}[H]
     \centering
