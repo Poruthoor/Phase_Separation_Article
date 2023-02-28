@@ -1,0 +1,551 @@
+Calculating xy-RDF for DAPC : Replica 1 at Temperature 298K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/298K/1DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/298K/fixed_1DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 2 at Temperature 298K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/298K/2DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/298K/fixed_2DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 3 at Temperature 298K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/298K/3DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/298K/fixed_3DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 4 at Temperature 298K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/298K/4DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/298K/fixed_4DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 1 at Temperature 323K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/323K/1DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/323K/fixed_1DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 2 at Temperature 323K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/323K/2DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/323K/fixed_2DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 3 at Temperature 323K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/323K/3DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/323K/fixed_3DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 4 at Temperature 323K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/323K/4DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/323K/fixed_4DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 1 at Temperature 333K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/333K/1DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/333K/fixed_1DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 2 at Temperature 333K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/333K/2DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/333K/fixed_2DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 3 at Temperature 333K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/333K/3DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/333K/fixed_3DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 4 at Temperature 333K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/333K/4DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/333K/fixed_4DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 1 at Temperature 343K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/343K/1DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/343K/fixed_1DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 2 at Temperature 343K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/343K/2DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/343K/fixed_2DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 3 at Temperature 343K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/343K/3DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/343K/fixed_3DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 4 at Temperature 343K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/343K/4DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/343K/fixed_4DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 1 at Temperature 353K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/353K/1DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/353K/fixed_1DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 2 at Temperature 353K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/353K/2DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/353K/fixed_2DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 3 at Temperature 353K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/353K/3DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/353K/fixed_3DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 4 at Temperature 353K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/353K/4DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/353K/fixed_4DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 1 at Temperature 373K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/373K/1DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/373K/fixed_1DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 2 at Temperature 373K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/373K/2DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/373K/fixed_2DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 3 at Temperature 373K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/373K/3DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/373K/fixed_3DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 4 at Temperature 373K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/373K/4DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/373K/fixed_4DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 1 at Temperature 423K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/423K/1DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/423K/fixed_1DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 2 at Temperature 423K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/423K/2DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/423K/fixed_2DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 3 at Temperature 423K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/423K/3DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/423K/fixed_3DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 4 at Temperature 423K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/423K/4DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/423K/fixed_4DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 1 at Temperature 450K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/450K/1DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/1/450K/fixed_1DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 2 at Temperature 450K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/450K/2DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/2/450K/fixed_2DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 3 at Temperature 450K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/450K/3DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/3/450K/fixed_3DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DAPC : Replica 4 at Temperature 450K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DAPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/450K/4DAPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DAPC/4/450K/fixed_4DAPC_100.dcd
+DPPC - DPPC Done.
+DAPC - DAPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 1 at Temperature 298K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/298K/1DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/298K/fixed_1DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 2 at Temperature 298K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/298K/2DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/298K/fixed_2DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 3 at Temperature 298K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/298K/3DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/298K/fixed_3DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 4 at Temperature 298K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/298K/4DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/298K/fixed_4DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 1 at Temperature 313K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/313K/1DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/313K/fixed_1DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 2 at Temperature 313K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/313K/2DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/313K/fixed_2DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 3 at Temperature 313K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/313K/3DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/313K/fixed_3DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 4 at Temperature 313K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/313K/4DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/313K/fixed_4DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 1 at Temperature 323K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/323K/1DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/323K/fixed_1DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 2 at Temperature 323K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/323K/2DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/323K/fixed_2DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 3 at Temperature 323K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/323K/3DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/323K/fixed_3DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 4 at Temperature 323K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/323K/4DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/323K/fixed_4DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 1 at Temperature 333K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/333K/1DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/333K/fixed_1DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 2 at Temperature 333K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/333K/2DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/333K/fixed_2DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 3 at Temperature 333K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/333K/3DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/333K/fixed_3DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 4 at Temperature 333K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/333K/4DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/333K/fixed_4DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 1 at Temperature 343K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/343K/1DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/343K/fixed_1DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 2 at Temperature 343K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/343K/2DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/343K/fixed_2DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 3 at Temperature 343K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/343K/3DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/343K/fixed_3DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 4 at Temperature 343K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/343K/4DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/343K/fixed_4DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 1 at Temperature 353K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/353K/1DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/353K/fixed_1DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 2 at Temperature 353K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/353K/2DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/353K/fixed_2DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 3 at Temperature 353K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/353K/3DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/353K/fixed_3DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 4 at Temperature 353K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/353K/4DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/353K/fixed_4DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 1 at Temperature 423K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/423K/1DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/423K/fixed_1DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 2 at Temperature 423K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/423K/2DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/423K/fixed_2DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 3 at Temperature 423K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/423K/3DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/423K/fixed_3DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 4 at Temperature 423K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/423K/4DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/423K/fixed_4DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 1 at Temperature 450K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/450K/1DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/1/450K/fixed_1DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 2 at Temperature 450K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/450K/2DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/2/450K/fixed_2DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 3 at Temperature 450K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/450K/3DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/3/450K/fixed_3DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for DIPC : Replica 4 at Temperature 450K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/DIPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/450K/4DIPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/DIPC/4/450K/fixed_4DIPC_100.dcd
+DPPC - DPPC Done.
+DIPC - DIPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for POPC : Replica 1 at Temperature 298K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/POPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/1/298K/1POPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/1/298K/fixed_1POPC_100.dcd
+DPPC - DPPC Done.
+POPC - POPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for POPC : Replica 2 at Temperature 298K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/POPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/2/298K/2POPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/2/298K/fixed_2POPC_100.dcd
+DPPC - DPPC Done.
+POPC - POPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for POPC : Replica 3 at Temperature 298K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/POPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/3/298K/3POPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/3/298K/fixed_3POPC_100.dcd
+DPPC - DPPC Done.
+POPC - POPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for POPC : Replica 4 at Temperature 298K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/POPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/4/298K/4POPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/4/298K/fixed_4POPC_100.dcd
+DPPC - DPPC Done.
+POPC - POPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for POPC : Replica 1 at Temperature 323K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/POPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/1/323K/1POPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/1/323K/fixed_1POPC_100.dcd
+DPPC - DPPC Done.
+POPC - POPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for POPC : Replica 2 at Temperature 323K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/POPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/2/323K/2POPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/2/323K/fixed_2POPC_100.dcd
+DPPC - DPPC Done.
+POPC - POPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for POPC : Replica 3 at Temperature 323K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/POPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/3/323K/3POPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/3/323K/fixed_3POPC_100.dcd
+DPPC - DPPC Done.
+POPC - POPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for POPC : Replica 4 at Temperature 323K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/POPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/4/323K/4POPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/4/323K/fixed_4POPC_100.dcd
+DPPC - DPPC Done.
+POPC - POPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for POPC : Replica 1 at Temperature 450K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/POPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/1/450K/1POPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/1/450K/fixed_1POPC_100.dcd
+DPPC - DPPC Done.
+POPC - POPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for POPC : Replica 2 at Temperature 450K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/POPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/2/450K/2POPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/2/450K/fixed_2POPC_100.dcd
+DPPC - DPPC Done.
+POPC - POPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for POPC : Replica 3 at Temperature 450K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/POPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/3/450K/3POPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/3/450K/fixed_3POPC_100.dcd
+DPPC - DPPC Done.
+POPC - POPC Done.
+CHOL - CHOL Done.
+Calculating xy-RDF for POPC : Replica 4 at Temperature 450K
+File from segid are taken : /Ashlin2/ashlin/Phase_Seperation/Analysis/CVs4PhaseSeparation/production_phase/cv_validation/xy_rdf/POPC/lipidList.dat
+Model File used : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/4/450K/4POPC.psf
+Calculating xy RDF for trajectory file : /localdata/ashlin/Phase_Seperation/Analysis/Trajectory/POPC/4/450K/fixed_4POPC_100.dcd
+DPPC - DPPC Done.
+POPC - POPC Done.
+CHOL - CHOL Done.
+Calculating avg xy-RDF for DAPC  at Temperature 298K
+Calculating avg xy-RDF for DAPC  at Temperature 323K
+Calculating avg xy-RDF for DAPC  at Temperature 333K
+Calculating avg xy-RDF for DAPC  at Temperature 343K
+Calculating avg xy-RDF for DAPC  at Temperature 353K
+Calculating avg xy-RDF for DAPC  at Temperature 373K
+Calculating avg xy-RDF for DAPC  at Temperature 423K
+Calculating avg xy-RDF for DAPC  at Temperature 450K
+Calculating avg xy-RDF for DIPC  at Temperature 298K
+Calculating avg xy-RDF for DIPC  at Temperature 313K
+Calculating avg xy-RDF for DIPC  at Temperature 323K
+Calculating avg xy-RDF for DIPC  at Temperature 333K
+Calculating avg xy-RDF for DIPC  at Temperature 343K
+Calculating avg xy-RDF for DIPC  at Temperature 353K
+Calculating avg xy-RDF for DIPC  at Temperature 423K
+Calculating avg xy-RDF for DIPC  at Temperature 450K
+Calculating avg xy-RDF for POPC  at Temperature 298K
+Calculating avg xy-RDF for POPC  at Temperature 323K
+Calculating avg xy-RDF for POPC  at Temperature 450K
