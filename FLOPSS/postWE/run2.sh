@@ -39,6 +39,8 @@ bash otherFES/Analysis_multi.sh
 
 ##------------------------------------------------##
 
+## PLEASE read the reweighOverOtherCVs/README.md before proceeding further. 
+
 ## Reweighting over other Auxillary coordinate that was not planned
 conda deactivate
 conda activate westpa-2020.05
