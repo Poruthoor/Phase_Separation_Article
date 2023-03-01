@@ -1,1 +1,1 @@
-# Phase_Separation_Article
+The main directory contains the paper itself. The scripts used to run and analyze the simulations are in the `FLOPSS/` directory. The README in that directory gives some additional details. 
