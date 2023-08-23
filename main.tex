@@ -398,7 +398,7 @@ One challenge, however, is that the locations of the basins shift with temperatu
 at higher temperatures, the notion of two states -- mixed and separated -- breaks down as the double-well behavior of free energy curves turns into a single well. 
 One trivial solution would be to define a rigid FLC cutoff for a system.
 However, a caveat for this approach, as seen in Fig \ref{figs5:view} A, is that the free energy basin for a specific state of the DPPC-DIPC-CHOL system is different for the respective state basin for the DPPC-DAPC-CHOL system.
-For this reason, devising a rigorous systematic way to define the separator between the states will require more investigation. In the mean time, we use visual inspection to define FLC cutoffs of 0.525 and 0.625 for the DPPC-DIPC-CHOL and DPPC-DAPC-CHOL systems respectively.
+For this reason, devising a rigorous systematic way to define the separator between the states will require more investigation. In this work, we use visual inspection to define FLC cutoffs of 0.525 and 0.625 for the DPPC-DIPC-CHOL and DPPC-DAPC-CHOL systems respectively.
 Figure \ref{figs7:view} shows the $\Delta\Delta$G curve for the DPPC-DAPC-CHOL and DPPC-DIPC-CHOL systems as a function of temperature for respective FLC cutoff. In principle, one can identify a melting temperature $T_m$ as the temperature at which $\Delta\Delta G_{\text{sep}}=0$; however, the value derived
 in this manner is sensitive to the choice of FLC cutoff, as shown in Supplementary Figure S8.
 %TODO : fix this reference to the supplement
@@ -411,6 +411,14 @@ in this manner is sensitive to the choice of FLC cutoff, as shown in Supplementa
 It is well-established that the choice of collective variable is crucial for the success of enhanced sampling protocols\cite{Valsson2016, Yang2019b, Henin2022}. However, determining in advance which coordinates are best suited to efficient sampling is far from obvious. Several groups, most notably that of Tiwary \cite{Berne2016,Berne2017,Tiwary2018b,Tiwary2021}, have developed machine learning methods to identify effective coordinates empirically based on their kinetic properties.  A more theoretical approach was developed by Wu et al \cite{Wu2022}, based on identifying the energy flow coupled to motion along a coordinate.  However, the former methods do not explain the reason why a particular coordinate is effective, while the latter is too computationally intensive to apply to a systems like those treated here; the presence of a large number of equivalent molecules is a significant challenge to the formalism as currently presented. 
 
 Thus, we are left with less-satisfying intuitive explanations for the wide variation in performance of the collective variables tested here.  It is reasonable to assume that the most efficient coordinate for sampling is one that closely approximates a ``true'' order parameter for the system, and thus that the efficacy of FLC as a sampling coordinate says something about local clustering as a mechanism of phase separation.  In particular, FLC is sensitive to somewhat longer lengthscale motions than CEI or SI, both of which are driven entirely by nearest-neighbor mixing. This is also borne out by the improved ability of FLC$_\mathrm{opt}$ to discriminate between states, since the optimization process led to a longer lengthscale; based on this, we would predict that FLC$_\mathrm{opt}$ would perform as well or better than FLC, though this will require more testing. 
+
+\subsection*{Interpreting $\Delta \Delta G_{\text{sep}}$}
+
+tempting to think of ddg as in canonical 2-state systems. Not what's happening here. Composition and structure of states changes with temperature -- as temperature drops, mixing becomes less ideal when there's one phase, some that the transition is between a single state that is very non-ideal and two states with similar local non-ideality. As a result, the ddG amplitudes do not become large.  This suggests that going forward a better approach would be to focus on measures that the emergence of two distinct populations (either in composition or structure), as opposed to tracking average structure the way that FLC or CEI do. 
+
+
+
+\subsection*{FLOPSS pipeline for computing phase separation thermodynamics}
 
 \begin{figure}[hbt!]
 \centering
@@ -445,14 +453,14 @@ We want to highlight that by generalizing the collective variable FLC to track c
 
 \section*{Author Contributions}
 
-AJP and AG designed the project. AJP performed the research. AJP and AG wrote manuscript.
+AJP and AG designed the project. AJP and AS performed the research. AJP and AG wrote manuscript.
 
 \section*{Acknowledgements}
 
-This work is dedicated to Dr. Klaus Gawrisch, who has inpsired much of our interests in lipid bilayers. The authors thank the Center for Integrated Research Computing (CIRC) at the University of Rochester for providing
+This work is dedicated to Dr. Klaus Gawrisch, who has inspired much of our interests in lipid bilayers. The authors thank the Center for Integrated Research Computing (CIRC) at the University of Rochester for providing
 computational resources and technical support. The authors also thank Prof. Lillian Chong and Prof. Daniel Zuckerman and
 WESTPA Data and Dev club for insights. The authors thank Anthony Bogetti, Jeremy Leung, John Russo, Dr. Sreyoshi Sur, and Dr. Tod D. Romo for their support.
-This work was supported by grant R21GM138970 (to A.G.) from the National Institutes of Health.
+This work was supported by grant R21GM138970 (to AG) from the National Institutes of Health.
 
 \section*{Declaration of Interests}
 
