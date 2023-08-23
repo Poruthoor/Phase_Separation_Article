@@ -29,27 +29,27 @@
 \begin{document}
 
 \begin{frontmatter}
-\begin{abstract}
+    \begin{abstract}
 
-Liquid-liquid phase separation (LLPS) inside the cell often results in biological condensates that can critically impact
-cell homeostasis. Such phase separation events occur in multiple parts of cells, including
-the cell membranes, where the so-called ``lipid raft'' hypothesis posits the formation of ordered domains floating in a sea
-of disordered lipids. The resulting lipid domains often have functional roles.
-However, the thermodynamics of lipid phase separation and their resulting
-mechanistic effects on cell function and dysfunction are poorly understood. Understanding such complex phenomenon in cell
-membranes, with their diverse lipid compositions, is exceptionally difficult. For this reasons, simple model systems that can recapitulate similar behavior are
-widely used to study this phenomenon. Despite these simplifications, the timescale and and length scales of domain formation
-pose a challenge for molecular dynamics (MD) simulations.
-Thus, most MD studies focus on spontaneous lipid phase separation --- essentially measuring the sign (but not the amplitude) of the free energy change upon separation --- rather than directly interrogating the thermodynamics.  Here, we propose a proof-of-concept pipeline that can 
-directly measure this free energy by combining coarse-grained MD with enhanced sampling protocols using a novel collective variable. This approach will be a useful tool to help connect the thermodynamics of phase separation with the mechanistic insights already available from molecular dynamics simulations.
+        Liquid-liquid phase separation (LLPS) inside the cell often results in biological condensates that can critically impact
+        cell homeostasis. Such phase separation events occur in multiple parts of cells, including
+        the cell membranes, where the so-called ``lipid raft'' hypothesis posits the formation of ordered domains floating in a sea
+        of disordered lipids. The resulting lipid domains often have functional roles.
+        However, the thermodynamics of lipid phase separation and their resulting
+        mechanistic effects on cell function and dysfunction are poorly understood. Understanding such complex phenomenon in cell
+        membranes, with their diverse lipid compositions, is exceptionally difficult. For this reasons, simple model systems that can recapitulate similar behavior are
+        widely used to study this phenomenon. Despite these simplifications, the timescale and and length scales of domain formation
+        pose a challenge for molecular dynamics (MD) simulations.
+        Thus, most MD studies focus on spontaneous lipid phase separation --- essentially measuring the sign (but not the amplitude) of the free energy change upon separation --- rather than directly interrogating the thermodynamics.  Here, we propose a proof-of-concept pipeline that can
+        directly measure this free energy by combining coarse-grained MD with enhanced sampling protocols using a novel collective variable. This approach will be a useful tool to help connect the thermodynamics of phase separation with the mechanistic insights already available from molecular dynamics simulations.
 
-\end{abstract}
+    \end{abstract}
 
-\begin{sigstatement}
-    
-Standard molecular dynamics simulations can determine the sign the free energy change upon phase separation, but not the amplitude. We present a new method to determine the phase separation free energy for lipid membranes, based on a enhanced sampling using the weighted ensemble method combined with a novel collective variable, validated using coarse-grained simulations applied to several simple systems. The new method will be valuable as a way to develop models that connect molecular-level structural features to the thermodynamics of phase separation.
-    
-\end{sigstatement}
+    \begin{sigstatement}
+
+        Standard molecular dynamics simulations can determine the sign the free energy change upon phase separation, but not the amplitude. We present a new method to determine the phase separation free energy for lipid membranes, based on a enhanced sampling using the weighted ensemble method combined with a novel collective variable, validated using coarse-grained simulations applied to several simple systems. The new method will be valuable as a way to develop models that connect molecular-level structural features to the thermodynamics of phase separation.
+
+    \end{sigstatement}
 
 \end{frontmatter}
 
@@ -69,8 +69,8 @@ Such domains often cluster signaling molecules\cite{Tian2007} and facilitate con
 As membrane properties modulate resident protein function, the coexistence of distinct phases gives the cell an extra tool for regulation.
 Conformational changes in domain-resident molecules and their subsequent activity shifts regulate key signaling events\cite{Laganowsky2014,Lingwood2011}.
 It has also been observed that the HIV Gag protein is sensitive to domains with high cholesterol content, suggesting a potential role of membrane domains in host-pathogen interaction and viral assembly\cite{Dick2012}.
-Moreover, lipid domains are conserved throughout the tree of life, implying their relevance in regulating cellular processes\cite{Sezgin2017}. 
-For these reasons, understanding the thermodynamics of lipid phase separation as a function of the composition of the system is a critical step toward understanding the molecular grammar behind lipid domains and the resultant functional modulations. 
+Moreover, lipid domains are conserved throughout the tree of life, implying their relevance in regulating cellular processes\cite{Sezgin2017}.
+For these reasons, understanding the thermodynamics of lipid phase separation as a function of the composition of the system is a critical step toward understanding the molecular grammar behind lipid domains and the resultant functional modulations.
 
 
 Lipid domains have been studied extensively both experimentally and computationally.
@@ -82,7 +82,7 @@ Such studies provide powerful insights into phase-separated domains, their prope
 As a ``computational microscope\cite{Dror2012}'', molecular dynamics (MD) simulations have been used to study spontaneous lipid separation without using exogenous labels or probes\cite{Pantelopulos2018}.
 However, MD simulations designed for spontaneous phase separation are inadequate to compute thermodynamic properties with statistical confidence.
 This is because the transition between mixed and separated states is often a single irreversible event on the microsecond timescale typically achievable by typical all-atom or even coarse-grained MD\cite{Risselada2008,Bennett2018}, especially given the
-the relatively large size required to model the phenomenon. 
+the relatively large size required to model the phenomenon.
 That said, CG-MD is an excellent tool to study phase separation in the membrane, because it retains molecular-level resolution while capturing nanoscale domains due to transient phase separation events.
 
 Previously, the Tieleman\cite{Bennett2018} and the Gorfe groups\cite{Lin2019} have done some pioneering work on the thermodynamics of lipid domains.
@@ -105,10 +105,10 @@ We then construct free energy landscapes of the three systems at multiple temper
 We further explore a few non-traditional use cases for the data thus generated and discuss additional room for improvements.
 
 \begin{figure}[hbt!]
-\centering
-\includegraphics[width=6.25in]{Figures/Main/1/Final/placeholder.jpg}
-\caption{A. 2D structure and corresponding MARTINI 2 bead structure for lipids used in this study (Visualization using ChemDraw and \href{http://www.ks.uiuc.edu/Research/vmd/}{VMD}\cite{Humphrey1996,STON1998} respectively). B. Time evolution of each lipid system as a function of time. The membrane normal is pointing towards the reader.}
-\label{fig1:view}
+    \centering
+    \includegraphics[width=6.25in]{Figures/Main/1/Final/placeholder.jpg}
+    \caption{A. 2D structure and corresponding MARTINI 2 bead structure for lipids used in this study (Visualization using ChemDraw and \href{http://www.ks.uiuc.edu/Research/vmd/}{VMD}\cite{Humphrey1996,STON1998} respectively). B. Time evolution of each lipid system as a function of time. The membrane normal is pointing towards the reader.}
+    \label{fig1:view}
 \end{figure}
 
 \section*{Methods}
@@ -120,10 +120,10 @@ As shown in Fig \ref{fig1:view}, we used three different ternary lipid bilayer s
 2. A lipid bilayer consisting of DPPC, diarachidonoyl-phosphatidylcholine (DAPC), and CHOL, known to phase separate in silico within a few hundred nanoseconds \cite{Lin2016, Lin2019, Davis2013a}.
 3. A lipid bilayer consisting of DPPC, palmitoyl-oleoyl-phosphatidylcholine (POPC), and CHOL that was previously shown not to phase separate \cite{Veatch2003,Davis2013a}.
 The composition of the DPPC-DIPC-CHOL, DPPC-DAPC-CHOL, and DPPC-POPC-CHOL systems used here are (0.42/0.28/0.3), (0.5/0.3/0.2) and (0.4/0.4/0.2) respectively and are adapted from previous studies \cite{Risselada2008, Lin2016, Davis2013a}.
-We kept the total number of lipids the same as in previous calculations as well, with the  DPPC-DIPC-CHOL, DPPC-DAPC-CHOL, and DPPC-POPC-CHOL systems containing 1944, 1200 and 1200 respectively. 
+We kept the total number of lipids the same as in previous calculations as well, with the  DPPC-DIPC-CHOL, DPPC-DAPC-CHOL, and DPPC-POPC-CHOL systems containing 1944, 1200 and 1200 respectively.
 
 Due to the relatively large system sizes and the time scale required for phase separation and related dynamics in lipid bilayer simulations, we used a coarse-grained (CG) model for each system. Although nothing in the subsequent sampling or analysis is specific to the coarse-grained models, it makes sense to use a less expensive model while working out the method.
- 
+
 Using CHARMM-GUI Martini Maker \cite{Qi2015}, we constructed four replicas of each CG ternary symmetric bilayer system, with the lipids randomly mixed in the bilayer.
 We used MARTINI 2 force field parameters and particle definitions\cite{Marrink2007, DeJong2013} to construct CG systems and to run the subsequent MD simulation.
 We replaced the default input files from CHARMM-GUI Martini Maker with their respective most recent Martini 2.x versions if they existed.
@@ -133,35 +133,35 @@ We did not use the more recent MARTINI 3.0 lipid parameters, since there are no 
 
 \subsection*{Standard MD simulation details}
 
-We used GROMACS 2020.3\cite{Abraham2015} to propagate the dynamics of the systems prepared. 
+We used GROMACS 2020.3\cite{Abraham2015} to propagate the dynamics of the systems prepared.
 Each system was minimized and equilibrated following the protocol suggested by CHARMM-GUI Martini Maker.
-To obtain an intact bilayer without any membrane undulations, we used  
-the flat bottomed restraint potential available in GROMACS; this allowed the lipids to move freely in the plane of the membrane but restrained within a slab of defined $z$ thickness along the membrane normal.  
+To obtain an intact bilayer without any membrane undulations, we used
+the flat bottomed restraint potential available in GROMACS; this allowed the lipids to move freely in the plane of the membrane but restrained within a slab of defined $z$ thickness along the membrane normal.
 More details about membrane restraining protocol are given in the supplementary material (section 2).
 
 After the minimization and equilibration, all systems were run at 400 K in the NPT ensemble for 100 ns to make sure the lipids in each system were randomly distributed.
 For every system, we forked each replica into multiple temperature runs simulated at different temperatures ranging from 298K to 450K.
 For these production runs, the temperature coupling is done using velocity rescaling\cite{Bussi2007} with a time constant 1 ps.
 An extended-ensemble Parrinello-Rahman pressure coupling\cite{Parrinello1981} with a relatively high time constant of 12 ps was used, as recommended for MARTINI.  A semiisotropic pressure coupling suited for membrane simulations is used here with a compressibility of 3$\times 10^{-4}$ $\text{bar}^{-1}$ and reference pressure for coupling as 1 bar.
-A reaction field electrostatics with Coloumb cutoff of 1.1 nm was used, and 
+A reaction field electrostatics with Coloumb cutoff of 1.1 nm was used, and
 a dielectric constant of 2.5 was used, as required with the MARTINI polarizable water model.
 For Van der Waals interaction, a similar cutoff of 1.1 nm was used.
 A potential-shift Van der Waal modifier was also used.
 For neighbor searching, a verlet cutoff scheme was used with neighbor list updated every 20 steps.
-The simulation parameters were mostly inspired by previous CG MARTINI simulations\cite{DeJong2016}. 
+The simulation parameters were mostly inspired by previous CG MARTINI simulations\cite{DeJong2016}.
 To eliminate potential artifacts previously reported due to inaccurate constraints\cite{Javanainen2020}, we used an 8th order expansion for the LINCSolver constraint coupling matrix\cite{Hess1997} for more accuracy.
 Moreover, for better energy conservation, we also used short 20 fs timesteps, which is conservative for a CG system.
 
 All standard MD simulations ran for at least 8 microseconds using the BlueHive supercomputing cluster of the Center for Integrated Research and Computing at the University of Rochester.
-Simulations ran on Intel Xeon E5-2695 and Gold 6130 processors augmented with Tesla K20Xm, K80, and V100 GPUs.   
+Simulations ran on Intel Xeon E5-2695 and Gold 6130 processors augmented with Tesla K20Xm, K80, and V100 GPUs.
 The trajectories were processed and analyzed using the LOOS software package\cite{Romo2014}.
-A detailed description of the simulation parameters is given in Table S1 of supplementary material. 
+A detailed description of the simulation parameters is given in Table S1 of supplementary material.
 
 \subsection*{Collective Variables}
 
 A collective variable is a reduced coordinate that captures the progress of a system along the transition of interest.
 Ideally, such a reduced variable(s) should fully capture the key modes of the system to reflect the complex event under study.
-The success and efficiency of any enhanced sampling protocol depends on the chosen collective variable over which the sampling is enhanced\cite{Valsson2016, Yang2019b, Henin2022}. 
+The success and efficiency of any enhanced sampling protocol depends on the chosen collective variable over which the sampling is enhanced\cite{Valsson2016, Yang2019b, Henin2022}.
 We explored 3 candidate collective variables for the WE simulations.
 
 \subsubsection*{1. Fraction of Lipids in Clusters (FLC)}
@@ -170,8 +170,8 @@ we hypothesized that we could use a variable that quantifies the recruitment of 
 Here, we define the Fraction of Lipids in Clusters (FLC) as follows:
 
 \begin{equation}
-\label{eq:FLC}
-\text{FLC} = \sum_{i}^{N} \frac{\text{No. of $X_i$ lipids in lipid $X_i$ Clusters}}{\text{No. of Lipid $X_i$}} =  \frac{\sum_{i}^{N} \text{No. of Lipid X$_i$ in Lipid X$_i$ Clusters}}{\text{Total No. of Lipids}}
+    \label{eq:FLC}
+    \text{FLC} = \sum_{i}^{N} \frac{\text{No. of $X_i$ lipids in lipid $X_i$ Clusters}}{\text{No. of Lipid $X_i$}} =  \frac{\sum_{i}^{N} \text{No. of Lipid X$_i$ in Lipid X$_i$ Clusters}}{\text{Total No. of Lipids}}
 \end{equation}
 
 \noindent Where subscript $i$ denotes the individual lipid species in a bilayer consisting of N total lipid species.
@@ -182,10 +182,10 @@ while an FLC of 1 implies that all lipids are in a cluster (though not necessari
 
 
 \begin{figure}[hbt!]
-\centering
-\includegraphics[width=6.5in]{Figures/Main/2/placeholder.jpg}
-\caption{A. Illustration of FLC :  Functional form of FLC and expected evolution curve for a phase separating system. B. Illustration of Cumulative Enrichment Index. C. Illustration of Segregation Index}
-\label{fig2:view}
+    \centering
+    \includegraphics[width=6.5in]{Figures/Main/2/placeholder.jpg}
+    \caption{A. Illustration of FLC :  Functional form of FLC and expected evolution curve for a phase separating system. B. Illustration of Cumulative Enrichment Index. C. Illustration of Segregation Index}
+    \label{fig2:view}
 \end{figure}
 
 
@@ -201,7 +201,7 @@ Since lipid motion in a bilayer is constrained primarily on a plane and MARTINI 
 Hence we chose 7 (6 nearest neighbors + 1 central lipid) as $min\_samples$ for all the lipid species.
 However, $\varepsilon$ was chosen differently for each lipid species based on their first nearest neighbor distance from the central lipid.
 We used the $xy\_rdf$ tool in LOOS to calculate an individual lipid species' first nearest neighbor distance.
-From the first 8 $\mu$s MD standard simulation of each replica, we computed the radial distribution function (RDF) for a lipid species in the xy-plane. 
+From the first 8 $\mu$s MD standard simulation of each replica, we computed the radial distribution function (RDF) for a lipid species in the xy-plane.
 From the RDF plot, we found the first maxima (provided it is above 1), and the distance to the minima right after this first maximum was determined to be the first nearest neighbor distance for that lipid species.
 This distance was averaged over all four replicas for a given system at a given temperature and then assigned as the respective $\varepsilon$ input.
 Since nearest neighbor distance is a function of temperature, for the same lipid species in the same system, $\varepsilon$ may be different for different temperatures.
@@ -218,9 +218,9 @@ CEI is defined as the sum of individual enrichment index for all the lipid speci
 
 \begin{equation}
     \begin{aligned}
-    \label{eq:CEI}
-    \text{CEI} {}   & = \sum_{i}^{N}\Bigg[\frac{\text{Average local density of lipids $X_i$ around a single lipid $X_i$}}{\text{Local density of lipid $X_i$ for a well mixed system}}\Bigg]_{\text{$\epsilon_i(T)$}} \\
-                    & =  \sum_{i}^{N} \frac{1}{\Phi_i}\frac{1}{\text{$\pi\epsilon_i^2$}}\sum_{j}\text{No. of $X_i$ lipids around $X_{ij}$ lipid in $\epsilon_i(T)$ radius}
+        \label{eq:CEI}
+        \text{CEI} {} & = \sum_{i}^{N}\Bigg[\frac{\text{Average local density of lipids $X_i$ around a single lipid $X_i$}}{\text{Local density of lipid $X_i$ for a well mixed system}}\Bigg]_{\text{$\epsilon_i(T)$}} \\
+                      & =  \sum_{i}^{N} \frac{1}{\Phi_i}\frac{1}{\text{$\pi\epsilon_i^2$}}\sum_{j}\text{No. of $X_i$ lipids around $X_{ij}$ lipid in $\epsilon_i(T)$ radius}
     \end{aligned}
 \end{equation}
 
@@ -238,19 +238,19 @@ Here, we computed the total contacts between a given lipid and its environment a
 
 \begin{equation}
     \begin{aligned}
-    \label{eq:CLT}
-    \text{SI} = \sum_{i}^{N}\Bigg[\frac{X_iX_i}{\sum_{j}^{N}X_iX_j}\Bigg]_{\text{$\epsilon_i(T)$}} = \frac{X_{11}}{X_{11} + X_{12} + X_{13}} + \frac{X_{22}}{X_{21} + X_{22} + X_{23}} + \frac{X_{33}}{X_{31} + X_{32} + X_{33}}
+        \label{eq:CLT}
+        \text{SI} = \sum_{i}^{N}\Bigg[\frac{X_iX_i}{\sum_{j}^{N}X_iX_j}\Bigg]_{\text{$\epsilon_i(T)$}} = \frac{X_{11}}{X_{11} + X_{12} + X_{13}} + \frac{X_{22}}{X_{21} + X_{22} + X_{23}} + \frac{X_{33}}{X_{31} + X_{32} + X_{33}}
     \end{aligned}
 \end{equation}
 
 $X_iX_j$ denotes the contacts between lipid species $X_i$ and $X_j$ within $\epsilon_i(T)$ cutoff.
 Thus for a ternary bilayer system, SI $=$ 3 implies a fully separated system, and SI $<$ 3 implies mixing.
 However, for the analysis, we ignored the contribution of cholesterol as we found that excluding the cholesterol term did not change the functional behavior (Supplementary Figure S6).
-Hence, $\text{SI}_{\text{noCHOL}}$ effectively will have bounds [0, 2] unless otherwise stated.    
+Hence, $\text{SI}_{\text{noCHOL}}$ effectively will have bounds [0, 2] unless otherwise stated.
 
 \subsection*{Weighted Ensemble Simulation}
 
-\subsubsection*{Preparing seeding configurations for WE simulation} 
+\subsubsection*{Preparing seeding configurations for WE simulation}
 From each 8 $\mu$s MD simulation of a given composition, the last ten frames spaced by 100 ns were collected.
 These structures contained mixed and unmixed states, which we used as starting structures to begin the weighted ensemble simulations; starting the WE with structures scattered across the collective variable range reduces the time needed to generate well-equilibrated free energy curves.
 
@@ -258,17 +258,17 @@ For the DPPC-DAPC-CHOL and DPPC-DIPC-CHOL systems, the set of mixed configuratio
 The set of separated configurations for a replica comes respectively from the 298K and 323K simulations.
 For the DPPC-POPC-CHOL system, starting structures were taken from the 298K and 450K trajectories; although the system never phase separates, using these two temperatures gives structures that span the whole range of the collective variables.
 
-\subsubsection*{Running WE simulations} 
+\subsubsection*{Running WE simulations}
 We ran weighted ensemble equilibrium simulations using version 1.0 of the WESTPA package\cite{Zwier2015}, closely following the previously established protocol\cite{Bogetti2019}.
 The collective variable was divided into 30 dynamic bins using the minimal adaptive binning scheme (MAB)\cite{Torrillo2021}.
 For each replica, a target number of 4 short simulations, or ``walkers'' per bin, were started in parallel from the mixed and the separated configurations prepared earlier.
-After every resampling interval of 1 ns, the collective variable was evaluated to initiate the merging and splitting of walkers to maintain the target number of walkers per bin. One cycle of MD and resampling is referred to as a single WE iteration. 
+After every resampling interval of 1 ns, the collective variable was evaluated to initiate the merging and splitting of walkers to maintain the target number of walkers per bin. One cycle of MD and resampling is referred to as a single WE iteration.
 We conducted 500 WE iterations for each replica.
 We used GROMACS 2020.3 to propagate the dynamics, using the same parameters described earlier for the standard MD simulations.
 The WE Equilibrium Dynamics (WEED) reweighting protocol\cite{Bhatt2010, Suarez2014}, implemented in WESTPA 1.0, was used to accelerate the convergence of WE walkers toward equilibrium.
 The reweighting is done every 10 WE iterations.
-Four independent WE replicas, started with a different subset of initial structures, were simulated for each temperature and lipid composition. 
-All WE simulations were runu sing the Intel Xeon E5-2695 and Tesla K20Xm GPUs in the BlueHive supercomputing cluster of the Center for Integrated Research and Computing at the University of Rochester.   
+Four independent WE replicas, started with a different subset of initial structures, were simulated for each temperature and lipid composition.
+All WE simulations were runu sing the Intel Xeon E5-2695 and Tesla K20Xm GPUs in the BlueHive supercomputing cluster of the Center for Integrated Research and Computing at the University of Rochester.
 
 \subsubsection*{Analysis of WE simulations}
 The probability distributions for the CVs for each replica, as a function of WE iterations, were constructed using $w\_pdist$ and $plothist$ tools in WESTPA.
@@ -277,14 +277,42 @@ We used the $w\_multi\_west$ tool in WESTPA to combine data from four the WE rep
 We then constructed the respective free energy surface from the combined probability distribution of a system. Unless otherwise noted, equilibrium curves were always calculated using the last 10 iterations of each WE run, because combining results pre- and post-reweighting is not statistically correct.
 To check the populations in different states and the determine flux between states the $w\_ipa$ tool was used.
 When performing this calculation for the DPPC-DIPC-CHOL system at 323K, we defined the states based on visual inspection of the corresponding free energy curves. We defined the mixed and separated states as CEI = [0.0, 3.9] and [4.4, 6.0], $\text{SI}_{\text{noCHOL}}$ = [0.0, 1.3] and [1.4, 2.0], and FLC = [0.0, 0.575] and [0.65, 1.0] respectively.
-The choice is arbitrary but reasonable enough to give us a picture of what is happening. 
+The choice is arbitrary but reasonable enough to give us a picture of what is happening.
 
 Input files, initial structures, and scripts required to run and analyze all simulations are available on GitHub at \href{https://github.com/Poruthoor/Phase\_Separation\_Article/tree/main/FLOPSS}{https://github.com/Poruthoor/Phase\_Separation\_Article/tree/main/FLOPSS}
+
+\subsection*{Parameter optimization}
+
+We used a Hidden Markov Model (HMM) [REF] refinement scheme to assess and improve the parameter choice for FLC.
+First, we calculated FLC for various combinations of $min\_samples$ and $\varepsilon$.
+We scanned $min\_samples$ from 5 to 60 in steps of 1 and $\varepsilon$ from 1 nm to $r_{diagonal}$ in an increament of 0.05 nm.
+Where $r_{diagonal}$ is the half of periodic box diagonal distance in $xy$ plane.
+We calculated the FLC value for each parameter combination on the trajectories collected from standard MD simulation for each system at different temperatures.
+On the FLC evolution data corresponding to each trajectory, we fit an HMM model using the hmmlearn python module [REF].
+However, one needs to specify the number of hidden states in the data to fit the data.
+Even though we could make a simple assumption of 2 states, mixed and demixed, and go ahead with fitting, it might not fully capture the behavior of the trajectory under consideration as there can be hidden meta-stable states critical to the phenomenon we are studying.
+Hence, the right answer to the number of hidden states that best fit the model is unknown.
+Therefore, we used a brute force approach to fitting the HMM model with N states, where N = 1 to 5.
+We checked how the model converges for each value of N by running fitting from 10 random starting states for HMM.
+We chose the N that converges best as the optimum number of states for fitting.
+Once we choose the best number of states, HMM fitting is done on the trajectory FLC data.
+This gives a hidden state sequence for the corresponding trajectory.
+Now, we take the FLC difference between extreme hidden states.
+Thus, we made a dataset corresponding to different values of $min\_samples$ and $\varepsilon$, and their corresponding best number of HMM states and FLC state difference.
+We repeated the scheme for all four replicas of each system at different temperatures.
+
+To arrive at an optimized FLC parameter set, we filtered this larger dataset using the following steps:
+(1) For a given lipid system, filter out only those pairs with FLC state differences greater than 0.5 (half of the possible range of FLC).
+This cutoff choice is arbitrary and just enough to filter out parameter pairs that distinguish states clearly from each other.
+(2) From the filtered dataset, check for the occurrence of a specific pair of $(min\_samples, \varepsilon)$ across the data sets corresponding to all the temperature replicas.
+Rank the pairs based on most occurrences. This helps to identify parameter pairs that are valid across most temperatures.
+(3) Choose the pair which gives maximum state difference with most occurances. In case of a tie for the optimum parameter pairs, we chose the pair that has the least $\varepsilon$ and $min\_samples$ to reduce the neighbor search overhead.
+Now, instead of a temperature-specific $min\_samples$ and $\varepsilon$ for each species in a given ternary mixture, we have a unique pair for each lipid species in a system.
 
 \section*{Results}
 
 Consistent with previous studies from which they are adapted, the standard CG MD simulations of DPPC-(DA/DI)PC-CHOL systems phase separates into $\text{L}_{\text{o}}$ and $\text{L}_{\text{d}}$ regions.
-The $\text{L}_{\text{o}}$ region is enriched in the saturated lipid, DPPC, and cholesterol, while the  
+The $\text{L}_{\text{o}}$ region is enriched in the saturated lipid, DPPC, and cholesterol, while the
 $\text{L}_{\text{d}}$ region contained mostly the unsaturated lipids, DAPC or DIPC, depending on the system.
 As expected, the DPPC-POPC-CHOL system did not form distinct phases based on visual inspection.
 This section compares how different variables track phase separation propensity in lipid bilayers using standard CG MD simulations.
@@ -294,10 +322,10 @@ Finally, we present the free energy landscapes of lipid bilayer systems obtained
 %\subsection*{Tracking phase separating lipid bilayers}
 
 \begin{figure}[hbt!]
-\centering
-\includegraphics[width=6.5in]{Figures/Main/3/placeholder.jpg}
-\caption{A. Time series for three collective variables tracking membrane separation. Each line represents one conventional MD simulation started from a well-mixed state. Each column contains trajectories from a single lipid composition, while each row shows a different variable; 8$\mu$s trajectories were used for all rows. The lines are colored to represent different simulation temperatures.}
-\label{fig3:view}
+    \centering
+    \includegraphics[width=6.5in]{Figures/Main/3/placeholder.jpg}
+    \caption{A. Time series for three collective variables tracking membrane separation. Each line represents one conventional MD simulation started from a well-mixed state. Each column contains trajectories from a single lipid composition, while each row shows a different variable; 8$\mu$s trajectories were used for all rows. The lines are colored to represent different simulation temperatures.}
+    \label{fig3:view}
 \end{figure}
 
 To evaluate how the collective variables track phase separation, we traced the time evolution of each variable for each system using standard MD starting from well-mixed bilayers.
@@ -318,10 +346,10 @@ based on the composition of the system.
 \subsection*{Choice of collective variables for WE simulations}
 
 \begin{figure}[hbt!]
-\centering
-\includegraphics[width=6.5in]{Figures/Main/4/placeholder1.jpg}
-\caption{For the given DPPC-DIPC-CHOL replica: A. Free energy curves as a function of WE iteration blocks used to generate them. B. Each plot gives the evolution of configurational distribution for a given collective variable. C. Flux profile between states. The peaks represent crossing of walkers. D. Corresponding state population. Here, each column represent the collective variable that was used to drive WE simulation (FLC, CEI, and $\text{SI}_{\text{noCHOL}}$).}
-\label{figs4:view}
+    \centering
+    \includegraphics[width=6.5in]{Figures/Main/4/placeholder1.jpg}
+    \caption{For the given DPPC-DIPC-CHOL replica: A. Free energy curves as a function of WE iteration blocks used to generate them. B. Each plot gives the evolution of configurational distribution for a given collective variable. C. Flux profile between states. The peaks represent crossing of walkers. D. Corresponding state population. Here, each column represent the collective variable that was used to drive WE simulation (FLC, CEI, and $\text{SI}_{\text{noCHOL}}$).}
+    \label{figs4:view}
 \end{figure}
 
 Since CEI, $\text{SI}_{\text{noCHOL}}$, and FLC all track bilayer lipid separation similarly,
@@ -336,7 +364,7 @@ Figure \ref{figs4:view}C confirms this hypothesis by tracking the probability fl
 
 Figure \ref{figs4:view}D shows this information another way, tracking the relative population of the mixed and separated states over the course of the WE runs; for clarity purposes the states are defined to exclude the ``middle'' of the coordinate (see the methods section for details), so the state populations do not necessarily add to 1.
 It is interesting to note that for CEI, we see a significant drop in the population of the mixed state during iterations 290-300, without a concomitant rise in the other state.
-Since our state definition we chose does not span the entire collective variable space leaving a room for the barrier that separates two states, this indicates that some walkers transitioned out of the mixed state, but remained trapped in the middle of the collective variable and never transitioned to separated state. 
+Since our state definition we chose does not span the entire collective variable space leaving a room for the barrier that separates two states, this indicates that some walkers transitioned out of the mixed state, but remained trapped in the middle of the collective variable and never transitioned to separated state.
 
 For reasons that are not entirely clear, one coordinate (FLC) is far more efficient at sampling transitions than the other two. CEI and $\text{SI}_{\text{noCHOL}}$ do not generate crossing events, and as a result largely recapitulate the probability distribution used to seed the calculation.
 The combined results from standard CG MD and WE simulations suggest that CEI and $\text{SI}_{\text{noCHOL}}$ are suitable proxy labels for phase separation but perform poorly as collective variables for sampling.
@@ -345,10 +373,10 @@ For this reason, we only continued testing the FLC-based WE calculations for oth
 %\subsection*{Free energy landscapes of lipid bilayer systems}
 
 \begin{figure}[hbt!]
-\centering
-\includegraphics[width=6.5in]{Figures/Main/5/placeholder.jpg}
-\caption{Free energy curves based on FLC-driven WE simulation for three systems. Each line represents a free energy curve, computed as the average of 4 replicate WE runs. Each column contains free energy curves from a single lipid composition. The lines are colored to represent different simulation temperatures.}
-\label{figs5:view}
+    \centering
+    \includegraphics[width=6.5in]{Figures/Main/5/placeholder.jpg}
+    \caption{Free energy curves based on FLC-driven WE simulation for three systems. Each line represents a free energy curve, computed as the average of 4 replicate WE runs. Each column contains free energy curves from a single lipid composition. The lines are colored to represent different simulation temperatures.}
+    \label{figs5:view}
 \end{figure}
 
 Figure \ref{figs5:view} shows the free energy profiles of DPPC-DAPC-CHOL, DPPC-DIPC-CHOL, and DPPC-POPC-CHOL lipid bilayer systems.
@@ -366,35 +394,35 @@ Although the expectation of clustering-based FLC is to track the formation of do
 \subsection*{Reconstructing free energy landscapes on alternative coordinates}
 
 \begin{figure}[hbt!]
-\centering
-\includegraphics[width=3.25in]{Figures/Main/6/placeholder.jpg}
-\caption{A. Free energy landscapes reconstructed using the ensemble of configurations generated during last 10 iterations of FLC-driven WE simulation. The free energy landscape is reconstructed with respect to $\text{SI}_{\text{noCHOL}}$ for DPPC-DAPC-CHOL and DPPC-DIPC-CHOL system respectively. B. The free energy landscape is reconstructed with respect to CEI for DPPC-DAPC-CHOL and DPPC-DIPC-CHOL system respectively. The lines are colored to represent different simulation temperatures}
-\label{figs6:view}
+    \centering
+    \includegraphics[width=3.25in]{Figures/Main/6/placeholder.jpg}
+    \caption{A. Free energy landscapes reconstructed using the ensemble of configurations generated during last 10 iterations of FLC-driven WE simulation. The free energy landscape is reconstructed with respect to $\text{SI}_{\text{noCHOL}}$ for DPPC-DAPC-CHOL and DPPC-DIPC-CHOL system respectively. B. The free energy landscape is reconstructed with respect to CEI for DPPC-DAPC-CHOL and DPPC-DIPC-CHOL system respectively. The lines are colored to represent different simulation temperatures}
+    \label{figs6:view}
 \end{figure}
 
 One outcome of WE simulation is the curated ensemble of diverse structures generated by the trajectories.
 By construction, WE resampling ensures that the weights associated with these walkers are unbiased.
 Thus, we can reuse these weights to examine other variables of choice post-simulation without any need to reweight; this is advantageous, because reweighting is nearly always a lossy procedure.
-Assuming the initial configurational distribution relaxed into an equilibrium distribution during the WE simulations (see Discussion), 
+Assuming the initial configurational distribution relaxed into an equilibrium distribution during the WE simulations (see Discussion),
 we can reconstruct analogous free energy landscapes with collective variable candidates that underperformed for sampling but are otherwise more intuitive to understand.
 Fig \ref{figs6:view} A and B show reconstructed free energy landscapes with $\text{SI}_{\text{noCHOL}}$ and CEI by combining the weights from the last ten iterations of the four FLC-generated replicas for each system.
 
 \subsection*{Computing the free energy of separation}
 
 \begin{figure}[hbt!]
-\centering
-\includegraphics[width=0.5\linewidth]{Figures/Main/7/placeholder.jpg}
-\caption{$\Delta\Delta$G profile for DPPC-DAPC-CHOL and DPPC-DIPC-CHOL systems for a given cutoff. Each curve represents $\Delta\Delta$G for the system to transition from mixed to the separated state. Negative values indicate phase coexistence is favored}
-\label{figs7:view}
+    \centering
+    \includegraphics[width=0.5\linewidth]{Figures/Main/7/placeholder.jpg}
+    \caption{$\Delta\Delta$G profile for DPPC-DAPC-CHOL and DPPC-DIPC-CHOL systems for a given cutoff. Each curve represents $\Delta\Delta$G for the system to transition from mixed to the separated state. Negative values indicate phase coexistence is favored}
+    \label{figs7:view}
 \end{figure}
 
-If we define a cutoff FLC value that separates the well-mixed and phase-separated states, we can compute the free energy change for phase separation as 
+If we define a cutoff FLC value that separates the well-mixed and phase-separated states, we can compute the free energy change for phase separation as
 \begin{equation}
     \Delta \Delta G_{\text{sep}} = -k_B T \ln \frac{p_{\text{sep}}}{p_{\text{mixed}}}
 \end{equation}
 
 One challenge, however, is that the locations of the basins shift with temperature, as seen in Fig \ref{figs5:view}A, and
-at higher temperatures, the notion of two states -- mixed and separated -- breaks down as the double-well behavior of free energy curves turns into a single well. 
+at higher temperatures, the notion of two states -- mixed and separated -- breaks down as the double-well behavior of free energy curves turns into a single well.
 One trivial solution would be to define a rigid FLC cutoff for a system.
 However, a caveat for this approach, as seen in Fig \ref{figs5:view} A, is that the free energy basin for a specific state of the DPPC-DIPC-CHOL system is different for the respective state basin for the DPPC-DAPC-CHOL system.
 For this reason, devising a rigorous systematic way to define the separator between the states will require more investigation. In the mean time, we use visual inspection to define FLC cutoffs of 0.525 and 0.625 for the DPPC-DIPC-CHOL and DPPC-DAPC-CHOL systems respectively.
@@ -406,10 +434,10 @@ in this manner is sensitive to the choice of FLC cutoff, as shown in Supplementa
 \section*{Discussion}
 
 \begin{figure}[hbt!]
-\centering
-\includegraphics[width=6.5in]{Figures/Main/8/placeholder.jpg}
-\caption{Schematic representation of the proposed FLOPSS pipeline. The pipeline is modular. Each module has layers that can be translated to any phase separating system.}
-\label{figs8:view}
+    \centering
+    \includegraphics[width=6.5in]{Figures/Main/8/placeholder.jpg}
+    \caption{Schematic representation of the proposed FLOPSS pipeline. The pipeline is modular. Each module has layers that can be translated to any phase separating system.}
+    \label{figs8:view}
 \end{figure}
 
 Here we propose a proof-of-concept pipeline to construct \textbf{F}ree energy \textbf{L}andscape \textbf{O}f \textbf{P}hase \textbf{S}eparating \textbf{S}ystems (\textbf{FLOPSS}) by realizing multiple transition events using WE strategy.
