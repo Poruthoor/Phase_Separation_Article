@@ -281,3 +281,6 @@ TSWLatexianTemp*
 # vim crums
 *.un*
 *.sw*
+
+# ignore word droppings
+~*
