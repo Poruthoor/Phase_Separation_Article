@@ -208,6 +208,7 @@ def shannonMFEntropyLocal(hist2D):
     hist2DBinPop = np.add.reduce(hist2D, axis=0)
 
     # Calculating probabilities for each bin
+    hist2DBinPop = np.ma.masked_invalid(hist2DBinPop)
     prob = hist2D[:]/hist2DBinPop
     probMasked = np.ma.masked_equal(prob, value=0)
 
