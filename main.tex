@@ -174,9 +174,9 @@ Here, we define the Fraction of Lipids in Clusters (FLC) as follows:
     \text{FLC} = \sum_{i}^{N} \frac{\text{No. of $X_i$ lipids in lipid $X_i$ Clusters}}{\text{No. of Lipid $X_i$}} =  \frac{\sum_{i}^{N} \text{No. of Lipid X$_i$ in Lipid X$_i$ Clusters}}{\text{Total No. of Lipids}}
 \end{equation}
 
-\noindent Where subscript $i$ denotes the individual lipid species in a bilayer consisting of N total lipid species.
+\noindent where subscript $i$ denotes the individual lipid species in a bilayer consisting of N total lipid species.
 As shown in Figure \ref{fig2:view}, each system under study has $N=3$ lipid species.
-FLC increases as the system goes from a mixed state, with a random distribution of lipids, to a separated state.
+FLC increases as the system goes from a well-mixed state, with a random distribution of lipids, to a separated state.
 An FLC of 0 corresponds to a system configuration where no lipids are part of any cluster,
 while an FLC of 1 implies that all lipids are in a cluster (though not necessarily a single cluster).
 
@@ -189,18 +189,18 @@ while an FLC of 1 implies that all lipids are in a cluster (though not necessari
 \end{figure}
 
 
-The lipid $X_i$ cluster is defined using the Density-Based Spatial Clustering of Applications with Noise (DBSCAN) algorithm \cite{MartinEsterHans-PeterKriegelJiirgSander1996, Ester2017} as implemented in scikit-learn \cite{PedregosaF.VaroquauxG.GramfortA.MichelV.ThirionB.GriselO.BlondelM.PrettenhoferP.WeissR.andDubourgV.VanderplasJ.PassosA.CournapeauD.BrucherM.PerrotM.Duchesnay2011}.
-For lipid DBSCAN clustering, instead of the default euclidean metric to calculate the distance between lipid centroids, we precomputed the 2-dimensional distance matrix adjusted for periodic boundary conditions; the distance calculation was performed using LOOS, with the two leaflets treated independently.
+The clustering is defined using the Density-Based Spatial Clustering of Applications with Noise (DBSCAN) algorithm \cite{MartinEsterHans-PeterKriegelJiirgSander1996, Ester2017} as implemented in scikit-learn \cite{PedregosaF.VaroquauxG.GramfortA.MichelV.ThirionB.GriselO.BlondelM.PrettenhoferP.WeissR.andDubourgV.VanderplasJ.PassosA.CournapeauD.BrucherM.PerrotM.Duchesnay2011}.
+For lipid DBSCAN clustering, we supply a 2-dimensional lipid-lipid distance matrix that accounts for periodic boundary conditions; the distance calculation was performed using LOOS, with the two leaflets treated independently.
 The DBSCAN algorithm requires two additional input parameters: $min\_samples$ and $\varepsilon$.
 We consider lipids with more than $min\_samples$ neighbors (including the lipid itself) within $\varepsilon$ radius as core lipids.
 Non-core lipids still within $\varepsilon$ radius of a core lipid are considered border lipids.
 A set of core lipids within $\varepsilon$ radius of each other and their border lipids forms a cluster.
 All lipids that are not a part of any cluster are considered outliers.
 
-Since lipid motion in a bilayer is constrained primarily on a plane and MARTINI beads for a lipid are of similar radii, we can use the two-dimensional version of Kepler's conjecture that the densest packing of unit disks in a plane is hexagonal close packing (Thue's Theorem).
-Hence we chose 7 (6 nearest neighbors + 1 central lipid) as $min\_samples$ for all the lipid species.
-However, $\varepsilon$ was chosen differently for each lipid species based on their first nearest neighbor distance from the central lipid.
-We used the $xy\_rdf$ tool in LOOS to calculate an individual lipid species' first nearest neighbor distance.
+Since lipid motion in a bilayer is constrained primarily on a plane and MARTINI beads for a lipid are of similar radii, we can used the two-dimensional version of Kepler's conjecture that the densest packing of unit disks in a plane is hexagonal close packing (Thue's Theorem), and
+chose 7 (6 nearest neighbors + 1 central lipid) as $min\_samples$ for all the lipid species.
+However, $\varepsilon$ was chosen differently for each lipid species based on their first nearest-neighbor distance from the central lipid.
+We used the $xy\_rdf$ tool in LOOS to calculate an individual lipid species' first nearest-neighbor distance.
 From the first 8 $\mu$s MD standard simulation of each replica, we computed the radial distribution function (RDF) for a lipid species in the xy-plane.
 From the RDF plot, we found the first maxima (provided it is above 1), and the distance to the minima right after this first maximum was determined to be the first nearest neighbor distance for that lipid species.
 This distance was averaged over all four replicas for a given system at a given temperature and then assigned as the respective $\varepsilon$ input.
@@ -210,7 +210,7 @@ Additionally, we tracked auxiliary variables (AVs) that evaluate the quality of 
 
 \subsubsection*{2. Cumulative Enrichment Index (CEI)}
 
-When lipids segregate into phases, one result is that the local concentration of a given lipid type in the vicinity of other lipids of the same type is increased. We attempted to exploit this phenomenon by tracking the degree of local lipid enrichment, similar to other methods previously used \cite{Gu2019, Gu2020}.
+When lipids segregate into phases, one result is that the local concentration of a given lipid type in the vicinity of other lipids of the same type is increased. We attempted to exploit this phenomenon by tracking the degree of local lipid enrichment; this was inspired by previous work from our lab \cite{Grossfield2022}, although other groups used similar methods \cite{Gu2019, Gu2020}.
 Here, we calculated the average local density of $X_i$ lipids around a single lipid $X_{ij}$, within a cutoff radius, $\epsilon_i$, defined as above for FLC estimation.
 We defined a normalization factor, $\Phi_i$, as the local density of $X_i$ lipids for a uniformly well-mixed system of similar composition.
 The ratio of former respective to latter forms the enrichment index for a lipid species, $X_i$.
@@ -224,7 +224,7 @@ CEI is defined as the sum of individual enrichment index for all the lipid speci
     \end{aligned}
 \end{equation}
 
-Where $X_{ij}$ denotes $j^{th}$ lipid of $X_i$ lipid species.
+\noindent where $X_{ij}$ denotes $j^{th}$ lipid of $X_i$ lipid species.
 The local density around $X_{ij}$ is calculated within $\epsilon_i(T)$ distance, where T is the temperature of the system, corrected
 for the contribution of the central lipid.
 For the normalization factor, $\Phi_i$,  we calculated the global density of $X_i$ lipids by taking the ratio of the total number of $X_i$ lipids in the system to the $xy$-planar area of the bilayer system.
