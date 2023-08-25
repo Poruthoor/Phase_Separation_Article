@@ -419,6 +419,7 @@ The results are qualitatively similar on each coordinate, though unsurprisingly 
 If we define a cutoff FLC value that separates the mixed and phase-separated states, we can compute the free energy change for phase separation as
 \begin{equation}
     \Delta \Delta G_{\text{sep}} = -k_B T \ln \frac{p_{\text{sep}}}{p_{\text{mixed}}}
+    \label{eq:ddg}
 \end{equation}
 \noindent where the probabilities are extracted by summing the weights from the weighted ensemble simulations.
 
@@ -432,10 +433,13 @@ in this manner is sensitive to the choice of FLC cutoff, as shown in Supplementa
 
 \begin{figure}[hbt!]
     \centering
-    \includegraphics[width=0.5\linewidth]{Figures/Main/7/placeholder.jpg}
-    \caption{$\Delta\Delta$G profile for DPPC-DAPC-CHOL and DPPC-DIPC-CHOL systems constructed by separating FLC$_{\text{opt}}$ into 2 states at the first local free energy maximum from the right. The presence of multiple points for the same system and temperature are the result of more than 2 states in the original curve (see Fig \ref{fig6:view}).  Negative values indicate phase coexistence is favored. 
+    \includegraphics[width=0.5\linewidth]{Figures/Main/8/placeholder.jpg}
+    \caption{$\Delta\Delta$G profile for DPPC-DAPC-CHOL and DPPC-DIPC-CHOL systems constructed by separating FLC$_{\text{opt}}$ into 2 states at the first local free energy maximum from the right. For the DIPC system at 298K, there are more than 2 basins, and as a result there are 2 plausible places to separate the states, at FLC$_{\text{opt}}$ values of 0.9 and 0.74 (see Figure \ref{figs6:view}); the latter value is marked with a dashed line.  Negative values indicate phase coexistence is favored. 
     \label{newfig8}}
 \end{figure}
+
+An arguably more satisfying approach is presented in Figure \ref{newfig8}. Here, we take advantage of the presence of more structure in the free energy as a function FLC$_{\text{opt}}$ than the original FLC. The presence of well-separated basins in the free energy curves lends itself to identifying the local maxima as boundaries between states; with this distinction drawn, we can compute the free energy difference using Equation \ref{eq:ddg}. This breaks down for the 423K systems. Because these curves have only a single well, we are forced to identify a cutoff value; the plotted values should be considered a floor for the ``true'' value.
+
 
 \section*{Discussion}
 
@@ -450,6 +454,8 @@ Thus, we are left with less-satisfying intuitive explanations for the wide varia
 It is tempting to think of $\Delta \Delta G_{\text{sep}}$ the way we do with simple two-state double-well systems, where the relative populations of the two states change with temperature but the nature of those states is unchanged. Consideration of Figures \ref{fig5:view} and \ref{fig6:view} show that is clearly not the case here; regardless of the collective variable used to project the free energy, the location of the minimum or minima varies strongly with temperature. This is even visible in the non-separating POPC system, where the free energy curve shifts toward lower FLC at higher temperatures (Figure \ref{figs5:view}) This is not surprising and has a direct physical interpretation: above the $T_m$, there is a single phase, but the lipid do not mix ideally; this is most visible in the DAPC system, where most DPPC lipids are clustered even at 423K. Even below the melting temperature, the structure and composition of the phases changes with temperature.
 
 As a result, the computed $\Delta \Delta G_{\text{sep}}$ values (Figures \ref{figs7:view} and \ref{newfig8}) are not nearly as large as one might expect. For example, the separated state for the DIPC system at 298K is about -5 kcal/mol when estimated by choosing a conventional FLC cutoff that ``looks'' reasonable. However, if we use FLC$_{\text{opt}}$ and choose to split the states at the first free energy barrier from the right (high FLC$_{\text{opt}}$), we get a much smaller difference of -0.74 kcal/mol.  The difference is that the former approach attempts to compare the the free energies of a relatively well-mixed state to the separated one, while the latter compares the two stable states of the system: one phase-separated, and the other a single phase with very non-ideal mixing. Since at low temperature good mixing is very unfavorable, the latter approach produces a far smaller $\Delta \Delta G_{\text{sep}}$.  That said, it is also possible that this relatively moderate favorability is an artifact of the size of the system simulated; in the future, it would be worthwhile to investigate the dependence of $\Delta \Delta G_{\text{sep}}$ on system size in a more systematic way.
+
+This explanation also rationalizes the most surprising result, that the DIPC system has a higher than the DAPC system, which we would have thought of as being the more strongly separating one. However, once we consider the fact that the DAPC is far more non-ideal when existing as a single phase than the DIPC system, the result makes more sense: the non-ideality means that the DAPC system is more able to sequester the DPPC lipids without the entropic penalty of forming larger domains. That said, it is also possible that system-size dependence is playing a role here as well; for example, if DAPC domains naturally existed on longer lengthscales than DIPC, that would explain the results.
 
 
 \subsection*{FLOPSS pipeline for computing phase separation thermodynamics}
