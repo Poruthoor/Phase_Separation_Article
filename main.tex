@@ -71,14 +71,14 @@ As membrane properties modulate resident protein function, the coexistence of di
 Conformational changes in domain-resident molecules and their subsequent activity shifts regulate key signaling events\cite{Laganowsky2014,Lingwood2011}.
 It has also been observed that the HIV Gag protein is sensitive to domains with high cholesterol content, suggesting a potential role of membrane domains in host-pathogen interaction and viral assembly\cite{Dick2012}.
 Moreover, lipid domains are conserved throughout the tree of life, implying their relevance in regulating cellular processes\cite{Sezgin2017}; for example, recent work from the Keller lab showed that yeast actively regular the composition of their vacuolar membranes to keep the melting temperature well above the growth temperature of the yeast\cite{Keller2022}.
-For these reasons, understanding the thermodynamics of lipid phase separation as a function of the composition of the system is a critical step toward understanding the individual lipid properties that underlie the formation of t addomains and the resultant functional modulations. 
+For these reasons, understanding the thermodynamics of lipid phase separation as a function of the composition of the system is a critical step toward understanding the individual lipid properties that underlie the formation of domains and the resultant functional modulations. 
 
 
 Lipid domains have been studied extensively both experimentally and computationally.
 However, teasing out the complex interactions between domain components that determine the membrane organization is challenging in vivo due to the limitations of different methodologies\cite{Klotzsch2013}.
 Such difficulties primarily arise due to (a) the complex composition of cell membrane\cite{Tieleman2019}, (b) difficulties in defining domain properties in vivo\cite{Sezgin2017}, and (c) challenges in achieving specificity when perturbing the system with probes\cite{Veatch2007}.
 Hence, simple model membranes have been extensively used to mimic the phase separation of complex cell membrane phenomenon in vitro\cite{Veatch2003a,Veatch2002,Veatch2003} and in silico\cite{Risselada2008,Lin2016,Lin2019}.
-Such studies provide powerful insights into phase-separated domains, their properties, and whether the process is favorable, but as a rule they cannot quantify the underlying thermodynamics. This limits our ability to assess the contributions of different mechanistic effects to the process.
+Such studies provide powerful insights into phase-separated domains, their properties, and whether the process is favorable, but as a rule atomistic and coarse-grained models cannot quantify the underlying thermodynamics, although simpler lattice-based models can \cite{Schick1990,Schick2006,Schick2015,Schick2017,Schick2020,Almeida2012,Biltonen1996,Biltonen2001,Javanainen2022}. This limits our ability to assess the contributions of different mechanistic effects to the process.
 
 As a ``computational microscope\cite{Dror2012}'', molecular dynamics (MD) simulations have been used to study spontaneous lipid separation without using exogenous labels or probes\cite{Pantelopulos2018}.
 However, MD simulations designed for spontaneous phase separation are inadequate to compute thermodynamic properties with statistical confidence.
@@ -268,14 +268,19 @@ Thus, we made a dataset corresponding to different values of $min\_samples$ and 
 We repeated the scheme for all four replicas of each system at different temperatures.
 
 To arrive at an optimized FLC parameter set, we filtered this larger dataset using the following steps:
-(1) For a given lipid system, filter out only those pairs with FLC state differences greater than 0.5 (half of the possible range of FLC).
-This cutoff choice is arbitrary and just enough to select parameter pairs that distinguish states clearly from each other.
+(1) For a given lipid system, select only those pairs with FLC state differences greater than 0.5 (half of the possible range of FLC).
+This cutoff choice is arbitrary and just enough to identify parameter pairs that distinguish states clearly from each other.
 (2) From the selected parameter sets, check for the occurrence of a specific pair of $(min\_samples, \varepsilon)$ across the data sets corresponding to all the temperature replicas.
 Rank the pairs based on most occurrences. This helps to identify parameter pairs that are valid across most temperatures.
 (3) Choose the pair which gives maximum state difference with most occurances. In case of a tie for the optimum parameter pairs, we chose the pair that has the least $\varepsilon$ and $min\_samples$ to reduce the neighbor search overhead.
 Now, instead of a temperature-specific $min\_samples$ and $\varepsilon$ for each species in a given ternary mixture, we have a unique pair for each lipid species in a system. We refer to the coordinate using these parameters as FLC$_{\text{opt}}$. For the DIPC system, the optimized values ($min\_samples$, $\varepsilon$) are (26.5 {\AA}, 24), (31.5 {\AA}, 26), and (32.5 {\AA}, 23) for DPPC, DIPC, and cholesterol respective. For the DAPC system, they are (33.0 {\AA}, 42), (44.5 {\AA}, 56), and (50.0 {\AA}, 41) for DPPC, DAPC, and cholesterol. FLC$_{\text{opt}}$ was not used for WE sampling, only as a coordinate on which to project the free energy.
 
 \subsection*{Weighted Ensemble Simulation}
+\subsubsection{Introduction to weighted ensemble simulations}
+
+Although the WE method has been reviewed extensively elsewhere\cite{Zwier2015, Zuckerman2017}, we provide a brief overview here. The essence of WE is to generate a large number of short unbiased trajectories, such that they evenly cover conformation space as quantified by a chosen collective variable (CV) or progress coordinate. Specifically, a coordinate is chosen and broken into bins. Short MD trajectories (called walkers) are run, and the location of the final state identified. If a given bin has more than a chosen target number of walkers, some of those walkers are culled and their statistical weight is distributed among the remaining walkers in the bin. If there are fewer than the target number of walkers in a bin (e.g. because more walkers departed than arrived, or because a walker moved into a previously unpopulated bin), the walker is split to produce the target number and its statistical weight evenly distributed among the new  walkers.
+
+The WE approach has several major advantages. First, it can be proved that WE converges to the correct free energy distribution in the good-sampling limit \cite{Zuckerman2017}. Second, its use of a large number of short trajectories is readily parallelizable, making it efficient on high-performance computing resources. Third, it directly produces unbiased estimates of the kinetics that are independent of the chosen coordinate (although some coordinates may converge faster). Fourth, unlike almost every other enhanced sampling method, the MD itself is unbiased; the collective variable is computed only after the MD has finished. This last property was most important to the present application; the coordinates we used are computationally expensive, particularly if a plugin such as PLUMED\cite{Tribello2019} or COLVARS\cite{Fiorin2013} were used, since both are restricted to a single CPU core and are not GPU-accelerated.
 
 \subsubsection*{Preparing seeding configurations for WE simulation}
 From each 8 $\mu$s MD simulation of a given composition, the last ten frames spaced by 100 ns were collected.
