@@ -1,7 +1,7 @@
 % \documentclass[lineno,twocolumn,endfloat,biblatex]{biophys-new}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL FIRST-SUB.tex   Fri Aug 25 17:55:23 2023
-%DIF ADD main.tex        Sat Aug 26 17:23:12 2023
+%DIF ADD main.tex        Mon Aug 28 12:39:26 2023
 \documentclass{biophys-new}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -161,7 +161,7 @@ Such domains often cluster signaling molecules\cite{Tian2007} and facilitate con
 As membrane properties modulate resident protein function, the coexistence of distinct phases gives the cell an extra tool for regulation.
 Conformational changes in domain-resident molecules and their subsequent activity shifts regulate key signaling events\cite{Laganowsky2014,Lingwood2011}.
 It has also been observed that the HIV Gag protein is sensitive to domains with high cholesterol content, suggesting a potential role of membrane domains in host-pathogen interaction and viral assembly\cite{Dick2012}.
-Moreover, lipid domains are conserved throughout the tree of life, implying their relevance in regulating cellular processes\cite{Sezgin2017}\DIFaddbegin \DIFadd{; for example, recent work from the Keller lab showed that yeast actively regular the composition of their vacuolar membranes to keep the melting temperature well above the growth temperature of the yeast\mbox{%DIFAUXCMD
+Moreover, lipid domains are conserved throughout the tree of life, implying their relevance in regulating cellular processes\cite{Sezgin2017}\DIFaddbegin \DIFadd{; for example, recent work from the Keller lab showed that yeast actively regulate the composition of their vacuolar membranes to keep the melting temperature well above the growth temperature of the yeast\mbox{%DIFAUXCMD
 \cite{Keller2022}}\hskip0pt%DIFAUXCMD
 }\DIFaddend .
 For these reasons, understanding the thermodynamics of lipid phase separation as a function of the composition of the system is a critical step toward understanding the  \DIFaddbegin \DIFadd{individual lipid properties that underlie the formation of }\DIFaddend domains and the resultant functional modulations. 
@@ -170,7 +170,7 @@ For these reasons, understanding the thermodynamics of lipid phase separation as
 Lipid domains have been studied extensively both experimentally and computationally.
 However, teasing out the complex interactions between domain components that determine the membrane organization is challenging in vivo due to the limitations of different methodologies\cite{Klotzsch2013}.
 Such difficulties primarily arise due to (a) the complex composition of cell membrane\cite{Tieleman2019}, (b) difficulties in defining domain properties in vivo\cite{Sezgin2017}, and (c) challenges in achieving specificity when perturbing the system with probes\cite{Veatch2007}.
-Hence, simple model membranes have been extensively used to mimic the phase separation of complex cell membrane phenomenon in vitro\cite{Veatch2003a,Veatch2002,Veatch2003} and in silico\cite{Risselada2008,Lin2016,Lin2019}.
+Hence, simple model membranes have been extensively used to mimic the phase separation of complex cell membrane  in vitro\cite{Veatch2003a,Veatch2002,Veatch2003} and in silico\cite{Risselada2008,Lin2016,Lin2019}.
 Such studies provide powerful insights into phase-separated domains, their properties, and whether the process is favorable, but as a rule  \DIFaddbegin \DIFadd{atomistic and coarse-grained models }\DIFaddend cannot quantify the underlying thermodynamics\DIFaddbegin \DIFadd{, although simpler lattice-based models can \mbox{%DIFAUXCMD
 \cite{Schick1990,Schick2006,Schick2015,Schick2017,Schick2020,Almeida2012,Biltonen1996,Biltonen2001,Javanainen2022}}\hskip0pt%DIFAUXCMD
 }\DIFaddend . This limits our ability to assess the contributions of different mechanistic effects to the process.
@@ -178,7 +178,7 @@ Such studies provide powerful insights into phase-separated domains, their prope
 As a ``computational microscope\cite{Dror2012}'', molecular dynamics (MD) simulations have been used to study spontaneous lipid separation without using exogenous labels or probes\cite{Pantelopulos2018}.
 However, MD simulations designed for spontaneous phase separation are inadequate to compute thermodynamic properties with statistical confidence.
 This is because the transition between mixed and separated states is often a single irreversible event on the microsecond timescale typically achievable by typical all-atom or even coarse-grained MD\cite{Risselada2008,Bennett2018}, especially given the
-the relatively large size required to model the phenomenon.
+ relatively large size required to model the phenomenon.
 That said, CG-MD is an excellent tool to study phase separation in the membrane, because it retains molecular-level resolution while capturing nanoscale domains due to transient phase separation events.
 
 Previously, the Tieleman\cite{Bennett2018} and the Gorfe groups\cite{Lin2019} have done some pioneering work on the thermodynamics of lipid domains.
@@ -352,7 +352,7 @@ Hence, $\text{SI}_{\text{noCHOL}}$ effectively will have bounds [0, 2] unless ot
 refinement scheme to optimize the parameters for FLC in order to improve its ability to discriminate between states.
 First, we calculated FLC for various combinations of $min\_samples$ and $\varepsilon$ for the conventional MD simulations.
 We scanned $min\_samples$ (the number of lipids needed to form a cluster) from 5 to 60 in steps of 1 and $\varepsilon$ from 1 nm to $r_{diagonal}$ in an increment of 0.05 nm,
-where $r_{diagonal}$ is the half of periodic box diagonal distance in the plane of the membrane.
+where $r_{diagonal}$ is half of the periodic box diagonal distance in the plane of the membrane.
 We calculated the FLC value for each parameter combination on the trajectories collected from standard MD simulation for each system at different temperatures.
 On the FLC evolution data corresponding to each trajectory, we fit an HMM model using the hmmlearn python module \mbox{%DIFAUXCMD
 \cite{hmmlearn}}\hskip0pt%DIFAUXCMD
@@ -560,7 +560,7 @@ in this manner is sensitive to the choice of FLC cutoff, as shown in Supplementa
     }\label{newfig8}}
 \end{figure}
 
-\DIFadd{An arguably more satisfying approach is presented in Figure \ref{newfig8}. Here, we take advantage of the presence of more structure in the free energy as a function FLC$_{\text{opt}}$ than the original FLC. The presence of well-separated basins in the free energy curves lends itself to identifying the local maxima as boundaries between states; with this distinction drawn, we can compute the free energy difference using Equation \ref{eq:ddg}. This breaks down for the 423K systems. Because these curves have only a single well, we are forced to identify a cutoff value; the plotted values should be considered a floor for the ``true'' value.
+\DIFadd{An arguably more satisfying approach is presented in Figure \ref{newfig8}. Here, we take advantage of the presence of more structure in the free energy as a function of FLC$_{\text{opt}}$ compared to the original FLC. The presence of well-separated basins in the free energy curves lends itself to identifying the local maxima as boundaries between states; with this distinction drawn, we can compute the free energy difference using Equation \ref{eq:ddg}. This breaks down for the 423K systems. Because these curves have only a single well, we are forced to identify a cutoff value; the plotted values should be considered a floor for the ``true'' value.
 }
 
 
@@ -574,7 +574,7 @@ in this manner is sensitive to the choice of FLC cutoff, as shown in Supplementa
 \cite{Berne2016,Berne2017,Tiwary2018b,Tiwary2021}}\hskip0pt%DIFAUXCMD
 , have developed machine learning methods to identify effective coordinates empirically based on their kinetic properties.  A more theoretical approach was developed by Wu et al \mbox{%DIFAUXCMD
 \cite{Wu2022}}\hskip0pt%DIFAUXCMD
-, based on identifying the energy flow coupled to motion along a coordinate.  However, the former methods do not explain the reason why a particular coordinate is effective, while the latter is too computationally intensive to apply to a systems like those treated here; the presence of a large number of equivalent molecules is a significant challenge to the formalism as currently presented.
+, based on identifying the energy flow coupled to motion along a coordinate.  However, the former methods do not explain the reason why a particular coordinate is effective, while the latter is too computationally intensive to apply to systems like those treated here; the presence of a large number of equivalent molecules is a significant challenge to the formalism as currently presented.
 }
 
 \DIFadd{Thus, we are left with less-satisfying intuitive explanations for the wide variation in performance of the collective variables tested here.  It is reasonable to assume that the most efficient coordinate for sampling is one that closely approximates a ``true'' order parameter for the system, and thus that the efficacy of FLC as a sampling coordinate says something about local clustering as a mechanism of phase separation.  In particular, FLC is sensitive to somewhat longer lengthscale motions than CEI or SI, both of which are driven entirely by nearest-neighbor mixing. This is also borne out by the improved ability of FLC$_{\text{opt}}$ to discriminate between states; the optimized cutoff distances are roughly 2-3x longer.  Based on this, we would predict that FLC$_\mathrm{opt}$ would perform as well or better than FLC, though this will require more testing.
@@ -585,7 +585,7 @@ in this manner is sensitive to the choice of FLC cutoff, as shown in Supplementa
 \DIFadd{It is tempting to think of $\Delta \Delta G_{\text{sep}}$ the way we do with simple two-state double-well systems, where the relative populations of the two states change with temperature but the nature of those states is unchanged. Consideration of Figures \ref{figs5:view} and \ref{figs6:view} show that is clearly not the case here; regardless of the collective variable used to project the free energy, the location of the minimum or minima varies strongly with temperature. This is even visible in the non-separating POPC system, where the free energy curve shifts toward lower FLC at higher temperatures (Figure \ref{figs5:view}) This is not surprising and has a direct physical interpretation: above the $T_m$, there is a single phase, but the lipid do not mix ideally; this is most visible in the DAPC system, where most DPPC lipids are clustered even at 423K. Even below the melting temperature, the structure and composition of the phases changes with temperature.
 }
 
-\DIFadd{As a result, the computed $\Delta \Delta G_{\text{sep}}$ values (Figures \ref{figs7:view} and \ref{newfig8}) are not nearly as large as one might expect. For example, the separated state for the DIPC system at 298K is about -5 kcal/mol when estimated by choosing a conventional FLC cutoff that ``looks'' reasonable. However, if we use FLC$_{\text{opt}}$ and choose to split the states at the first free energy barrier from the right (high FLC$_{\text{opt}}$), we get a much smaller difference of -0.74 kcal/mol.  The difference is that the former approach attempts to compare the the free energies of a relatively well-mixed state to the separated one, while the latter compares the two stable states of the system: one phase-separated, and the other a single phase with very non-ideal mixing. Since at low temperature good mixing is very unfavorable, the latter approach produces a far smaller $\Delta \Delta G_{\text{sep}}$.  That said, it is also possible that this relatively moderate favorability is an artifact of the size of the system simulated; in the future, it would be worthwhile to investigate the dependence of $\Delta \Delta G_{\text{sep}}$ on system size in a more systematic way.
+\DIFadd{As a result, the computed $\Delta \Delta G_{\text{sep}}$ values (Figures \ref{figs7:view} and \ref{newfig8}) are not nearly as large as one might expect. For example, the separated state for the DIPC system at 298K is about -5 kcal/mol when estimated by choosing a conventional FLC cutoff that ``looks'' reasonable. However, if we use FLC$_{\text{opt}}$ and choose to split the states at the first free energy barrier from the right (high FLC$_{\text{opt}}$), we get a much smaller difference of -0.74 kcal/mol.  The difference is that the former approach attempts to compare the free energies of a relatively well-mixed state to the separated one, while the latter compares the two stable states of the system: one phase-separated, and the other a single phase with very non-ideal mixing. Since at low temperature good mixing is very unfavorable, the latter approach produces a far smaller $\Delta \Delta G_{\text{sep}}$.  That said, it is also possible that this relatively moderate favorability is an artifact of the size of the system simulated; in the future, it would be worthwhile to investigate the dependence of $\Delta \Delta G_{\text{sep}}$ on system size in a more systematic way.
 }
 
 \DIFadd{This explanation also rationalizes the most surprising result, that the DIPC system has more favorable $\Delta \Delta G_{\text{sep}}$ than the DAPC system at all temperatures except 423K, even though we would have thought of DAPC as being the more strongly separating system. However, once we consider the fact that the DAPC is far more non-ideal when existing as a single phase than the DIPC system, the result makes more sense: the non-ideality means that the DAPC system is more able to sequester the DPPC lipids without the entropic penalty of forming larger domains. Put another way, the change in local composition surrounding a given DPPC is smaller upon phase separation for the DAPC system than for DIPC. That said, it is also possible that system-size dependence is playing a role here as well; for example, if DAPC domains naturally existed on longer lengthscales than DIPC, that would explain the results.
