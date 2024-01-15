@@ -287,3 +287,5 @@ TSWLatexianTemp*
 
 # VS code crums
 settings.json
+
+*__pycache__/
